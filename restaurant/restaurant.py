@@ -75,6 +75,10 @@ class Restaurant(ABC):
     def getCuisine(self):
         pass
     
+    @abstractmethod
+    def generateRestaurantID(self):
+        pass
+    
 
     
     
