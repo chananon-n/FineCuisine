@@ -1,5 +1,5 @@
 import user as User
-class MiddleMan(User):
+class Admin(User):
     def __init__(self,username,password,tel):
         self.username = username
         self.password = password
