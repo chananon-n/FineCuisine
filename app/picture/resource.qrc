@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>bell.png</file>
+    <file>crown.png</file>
+    <file>exit.png</file>
+    <file>lock.png</file>
+    <file>menu-burger.png</file>
+    <file>time-past.png</file>
+    <file>MH_SM_40BW.jpg</file>
+    <file>user.png</file>
+  </qresource>
+</RCC>
