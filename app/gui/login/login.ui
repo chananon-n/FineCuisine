@@ -117,7 +117,7 @@ QPushButton:hover{
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../../Pic/resource.qrc">:/icon/user.png</pixmap>
+      <pixmap resource="../../picture/resource.qrc">:/icon/user.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -136,13 +136,13 @@ QPushButton:hover{
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../../../../Pic/resource.qrc">:/icon/lock.png</pixmap>
+      <pixmap resource="../../picture/resource.qrc">:/icon/lock.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -206,7 +206,7 @@ border-bottom:2px solid black;</string>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>293</x>
@@ -279,7 +279,7 @@ QPushButton:hover{
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../../../Pic/resource.qrc">:/icon/MH_SM_40BW.jpg</pixmap>
+     <pixmap resource="../../picture/resource.qrc">:/icon/MH_SM_40BW.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -291,6 +291,7 @@ QPushButton:hover{
   </widget>
  </widget>
  <resources>
+  <include location="../../picture/resource.qrc"/>
   <include location="../../../../../Pic/resource.qrc"/>
  </resources>
  <connections/>

@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icon">
+    <file>icons8-phone-24.png</file>
+    <file>Mail icon 24.png</file>
     <file>bell.png</file>
     <file>crown.png</file>
     <file>exit.png</file>
