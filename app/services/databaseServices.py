@@ -1,4 +1,4 @@
-from db import database
+from app.db import database
 class DatabaseServices:
     def __init__(self):
         pass

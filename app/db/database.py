@@ -1,8 +1,8 @@
 import ZODB, ZODB.FileStorage
 import BTrees.OOBTree
 
-from app.db.user_model import *
-from app.db.course_model import *
+# from app.db.user_model import *
+# from app.db.course_model import *
 
 storage = ZODB.FileStorage.FileStorage('app/db/data.fs')
 db = ZODB.DB(storage)
