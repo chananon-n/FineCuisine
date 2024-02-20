@@ -1,14 +1,23 @@
+from app.services.databaseServices import DatabaseServices
+
+
 class UserServices:
-    def __init__(self,username):
-        self.username = username
         
     def register(self):
         pass
     
-    def login(self):
-        pass
+    def login(self,usernameInput, passwordInput):
+        loginResult = DatabaseServices.validateLogin(usernameInput, passwordInput)
+        if (loginResult):
+            if DatabaseServices.validateAdminLogin(usernameInput):
+                return "Admin"
+            else:
+                return "Client"
+        else:
+            return "Invalid"
+        
     
-    def booking(self):
+def booking(self):
         pass
     
     
