@@ -6,6 +6,7 @@ import transaction
 
 from app.gui.login.loginPage import Ui_MainWindow as loginPage
 from app.gui.register.registerPage import Ui_MainWindow as registerPage
+from app.gui.firstpage.mainPage import Ui_MainWindow as mainPage
     
 
 class LoginPage(QMainWindow, loginPage):
@@ -22,21 +23,24 @@ class LoginPage(QMainWindow, loginPage):
         self.hide()
     
     def loginBTN(self):
-        result = UserServices.login(self.usernameInput.text(), self.passwordInput.text())
-        if result == "Admin":
-            # self.adminPage = AdminPage()
-            # self.adminPage.show()
-            # self.hide()
-            pass
-        elif result == "Client":
-            # self.clientPage = ClientPage()
-            # self.clientPage.show()
-            # self.hide()
-            pass
-        else:
-            alert =QtWidgets.QMessageBox()
-            alert.setText("Invalid username or password")
-            alert.exec()
+        self.mainPage = MainPage()
+        self.mainPage.show()
+        self.hide()
+        # result = UserServices.login(self.usernameInput.text(), self.passwordInput.text())
+        # if result == "Admin":
+        #     # self.adminPage = AdminPage()
+        #     # self.adminPage.show()
+        #     # self.hide()
+        #     pass
+        # elif result == "Client":
+        #     # self.clientPage = ClientPage()
+        #     # self.clientPage.show()
+        #     # self.hide()
+        #     pass
+        # else:
+        #     alert =QtWidgets.QMessageBox()
+        #     alert.setText("Invalid username or password")
+        #     alert.exec()
 
 class RegisterPage(QMainWindow, registerPage):
     def __init__(self):
@@ -55,7 +59,35 @@ class RegisterPage(QMainWindow, registerPage):
     def register(self):
         pass
       
+class MainPage(QMainWindow, mainPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
         
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
+        self.notiBtn.clicked.connect(self.openNotification)
+        self.historyBtn.clicked.connect(self.openHistory)
+        self.feedbackBtn.clicked.connect(self.openFeedback)
         
+        self.logoutBtn.clicked.connect(self.logout)
         
-
+    def openHomePage(self):
+        self.pageWidget.setCurrentIndex(0)
+        
+    def openUserInfo(self):
+        self.pageWidget.setCurrentIndex(1)
+        
+    def openNotification(self):
+        self.pageWidget.setCurrentIndex(2)
+        
+    def openHistory(self):
+        self.pageWidget.setCurrentIndex(3)
+        
+    def openFeedback(self):
+        self.pageWidget.setCurrentIndex(4)
+        
+    def logout(self):
+        self.loginPage = LoginPage()
+        self.loginPage.show()
+        self.hide()

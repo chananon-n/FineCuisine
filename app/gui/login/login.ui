@@ -142,7 +142,7 @@ QPushButton:hover{
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="layoutWidget1">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -292,7 +292,6 @@ QPushButton:hover{
  </widget>
  <resources>
   <include location="../../picture/resource.qrc"/>
-  <include location="../../../../../Pic/resource.qrc"/>
  </resources>
  <connections/>
 </ui>
