@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -130,7 +130,7 @@ class Ui_MainWindow(object):
         self.frame_page.setFrameShadow(QFrame.Raised)
         self.pageWidget = QStackedWidget(self.frame_page)
         self.pageWidget.setObjectName(u"pageWidget")
-        self.pageWidget.setGeometry(QRect(9, 9, 1181, 701))
+        self.pageWidget.setGeometry(QRect(10, 0, 1181, 701))
         self.homePage = QWidget()
         self.homePage.setObjectName(u"homePage")
         self.titleLabel = QLabel(self.homePage)
@@ -190,6 +190,11 @@ class Ui_MainWindow(object):
         self.pageWidget.addWidget(self.userinfoPage)
         self.notiPage = QWidget()
         self.notiPage.setObjectName(u"notiPage")
+        self.notiTitleLabel = QLabel(self.notiPage)
+        self.notiTitleLabel.setObjectName(u"notiTitleLabel")
+        self.notiTitleLabel.setGeometry(QRect(20, 20, 261, 41))
+        self.notiTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
+"color: #7E1615")
         self.pageWidget.addWidget(self.notiPage)
         self.historyPage = QWidget()
         self.historyPage.setObjectName(u"historyPage")
@@ -207,7 +212,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(0)
+        self.pageWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -229,5 +234,6 @@ class Ui_MainWindow(object):
         self.picReservation.setText("")
         self.newsBtn.setText(QCoreApplication.translate("MainWindow", u"course", None))
         self.picNews.setText("")
+        self.notiTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
     # retranslateUi
 

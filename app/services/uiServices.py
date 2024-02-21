@@ -6,7 +6,7 @@ import transaction
 
 from app.gui.login.loginPage import Ui_MainWindow as loginPage
 from app.gui.register.registerPage import Ui_MainWindow as registerPage
-from app.gui.firstpage.mainPage import Ui_MainWindow as mainPage
+from app.gui.mainPage.mainPage import Ui_MainWindow as mainPage
     
 
 class LoginPage(QMainWindow, loginPage):
@@ -63,7 +63,7 @@ class MainPage(QMainWindow, mainPage):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        
+        self.pageWidget.setCurrentIndex(0)
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
         self.notiBtn.clicked.connect(self.openNotification)

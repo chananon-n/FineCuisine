@@ -225,14 +225,14 @@ background-color: rgb(198, 52, 40);
          <widget class="QStackedWidget" name="pageWidget">
           <property name="geometry">
            <rect>
-            <x>9</x>
-            <y>9</y>
+            <x>10</x>
+            <y>0</y>
             <width>1181</width>
             <height>701</height>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -401,7 +401,25 @@ font: 700 80pt &quot;KoHo&quot;;</string>
            <zorder>newsBtn</zorder>
           </widget>
           <widget class="QWidget" name="userinfoPage"/>
-          <widget class="QWidget" name="notiPage"/>
+          <widget class="QWidget" name="notiPage">
+           <widget class="QLabel" name="notiTitleLabel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>261</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615</string>
+            </property>
+            <property name="text">
+             <string>Notification</string>
+            </property>
+           </widget>
+          </widget>
           <widget class="QWidget" name="historyPage"/>
           <widget class="QWidget" name="feedbackPage"/>
          </widget>
