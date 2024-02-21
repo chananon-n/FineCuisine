@@ -60,7 +60,6 @@ class Ui_MainWindow(object):
 "	border-radius: 8px;\n"
 "	background-color:#C63428;\n"
 "	color:rgb(255, 255, 255);\n"
-"	transition: background-color 0.3s ease, color 0.3s ease;\n"
 "}\n"
 "QPushButton:hover{\n"
 "	background-color:#A82A20;\n"
@@ -76,13 +75,13 @@ class Ui_MainWindow(object):
         self.label_2.setGeometry(QRect(70, 310, 24, 24))
         self.label_2.setPixmap(QPixmap(u":/icon/lock.png"))
         self.label_2.setScaledContents(True)
-        self.widget = QWidget(self.leftFrame)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(100, 200, 391, 134))
-        self.verticalLayout_2 = QVBoxLayout(self.widget)
+        self.layoutWidget1 = QWidget(self.leftFrame)
+        self.layoutWidget1.setObjectName(u"layoutWidget1")
+        self.layoutWidget1.setGeometry(QRect(100, 200, 391, 134))
+        self.verticalLayout_2 = QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.usernameInput = QLineEdit(self.widget)
+        self.usernameInput = QLineEdit(self.layoutWidget1)
         self.usernameInput.setObjectName(u"usernameInput")
         font2 = QFont()
         font2.setPointSize(16)
@@ -98,7 +97,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
-        self.passwordInput = QLineEdit(self.widget)
+        self.passwordInput = QLineEdit(self.layoutWidget1)
         self.passwordInput.setObjectName(u"passwordInput")
         self.passwordInput.setFont(font2)
         self.passwordInput.setStyleSheet(u"border-top:none;\n"
@@ -107,13 +106,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.passwordInput)
 
-        self.widget1 = QWidget(self.leftFrame)
-        self.widget1.setObjectName(u"widget1")
-        self.widget1.setGeometry(QRect(293, 340, 201, 31))
-        self.horizontalLayout_2 = QHBoxLayout(self.widget1)
+        self.layoutWidget = QWidget(self.leftFrame)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(293, 340, 201, 31))
+        self.horizontalLayout_2 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.widget1)
+        self.label_3 = QLabel(self.layoutWidget)
         self.label_3.setObjectName(u"label_3")
         font3 = QFont()
         font3.setPointSize(12)
@@ -121,9 +120,9 @@ class Ui_MainWindow(object):
         font3.setItalic(False)
         self.label_3.setFont(font3)
 
-        self.horizontalLayout_2.addWidget(self.label_3, 0, Qt.AlignTop)
+        self.horizontalLayout_2.addWidget(self.label_3, 0, Qt.AlignVCenter)
 
-        self.signinBtn = QPushButton(self.widget1)
+        self.signinBtn = QPushButton(self.layoutWidget)
         self.signinBtn.setObjectName(u"signinBtn")
         self.signinBtn.setFont(font3)
         self.signinBtn.setStyleSheet(u"QPushButton{\n"

@@ -60,7 +60,6 @@ class Ui_MainWindow(object):
 "	border-radius: 8px;\n"
 "	background-color:#C63428;\n"
 "	color:rgb(255, 255, 255);\n"
-"	transition: background-color 0.3s ease, color 0.3s ease;\n"
 "}\n"
 "QPushButton:hover{\n"
 "	background-color:#A82A20;\n"
