@@ -227,12 +227,12 @@ background-color: rgb(198, 52, 40);
            <rect>
             <x>10</x>
             <y>0</y>
-            <width>1181</width>
+            <width>1140</width>
             <height>701</height>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -315,10 +315,11 @@ font: 700 80pt &quot;KoHo&quot;;</string>
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: black</string>
+             <string notr="true">color: black;
+border-radius: 12px;</string>
             </property>
             <property name="text">
-             <string>course</string>
+             <string>Course</string>
             </property>
            </widget>
            <widget class="QPushButton" name="reservationBtn">
@@ -331,10 +332,11 @@ font: 700 80pt &quot;KoHo&quot;;</string>
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: black</string>
+             <string notr="true">color: black;
+border-radius: 12px;</string>
             </property>
             <property name="text">
-             <string>course</string>
+             <string>Reservation</string>
             </property>
            </widget>
            <widget class="QLabel" name="picReservation">
@@ -366,10 +368,11 @@ font: 700 80pt &quot;KoHo&quot;;</string>
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: black</string>
+             <string notr="true">color: black;
+border-radius: 12px;</string>
             </property>
             <property name="text">
-             <string>course</string>
+             <string>News</string>
             </property>
            </widget>
            <widget class="QLabel" name="picNews">
@@ -400,7 +403,264 @@ font: 700 80pt &quot;KoHo&quot;;</string>
            <zorder>reservationBtn</zorder>
            <zorder>newsBtn</zorder>
           </widget>
-          <widget class="QWidget" name="userinfoPage"/>
+          <widget class="QWidget" name="userinfoPage">
+           <widget class="QLabel" name="picUser">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>111</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/User icon 100.png</pixmap>
+            </property>
+           </widget>
+           <widget class="QLabel" name="uidLabel">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>30</y>
+              <width>51</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>UID:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userID">
+            <property name="geometry">
+             <rect>
+              <x>200</x>
+              <y>30</y>
+              <width>61</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>1234</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="nameLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>140</y>
+              <width>71</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+font: 700 24pt &quot;KoHo&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Name:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userName">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>140</y>
+              <width>71</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Test1</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="surnameLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>200</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Surname:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userSur">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>200</y>
+              <width>61</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Test2</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="telLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>260</y>
+              <width>41</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Tel:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userTel">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>260</y>
+              <width>211</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>(+66) 12-345-6789</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="membershipLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>340</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Membership</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="birthDateLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>400</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black</string>
+            </property>
+            <property name="text">
+             <string>Birth date:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="dateExpireLabel">
+            <property name="geometry">
+             <rect>
+              <x>25</x>
+              <y>460</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Date expire:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userBirth">
+            <property name="geometry">
+             <rect>
+              <x>150</x>
+              <y>400</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>01-01-2024</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userExpire">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>460</y>
+              <width>91</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>01-2025</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="registerBtn">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>510</y>
+              <width>331</width>
+              <height>40</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+border-radius: 12px;
+background-color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>Register</string>
+            </property>
+           </widget>
+          </widget>
           <widget class="QWidget" name="notiPage">
            <widget class="QLabel" name="notiTitleLabel">
             <property name="geometry">
@@ -420,7 +680,82 @@ color: #7E1615</string>
             </property>
            </widget>
           </widget>
-          <widget class="QWidget" name="historyPage"/>
+          <widget class="QWidget" name="historyPage">
+           <widget class="QLabel" name="historyTitleLabel">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>161</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>History</string>
+            </property>
+           </widget>
+           <widget class="QTableWidget" name="historyTable">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>1131</width>
+              <height>192</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Course</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Date</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Status</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+           </widget>
+          </widget>
           <widget class="QWidget" name="feedbackPage"/>
          </widget>
         </widget>
