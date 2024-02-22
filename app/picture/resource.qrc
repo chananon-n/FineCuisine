@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>User icon 100.png</file>
     <file>feedback.png</file>
     <file>picBtn_1.jpeg</file>
     <file>restaurant.png</file>
