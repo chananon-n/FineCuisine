@@ -83,6 +83,8 @@ class MainPage(QMainWindow, mainPage):
         
     def openHistory(self):
         self.pageWidget.setCurrentIndex(3)
+        self.historyTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+        self.historyTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
