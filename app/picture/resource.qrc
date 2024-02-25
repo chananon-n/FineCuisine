@@ -1,9 +1,11 @@
 <RCC>
   <qresource prefix="icon">
+    <file>dinnerBtn.jpg</file>
     <file>star.png</file>
     <file>User icon 100.png</file>
     <file>feedback.png</file>
     <file>picBtn_1.jpeg</file>
+    <file>lunchBtn.jpg</file>
     <file>restaurant.png</file>
     <file>icons8-phone-24.png</file>
     <file>user-black.png</file>
