@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
+    QHeaderView, QLabel, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -302,11 +302,107 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3.setFont(font1);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.historyTable.setObjectName(u"historyTable")
-        self.historyTable.setGeometry(QRect(10, 70, 1131, 192))
+        self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
         self.pageWidget.addWidget(self.historyPage)
         self.feedbackPage = QWidget()
         self.feedbackPage.setObjectName(u"feedbackPage")
+        self.historyTitleLabel_2 = QLabel(self.feedbackPage)
+        self.historyTitleLabel_2.setObjectName(u"historyTitleLabel_2")
+        self.historyTitleLabel_2.setGeometry(QRect(10, 0, 211, 61))
+        self.historyTitleLabel_2.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
+"color: #7E1615;")
+        self.frame = QFrame(self.feedbackPage)
+        self.frame.setObjectName(u"frame")
+        self.frame.setGeometry(QRect(-10, 170, 1180, 160))
+        self.frame.setStyleSheet(u"QFrame{\n"
+"border: 0;\n"
+"}\n"
+"QCheckBox{\n"
+"color:black;\n"
+"padding: 4px;\n"
+"}")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.widget = QWidget(self.frame)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(80, 80, 428, 32))
+        self.horizontalLayout_2 = QHBoxLayout(self.widget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.star0Check = QCheckBox(self.widget)
+        self.star0Check.setObjectName(u"star0Check")
+        icon6 = QIcon()
+        icon6.addFile(u":/icon/star.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.star0Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star0Check)
+
+        self.star1Check = QCheckBox(self.widget)
+        self.star1Check.setObjectName(u"star1Check")
+        self.star1Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star1Check)
+
+        self.star2Check = QCheckBox(self.widget)
+        self.star2Check.setObjectName(u"star2Check")
+        self.star2Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star2Check)
+
+        self.star3Check = QCheckBox(self.widget)
+        self.star3Check.setObjectName(u"star3Check")
+        self.star3Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star3Check)
+
+        self.star4Check = QCheckBox(self.widget)
+        self.star4Check.setObjectName(u"star4Check")
+        self.star4Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star4Check)
+
+        self.star5Check = QCheckBox(self.widget)
+        self.star5Check.setObjectName(u"star5Check")
+        self.star5Check.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star5Check)
+
+        self.label = QLabel(self.feedbackPage)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(70, 140, 940, 32))
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        font2.setPointSize(20)
+        self.label.setFont(font2)
+        self.label.setStyleSheet(u"color: black;")
+        self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
+        self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
+        self.feedbackSubmitBtn.setGeometry(QRect(310, 560, 100, 32))
+        self.feedbackSubmitBtn.setStyleSheet(u"QPushButton{\n"
+"border-radius: 8px;\n"
+"background-color: #C63428;\n"
+"}\n"
+"QPushButton:hover{\n"
+"background-color:#A82A20;\n"
+"}")
+        self.feedbackTextBox = QTextEdit(self.feedbackPage)
+        self.feedbackTextBox.setObjectName(u"feedbackTextBox")
+        self.feedbackTextBox.setGeometry(QRect(70, 330, 351, 191))
+        font3 = QFont()
+        font3.setPointSize(16)
+        self.feedbackTextBox.setFont(font3)
+        self.feedbackTextBox.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);\n"
+"padding: 8px;\n"
+"border: 0;\n"
+"border-radius: 8px;")
+        self.feedbackTextBox.setLineWrapMode(QTextEdit.WidgetWidth)
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -318,7 +414,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(1)
+        self.pageWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -365,5 +461,15 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Date", None));
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
+        self.star0Check.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.star1Check.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.star2Check.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.star3Check.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.star4Check.setText(QCoreApplication.translate("MainWindow", u"4", None))
+        self.star5Check.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
+        self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
+        self.feedbackTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a comment..", None))
     # retranslateUi
 
