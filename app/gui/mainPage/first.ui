@@ -232,7 +232,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -704,7 +704,7 @@ color: #7E1615;</string>
               <x>10</x>
               <y>70</y>
               <width>1131</width>
-              <height>192</height>
+              <height>581</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -756,7 +756,206 @@ color: #7E1615;</string>
             </column>
            </widget>
           </widget>
-          <widget class="QWidget" name="feedbackPage"/>
+          <widget class="QWidget" name="feedbackPage">
+           <widget class="QLabel" name="historyTitleLabel_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>211</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>Feedback</string>
+            </property>
+           </widget>
+           <widget class="QFrame" name="frame">
+            <property name="geometry">
+             <rect>
+              <x>-10</x>
+              <y>170</y>
+              <width>1180</width>
+              <height>160</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+border: 0;
+}
+QCheckBox{
+color:black;
+padding: 4px;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QWidget" name="">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>80</y>
+               <width>428</width>
+               <height>32</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QCheckBox" name="checkBox">
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_2">
+                <property name="text">
+                 <string>1</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_3">
+                <property name="text">
+                 <string>2</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_4">
+                <property name="text">
+                 <string>3</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_5">
+                <property name="text">
+                 <string>4</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBox_6">
+                <property name="text">
+                 <string>5</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>140</y>
+              <width>940</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;</string>
+            </property>
+            <property name="text">
+             <string>Share your thoughts on our restaurant experience! Your ratings and comments matter to us.</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+             <rect>
+              <x>310</x>
+              <y>560</y>
+              <width>100</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+border-radius: 8px;
+background-color: #C63428;
+}
+QPushButton:hover{
+background-color:#A82A20;
+}</string>
+            </property>
+            <property name="text">
+             <string>Submit</string>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="textEdit">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>330</y>
+              <width>351</width>
+              <height>191</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+padding: 8px;
+border: 0;
+border-radius: 8px;</string>
+            </property>
+            <property name="lineWrapMode">
+             <enum>QTextEdit::WidgetWidth</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Add a comment..</string>
+            </property>
+           </widget>
+          </widget>
          </widget>
         </widget>
        </item>
