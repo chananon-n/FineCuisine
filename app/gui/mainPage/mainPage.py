@@ -330,43 +330,43 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QHBoxLayout(self.widget)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.checkBox = QCheckBox(self.widget)
-        self.checkBox.setObjectName(u"checkBox")
+        self.star0Check = QCheckBox(self.widget)
+        self.star0Check.setObjectName(u"star0Check")
         icon6 = QIcon()
         icon6.addFile(u":/icon/star.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.checkBox.setIcon(icon6)
+        self.star0Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox)
+        self.horizontalLayout_2.addWidget(self.star0Check)
 
-        self.checkBox_2 = QCheckBox(self.widget)
-        self.checkBox_2.setObjectName(u"checkBox_2")
-        self.checkBox_2.setIcon(icon6)
+        self.star1Check = QCheckBox(self.widget)
+        self.star1Check.setObjectName(u"star1Check")
+        self.star1Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox_2)
+        self.horizontalLayout_2.addWidget(self.star1Check)
 
-        self.checkBox_3 = QCheckBox(self.widget)
-        self.checkBox_3.setObjectName(u"checkBox_3")
-        self.checkBox_3.setIcon(icon6)
+        self.star2Check = QCheckBox(self.widget)
+        self.star2Check.setObjectName(u"star2Check")
+        self.star2Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox_3)
+        self.horizontalLayout_2.addWidget(self.star2Check)
 
-        self.checkBox_4 = QCheckBox(self.widget)
-        self.checkBox_4.setObjectName(u"checkBox_4")
-        self.checkBox_4.setIcon(icon6)
+        self.star3Check = QCheckBox(self.widget)
+        self.star3Check.setObjectName(u"star3Check")
+        self.star3Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox_4)
+        self.horizontalLayout_2.addWidget(self.star3Check)
 
-        self.checkBox_5 = QCheckBox(self.widget)
-        self.checkBox_5.setObjectName(u"checkBox_5")
-        self.checkBox_5.setIcon(icon6)
+        self.star4Check = QCheckBox(self.widget)
+        self.star4Check.setObjectName(u"star4Check")
+        self.star4Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox_5)
+        self.horizontalLayout_2.addWidget(self.star4Check)
 
-        self.checkBox_6 = QCheckBox(self.widget)
-        self.checkBox_6.setObjectName(u"checkBox_6")
-        self.checkBox_6.setIcon(icon6)
+        self.star5Check = QCheckBox(self.widget)
+        self.star5Check.setObjectName(u"star5Check")
+        self.star5Check.setIcon(icon6)
 
-        self.horizontalLayout_2.addWidget(self.checkBox_6)
+        self.horizontalLayout_2.addWidget(self.star5Check)
 
         self.label = QLabel(self.feedbackPage)
         self.label.setObjectName(u"label")
@@ -381,28 +381,28 @@ class Ui_MainWindow(object):
         font2.setPointSize(20)
         self.label.setFont(font2)
         self.label.setStyleSheet(u"color: black;")
-        self.pushButton = QPushButton(self.feedbackPage)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(310, 560, 100, 32))
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
+        self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
+        self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
+        self.feedbackSubmitBtn.setGeometry(QRect(310, 560, 100, 32))
+        self.feedbackSubmitBtn.setStyleSheet(u"QPushButton{\n"
 "border-radius: 8px;\n"
 "background-color: #C63428;\n"
 "}\n"
 "QPushButton:hover{\n"
 "background-color:#A82A20;\n"
 "}")
-        self.textEdit = QTextEdit(self.feedbackPage)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setGeometry(QRect(70, 330, 351, 191))
+        self.feedbackTextBox = QTextEdit(self.feedbackPage)
+        self.feedbackTextBox.setObjectName(u"feedbackTextBox")
+        self.feedbackTextBox.setGeometry(QRect(70, 330, 351, 191))
         font3 = QFont()
         font3.setPointSize(16)
-        self.textEdit.setFont(font3)
-        self.textEdit.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+        self.feedbackTextBox.setFont(font3)
+        self.feedbackTextBox.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "padding: 8px;\n"
 "border: 0;\n"
 "border-radius: 8px;")
-        self.textEdit.setLineWrapMode(QTextEdit.WidgetWidth)
+        self.feedbackTextBox.setLineWrapMode(QTextEdit.WidgetWidth)
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -462,14 +462,14 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.checkBox_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.checkBox_3.setText(QCoreApplication.translate("MainWindow", u"2", None))
-        self.checkBox_4.setText(QCoreApplication.translate("MainWindow", u"3", None))
-        self.checkBox_5.setText(QCoreApplication.translate("MainWindow", u"4", None))
-        self.checkBox_6.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.star0Check.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.star1Check.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.star2Check.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.star3Check.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.star4Check.setText(QCoreApplication.translate("MainWindow", u"4", None))
+        self.star5Check.setText(QCoreApplication.translate("MainWindow", u"5", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
-        self.textEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a comment..", None))
+        self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
+        self.feedbackTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a comment..", None))
     # retranslateUi
 

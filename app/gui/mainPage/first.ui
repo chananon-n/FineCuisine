@@ -809,7 +809,7 @@ padding: 4px;
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QCheckBox" name="checkBox">
+               <widget class="QCheckBox" name="star0Check">
                 <property name="text">
                  <string>0</string>
                 </property>
@@ -820,7 +820,7 @@ padding: 4px;
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox_2">
+               <widget class="QCheckBox" name="star1Check">
                 <property name="text">
                  <string>1</string>
                 </property>
@@ -831,7 +831,7 @@ padding: 4px;
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox_3">
+               <widget class="QCheckBox" name="star2Check">
                 <property name="text">
                  <string>2</string>
                 </property>
@@ -842,7 +842,7 @@ padding: 4px;
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox_4">
+               <widget class="QCheckBox" name="star3Check">
                 <property name="text">
                  <string>3</string>
                 </property>
@@ -853,7 +853,7 @@ padding: 4px;
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox_5">
+               <widget class="QCheckBox" name="star4Check">
                 <property name="text">
                  <string>4</string>
                 </property>
@@ -864,7 +864,7 @@ padding: 4px;
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBox_6">
+               <widget class="QCheckBox" name="star5Check">
                 <property name="text">
                  <string>5</string>
                 </property>
@@ -905,7 +905,7 @@ padding: 4px;
              <string>Share your thoughts on our restaurant experience! Your ratings and comments matter to us.</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="feedbackSubmitBtn">
             <property name="geometry">
              <rect>
               <x>310</x>
@@ -927,7 +927,7 @@ background-color:#A82A20;
              <string>Submit</string>
             </property>
            </widget>
-           <widget class="QTextEdit" name="textEdit">
+           <widget class="QTextEdit" name="feedbackTextBox">
             <property name="geometry">
              <rect>
               <x>70</x>
