@@ -8,6 +8,7 @@ from app.gui.login.loginPage import Ui_MainWindow as loginPage
 from app.gui.register.registerPage import Ui_MainWindow as registerPage
 from app.gui.mainPage.mainPage import Ui_MainWindow as mainPage
 from app.gui.course.coursePage import Ui_MainWindow as coursePage
+from app.gui.reservation.reservationPage import Ui_MainWindow as reservationPage
 
 from datetime import datetime
     
@@ -75,8 +76,9 @@ class MainPage(QMainWindow, mainPage):
         self.historyBtn.clicked.connect(self.openHistory)
         self.feedbackBtn.clicked.connect(self.openFeedback)
         
-        #hoompage buttons
+        #homepage buttons
         self.courseBtn.clicked.connect(self.openCoursePage)
+        self.reservationBtn.clicked.connect(self.openReservationPage)
         
         self.logoutBtn.clicked.connect(self.logout)
         
@@ -87,7 +89,7 @@ class MainPage(QMainWindow, mainPage):
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
-        membership = False
+        membership = True
         if membership:
             self.registerBtn.hide()
         else:
@@ -129,6 +131,11 @@ class MainPage(QMainWindow, mainPage):
         self.coursePage.show()
         self.hide()
         
+    def openReservationPage(self):
+        self.reservationPage = ReservationPage()
+        self.reservationPage.show()
+        self.hide()
+        
 class CoursePage(QMainWindow, coursePage):
     def __init__(self):
         super().__init__()
@@ -168,3 +175,80 @@ class CoursePage(QMainWindow, coursePage):
         self.mainPage.show()
         self.mainPage.openFeedback()
         self.hide()
+
+class ReservationPage(QMainWindow, reservationPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.mainPage = MainPage()
+        
+        # Sidebar buttons
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
+        self.notiBtn.clicked.connect(self.openNotification)
+        self.historyBtn.clicked.connect(self.openHistory)
+        self.feedbackBtn.clicked.connect(self.openFeedback)
+        
+        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        
+        #reservation page buttons
+        self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
+        self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
+        self.calendar.selectionChanged.connect(self.getDate)
+        
+        self.course = self.findChild(QtWidgets.QComboBox, "courseBox")
+        self.course.addItems(["Lunch", "Dinner"])
+        self.time = self.findChild(QtWidgets.QComboBox, "timeBox")
+        self.time.addItems(["08:00-10:00", "10:00-12:00", "13:00-15:00", "15:00-17:00", "17:00-19:00", "19:00-21:00"])
+        self.size = self.findChild(QtWidgets.QComboBox, "partySizeBox")
+        self.size.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+        self.additionNote = self.findChild(QtWidgets.QTextEdit, "noteTextEdit")
+        
+        self.confirmBtn.clicked.connect(self.confirmReservation)
+    def openHomePage(self):
+        self.mainPage.show()
+        self.mainPage.openHomePage()
+        self.hide()
+        
+    def openUserInfo(self):
+        self.mainPage.show()
+        self.mainPage.openUserInfo()
+        self.hide()
+        
+    def openNotification(self):
+        self.mainPage.show()
+        self.mainPage.openNotification()
+        self.hide()
+        
+    def openHistory(self):
+        self.mainPage.show()
+        self.mainPage.openHistory()
+        self.hide()
+        
+    def openFeedback(self):
+        self.coursePage.show()
+        self.coursePage.openFeedback()
+        self.hide()
+        
+    def getDate(self):
+        self.date = self.calendar.selectedDate()
+        self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
+        
+    def confirmReservation(self):
+        alert =QtWidgets.QMessageBox()
+        alert.setText("Confirm reservation?")
+        alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        alert.setDefaultButton(QtWidgets.QMessageBox.No)
+        ret = alert.exec()
+        if ret == QtWidgets.QMessageBox.Yes:
+            print(f"Reservation confirmed! {self.date.toString('dd/MM/yyyy')}, {self.course.currentText()},{self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Reservation confirmed!")
+            alert.exec()
+            self.mainPage.show()
+            self.mainPage.openHomePage()
+            self.hide()
+        else:
+            pass
+        
+    
