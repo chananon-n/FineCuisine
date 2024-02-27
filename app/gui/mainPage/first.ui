@@ -10,6 +10,18 @@
     <height>720</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -226,13 +238,13 @@ background-color: rgb(198, 52, 40);
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>0</y>
-            <width>1140</width>
-            <height>701</height>
+            <y>10</y>
+            <width>1180</width>
+            <height>700</height>
            </rect>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -710,6 +722,30 @@ color: #7E1615;</string>
             <property name="styleSheet">
              <string notr="true">color: black;</string>
             </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::DotLine</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
             <column>
              <property name="text">
               <string>ID</string>
@@ -774,114 +810,11 @@ color: #7E1615;</string>
              <string>Feedback</string>
             </property>
            </widget>
-           <widget class="QFrame" name="frame">
-            <property name="geometry">
-             <rect>
-              <x>-10</x>
-              <y>170</y>
-              <width>1180</width>
-              <height>160</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QFrame{
-border: 0;
-}
-QCheckBox{
-color:black;
-padding: 4px;
-}</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QWidget" name="">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>80</y>
-               <width>428</width>
-               <height>32</height>
-              </rect>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <widget class="QCheckBox" name="star0Check">
-                <property name="text">
-                 <string>0</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="star1Check">
-                <property name="text">
-                 <string>1</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="star2Check">
-                <property name="text">
-                 <string>2</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="star3Check">
-                <property name="text">
-                 <string>3</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="star4Check">
-                <property name="text">
-                 <string>4</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="star5Check">
-                <property name="text">
-                 <string>5</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../../picture/resource.qrc">
-                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
            <widget class="QLabel" name="label">
             <property name="geometry">
              <rect>
-              <x>70</x>
-              <y>140</y>
+              <x>60</x>
+              <y>90</y>
               <width>940</width>
               <height>32</height>
              </rect>
@@ -908,8 +841,8 @@ padding: 4px;
            <widget class="QPushButton" name="feedbackSubmitBtn">
             <property name="geometry">
              <rect>
-              <x>310</x>
-              <y>560</y>
+              <x>890</x>
+              <y>530</y>
               <width>100</width>
               <height>32</height>
              </rect>
@@ -930,8 +863,8 @@ background-color:#A82A20;
            <widget class="QTextEdit" name="feedbackTextBox">
             <property name="geometry">
              <rect>
-              <x>70</x>
-              <y>330</y>
+              <x>650</x>
+              <y>310</y>
               <width>351</width>
               <height>191</height>
              </rect>
@@ -953,6 +886,398 @@ border-radius: 8px;</string>
             </property>
             <property name="placeholderText">
              <string>Add a comment..</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="radioWidget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>230</y>
+              <width>391</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <widget class="QWidget" name="">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>30</y>
+               <width>375</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QRadioButton" name="star0Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star1Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>1</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star2Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>2</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star3Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>3</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star4Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>4</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star5Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>5</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>130</y>
+              <width>500</width>
+              <height>500</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>500</width>
+              <height>500</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>500</height>
+             </size>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>482</width>
+               <height>1016</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>420</width>
+                  <height>120</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 16pt &quot;Arial&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="text">
+                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Star: 5</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
+                </property>
+                <property name="indent">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>420</width>
+                  <height>120</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 16pt &quot;Arial&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="text">
+                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Star: 5</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
+                </property>
+                <property name="indent">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>420</width>
+                  <height>120</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 16pt &quot;Arial&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="text">
+                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Star: 5</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
+                </property>
+                <property name="indent">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>420</width>
+                  <height>120</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 16pt &quot;Arial&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="text">
+                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Star: 5</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
+                </property>
+                <property name="indent">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_6">
+                <property name="minimumSize">
+                 <size>
+                  <width>420</width>
+                  <height>120</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 16pt &quot;Arial&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="text">
+                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+Star: 5</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>10</number>
+                </property>
+                <property name="indent">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+           <widget class="QLabel" name="label_7">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>150</y>
+              <width>151</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>14</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+font: 14pt &quot;Arial&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Review Us here</string>
             </property>
            </widget>
           </widget>

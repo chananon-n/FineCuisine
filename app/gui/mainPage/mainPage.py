@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
+    QLabel, QMainWindow, QPushButton, QRadioButton,
+    QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
+    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
+    QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -26,6 +27,8 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1280, 720)
+        MainWindow.setMinimumSize(QSize(1280, 720))
+        MainWindow.setMaximumSize(QSize(1280, 720))
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"background-color:#E7E5DF")
         self.centralwidget = QWidget(MainWindow)
@@ -131,7 +134,7 @@ class Ui_MainWindow(object):
         self.frame_page.setFrameShadow(QFrame.Raised)
         self.pageWidget = QStackedWidget(self.frame_page)
         self.pageWidget.setObjectName(u"pageWidget")
-        self.pageWidget.setGeometry(QRect(10, 0, 1140, 701))
+        self.pageWidget.setGeometry(QRect(10, 10, 1180, 700))
         self.homePage = QWidget()
         self.homePage.setObjectName(u"homePage")
         self.titleLabel = QLabel(self.homePage)
@@ -304,6 +307,14 @@ class Ui_MainWindow(object):
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
+        self.historyTable.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.historyTable.setShowGrid(False)
+        self.historyTable.setGridStyle(Qt.DotLine)
+        self.historyTable.setSortingEnabled(False)
+        self.historyTable.setCornerButtonEnabled(True)
+        self.historyTable.horizontalHeader().setVisible(True)
+        self.historyTable.horizontalHeader().setStretchLastSection(False)
+        self.historyTable.verticalHeader().setVisible(False)
         self.pageWidget.addWidget(self.historyPage)
         self.feedbackPage = QWidget()
         self.feedbackPage.setObjectName(u"feedbackPage")
@@ -312,65 +323,9 @@ class Ui_MainWindow(object):
         self.historyTitleLabel_2.setGeometry(QRect(10, 0, 211, 61))
         self.historyTitleLabel_2.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615;")
-        self.frame = QFrame(self.feedbackPage)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(-10, 170, 1180, 160))
-        self.frame.setStyleSheet(u"QFrame{\n"
-"border: 0;\n"
-"}\n"
-"QCheckBox{\n"
-"color:black;\n"
-"padding: 4px;\n"
-"}")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.widget = QWidget(self.frame)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(80, 80, 428, 32))
-        self.horizontalLayout_2 = QHBoxLayout(self.widget)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.star0Check = QCheckBox(self.widget)
-        self.star0Check.setObjectName(u"star0Check")
-        icon6 = QIcon()
-        icon6.addFile(u":/icon/star.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.star0Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star0Check)
-
-        self.star1Check = QCheckBox(self.widget)
-        self.star1Check.setObjectName(u"star1Check")
-        self.star1Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star1Check)
-
-        self.star2Check = QCheckBox(self.widget)
-        self.star2Check.setObjectName(u"star2Check")
-        self.star2Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star2Check)
-
-        self.star3Check = QCheckBox(self.widget)
-        self.star3Check.setObjectName(u"star3Check")
-        self.star3Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star3Check)
-
-        self.star4Check = QCheckBox(self.widget)
-        self.star4Check.setObjectName(u"star4Check")
-        self.star4Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star4Check)
-
-        self.star5Check = QCheckBox(self.widget)
-        self.star5Check.setObjectName(u"star5Check")
-        self.star5Check.setIcon(icon6)
-
-        self.horizontalLayout_2.addWidget(self.star5Check)
-
         self.label = QLabel(self.feedbackPage)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(70, 140, 940, 32))
+        self.label.setGeometry(QRect(60, 90, 940, 32))
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -383,7 +338,7 @@ class Ui_MainWindow(object):
         self.label.setStyleSheet(u"color: black;")
         self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
         self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
-        self.feedbackSubmitBtn.setGeometry(QRect(310, 560, 100, 32))
+        self.feedbackSubmitBtn.setGeometry(QRect(890, 530, 100, 32))
         self.feedbackSubmitBtn.setStyleSheet(u"QPushButton{\n"
 "border-radius: 8px;\n"
 "background-color: #C63428;\n"
@@ -393,7 +348,7 @@ class Ui_MainWindow(object):
 "}")
         self.feedbackTextBox = QTextEdit(self.feedbackPage)
         self.feedbackTextBox.setObjectName(u"feedbackTextBox")
-        self.feedbackTextBox.setGeometry(QRect(70, 330, 351, 191))
+        self.feedbackTextBox.setGeometry(QRect(650, 310, 351, 191))
         font3 = QFont()
         font3.setPointSize(16)
         self.feedbackTextBox.setFont(font3)
@@ -403,6 +358,174 @@ class Ui_MainWindow(object):
 "border: 0;\n"
 "border-radius: 8px;")
         self.feedbackTextBox.setLineWrapMode(QTextEdit.WidgetWidth)
+        self.radioWidget = QWidget(self.feedbackPage)
+        self.radioWidget.setObjectName(u"radioWidget")
+        self.radioWidget.setGeometry(QRect(640, 230, 391, 61))
+        self.widget = QWidget(self.radioWidget)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(20, 30, 375, 20))
+        self.horizontalLayout_2 = QHBoxLayout(self.widget)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.star0Radio = QRadioButton(self.widget)
+        self.star0Radio.setObjectName(u"star0Radio")
+        self.star0Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        icon6 = QIcon()
+        icon6.addFile(u":/icon/star.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.star0Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star0Radio)
+
+        self.star1Radio = QRadioButton(self.widget)
+        self.star1Radio.setObjectName(u"star1Radio")
+        self.star1Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.star1Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star1Radio)
+
+        self.star2Radio = QRadioButton(self.widget)
+        self.star2Radio.setObjectName(u"star2Radio")
+        self.star2Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.star2Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star2Radio)
+
+        self.star3Radio = QRadioButton(self.widget)
+        self.star3Radio.setObjectName(u"star3Radio")
+        self.star3Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.star3Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star3Radio)
+
+        self.star4Radio = QRadioButton(self.widget)
+        self.star4Radio.setObjectName(u"star4Radio")
+        self.star4Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.star4Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star4Radio)
+
+        self.star5Radio = QRadioButton(self.widget)
+        self.star5Radio.setObjectName(u"star5Radio")
+        self.star5Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.star5Radio.setIcon(icon6)
+
+        self.horizontalLayout_2.addWidget(self.star5Radio)
+
+        self.scrollArea = QScrollArea(self.feedbackPage)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setGeometry(QRect(50, 130, 500, 500))
+        self.scrollArea.setMinimumSize(QSize(500, 500))
+        self.scrollArea.setMaximumSize(QSize(500, 500))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 482, 1016))
+        self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.label_2 = QLabel(self.scrollAreaWidgetContents)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setMinimumSize(QSize(420, 120))
+        self.label_2.setLayoutDirection(Qt.LeftToRight)
+        self.label_2.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 16pt \"Arial\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+        self.label_2.setFrameShape(QFrame.NoFrame)
+        self.label_2.setFrameShadow(QFrame.Sunken)
+        self.label_2.setTextFormat(Qt.AutoText)
+        self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_2.setWordWrap(True)
+        self.label_2.setMargin(10)
+        self.label_2.setIndent(0)
+
+        self.verticalLayout_3.addWidget(self.label_2)
+
+        self.label_4 = QLabel(self.scrollAreaWidgetContents)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setMinimumSize(QSize(420, 120))
+        self.label_4.setLayoutDirection(Qt.LeftToRight)
+        self.label_4.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 16pt \"Arial\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+        self.label_4.setFrameShape(QFrame.NoFrame)
+        self.label_4.setFrameShadow(QFrame.Sunken)
+        self.label_4.setTextFormat(Qt.AutoText)
+        self.label_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_4.setWordWrap(True)
+        self.label_4.setMargin(10)
+        self.label_4.setIndent(0)
+
+        self.verticalLayout_3.addWidget(self.label_4)
+
+        self.label_5 = QLabel(self.scrollAreaWidgetContents)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setMinimumSize(QSize(420, 120))
+        self.label_5.setLayoutDirection(Qt.LeftToRight)
+        self.label_5.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 16pt \"Arial\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+        self.label_5.setFrameShape(QFrame.NoFrame)
+        self.label_5.setFrameShadow(QFrame.Sunken)
+        self.label_5.setTextFormat(Qt.AutoText)
+        self.label_5.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_5.setWordWrap(True)
+        self.label_5.setMargin(10)
+        self.label_5.setIndent(0)
+
+        self.verticalLayout_3.addWidget(self.label_5)
+
+        self.label_3 = QLabel(self.scrollAreaWidgetContents)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setMinimumSize(QSize(420, 120))
+        self.label_3.setLayoutDirection(Qt.LeftToRight)
+        self.label_3.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 16pt \"Arial\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+        self.label_3.setFrameShape(QFrame.NoFrame)
+        self.label_3.setFrameShadow(QFrame.Sunken)
+        self.label_3.setTextFormat(Qt.AutoText)
+        self.label_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_3.setWordWrap(True)
+        self.label_3.setMargin(10)
+        self.label_3.setIndent(0)
+
+        self.verticalLayout_3.addWidget(self.label_3)
+
+        self.label_6 = QLabel(self.scrollAreaWidgetContents)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setMinimumSize(QSize(420, 120))
+        self.label_6.setLayoutDirection(Qt.LeftToRight)
+        self.label_6.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 16pt \"Arial\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+        self.label_6.setFrameShape(QFrame.NoFrame)
+        self.label_6.setFrameShadow(QFrame.Sunken)
+        self.label_6.setTextFormat(Qt.AutoText)
+        self.label_6.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_6.setWordWrap(True)
+        self.label_6.setMargin(10)
+        self.label_6.setIndent(0)
+
+        self.verticalLayout_3.addWidget(self.label_6)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.label_7 = QLabel(self.feedbackPage)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(640, 150, 151, 41))
+        font4 = QFont()
+        font4.setFamilies([u"Arial"])
+        font4.setPointSize(14)
+        font4.setBold(False)
+        font4.setItalic(False)
+        font4.setUnderline(True)
+        self.label_7.setFont(font4)
+        self.label_7.setStyleSheet(u"color: black;\n"
+"font: 14pt \"Arial\";")
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -414,7 +537,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(4)
+        self.pageWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -462,14 +585,25 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
-        self.star0Check.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.star1Check.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.star2Check.setText(QCoreApplication.translate("MainWindow", u"2", None))
-        self.star3Check.setText(QCoreApplication.translate("MainWindow", u"3", None))
-        self.star4Check.setText(QCoreApplication.translate("MainWindow", u"4", None))
-        self.star5Check.setText(QCoreApplication.translate("MainWindow", u"5", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
         self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
         self.feedbackTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Add a comment..", None))
+        self.star0Radio.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.star1Radio.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.star2Radio.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.star3Radio.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.star4Radio.setText(QCoreApplication.translate("MainWindow", u"4", None))
+        self.star5Radio.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+"Star: 5", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+"Star: 5", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+"Star: 5", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+"Star: 5", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+"Star: 5", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Review Us here", None))
     # retranslateUi
 
