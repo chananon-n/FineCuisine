@@ -226,8 +226,8 @@ class ReservationPage(QMainWindow, reservationPage):
         self.hide()
         
     def openFeedback(self):
-        self.coursePage.show()
-        self.coursePage.openFeedback()
+        self.mainPage.show()
+        self.mainPage.openFeedback()
         self.hide()
         
     def getDate(self):
