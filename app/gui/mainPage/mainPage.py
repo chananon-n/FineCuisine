@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -287,8 +287,8 @@ class Ui_MainWindow(object):
         self.historyTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615;")
         self.historyTable = QTableWidget(self.historyPage)
-        if (self.historyTable.columnCount() < 4):
-            self.historyTable.setColumnCount(4)
+        if (self.historyTable.columnCount() < 5):
+            self.historyTable.setColumnCount(5)
         font1 = QFont()
         font1.setFamilies([u"KoHo"])
         font1.setPointSize(14)
@@ -304,6 +304,8 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3 = QTableWidgetItem()
         __qtablewidgetitem3.setFont(font1);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.historyTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
@@ -361,14 +363,14 @@ class Ui_MainWindow(object):
         self.radioWidget = QWidget(self.feedbackPage)
         self.radioWidget.setObjectName(u"radioWidget")
         self.radioWidget.setGeometry(QRect(640, 230, 391, 61))
-        self.widget = QWidget(self.radioWidget)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(20, 30, 375, 20))
-        self.horizontalLayout_2 = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.radioWidget)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(20, 30, 375, 20))
+        self.horizontalLayout_2 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.star0Radio = QRadioButton(self.widget)
+        self.star0Radio = QRadioButton(self.layoutWidget)
         self.star0Radio.setObjectName(u"star0Radio")
         self.star0Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         icon6 = QIcon()
@@ -377,35 +379,35 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.star0Radio)
 
-        self.star1Radio = QRadioButton(self.widget)
+        self.star1Radio = QRadioButton(self.layoutWidget)
         self.star1Radio.setObjectName(u"star1Radio")
         self.star1Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.star1Radio.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.star1Radio)
 
-        self.star2Radio = QRadioButton(self.widget)
+        self.star2Radio = QRadioButton(self.layoutWidget)
         self.star2Radio.setObjectName(u"star2Radio")
         self.star2Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.star2Radio.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.star2Radio)
 
-        self.star3Radio = QRadioButton(self.widget)
+        self.star3Radio = QRadioButton(self.layoutWidget)
         self.star3Radio.setObjectName(u"star3Radio")
         self.star3Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.star3Radio.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.star3Radio)
 
-        self.star4Radio = QRadioButton(self.widget)
+        self.star4Radio = QRadioButton(self.layoutWidget)
         self.star4Radio.setObjectName(u"star4Radio")
         self.star4Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.star4Radio.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.star4Radio)
 
-        self.star5Radio = QRadioButton(self.widget)
+        self.star5Radio = QRadioButton(self.layoutWidget)
         self.star5Radio.setObjectName(u"star5Radio")
         self.star5Radio.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.star5Radio.setIcon(icon6)
@@ -420,7 +422,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 482, 1016))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 1016))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_2 = QLabel(self.scrollAreaWidgetContents)
@@ -584,6 +586,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Date", None));
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        ___qtablewidgetitem4 = self.historyTable.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
         self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))

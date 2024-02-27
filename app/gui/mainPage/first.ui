@@ -759,17 +759,6 @@ color: #7E1615;</string>
             </column>
             <column>
              <property name="text">
-              <string>Course</string>
-             </property>
-             <property name="font">
-              <font>
-               <family>KoHo</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-            </column>
-            <column>
-             <property name="text">
               <string>Date</string>
              </property>
              <property name="font">
@@ -781,7 +770,29 @@ color: #7E1615;</string>
             </column>
             <column>
              <property name="text">
+              <string>Course</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>Status</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Confirm</string>
              </property>
              <property name="font">
               <font>
@@ -897,7 +908,7 @@ border-radius: 8px;</string>
               <height>61</height>
              </rect>
             </property>
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -1026,7 +1037,7 @@ border-radius: 8px;</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>482</width>
+               <width>498</width>
                <height>1016</height>
               </rect>
              </property>
