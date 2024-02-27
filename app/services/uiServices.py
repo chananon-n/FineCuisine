@@ -238,7 +238,7 @@ class ReservationPage(QMainWindow, reservationPage):
         alert =QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        alert.setDefaultButton(QtWidgets.QMessageBox.No)
+        alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
             print(f"Reservation confirmed! {self.date.toString('dd/MM/yyyy')}, {self.course.currentText()},{self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
