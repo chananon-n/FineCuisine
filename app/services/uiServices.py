@@ -109,18 +109,27 @@ class MainPage(QMainWindow, mainPage):
         self.pageWidget.setCurrentIndex(3)
         self.historyTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
         self.historyTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        self.confirmBtn = QtWidgets.QPushButton("Confirm")
+        # decorate the button
+        self.confirmBtn.setStyleSheet("background-color: #4CAF50; color: white;")
         #add data to the table
         self.historyTable.setRowCount(5)
-        self.historyTable.setColumnCount(4)
+        self.historyTable.setColumnCount(5)
         self.historyTable.setItem(0, 0, QtWidgets.QTableWidgetItem("1"))
         self.historyTable.setItem(0, 1, QtWidgets.QTableWidgetItem("Course 1"))
         self.historyTable.setItem(0, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
-        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Completed"))
+        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Pending"))
+        self.historyTable.setCellWidget(0, 4, self.confirmBtn)
+        self.confirmBtn.clicked.connect(self.confirmation)
         self.historyTable.setItem(1, 0, QtWidgets.QTableWidgetItem("2"))
         self.historyTable.setItem(1, 1, QtWidgets.QTableWidgetItem("Course 2"))
         self.historyTable.setItem(1, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
         self.historyTable.setItem(1, 3, QtWidgets.QTableWidgetItem("Completed"))
         
+    def confirmation(self):
+        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Confirmed"))
+        self.confirmBtn.hide()   
+
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
         self.addFeedback()
