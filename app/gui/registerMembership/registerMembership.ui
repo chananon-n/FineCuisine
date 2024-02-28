@@ -332,7 +332,7 @@ background-color:rgb(152, 43, 37)
             <string>Name:</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_2">
+          <widget class="QLineEdit" name="userSurname">
            <property name="geometry">
             <rect>
              <x>480</x>

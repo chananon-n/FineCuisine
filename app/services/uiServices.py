@@ -9,6 +9,7 @@ from app.gui.register.registerPage import Ui_MainWindow as registerPage
 from app.gui.mainPage.mainPage import Ui_MainWindow as mainPage
 from app.gui.course.coursePage import Ui_MainWindow as coursePage
 from app.gui.reservation.reservationPage import Ui_MainWindow as reservationPage
+from app.gui.registerMembership.registerMembershipPage import Ui_MainWindow as registerMembershipPage
 
 from datetime import datetime
     
@@ -89,7 +90,7 @@ class MainPage(QMainWindow, mainPage):
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
-        membership = True
+        membership = False
         if membership:
             self.registerBtn.hide()
         else:
@@ -97,6 +98,12 @@ class MainPage(QMainWindow, mainPage):
             self.userBirth.hide()
             self.dateExpireLabel.hide()
             self.userExpire.hide()
+        self.registerBtn.clicked.connect(self.openRegisterMemberPage)
+        
+    def openRegisterMemberPage(self):
+        self.registerMembershipPage = RegisterMembershipPage()
+        self.registerMembershipPage.show()
+        self.hide()
         
     def openNotification(self):
         self.pageWidget.setCurrentIndex(2)
@@ -258,5 +265,58 @@ class ReservationPage(QMainWindow, reservationPage):
             self.hide()
         else:
             pass
+    
+class RegisterMembershipPage(QMainWindow, registerMembershipPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.mainPage = MainPage()
+        
+        self.birthCalendar = self.findChild(QtWidgets.QCalendarWidget, "birthCalenda")
+        self.userSelect = self.findChild(QtWidgets.QLabel, "userBirthDate")
+        self.birthCalendar.selectionChanged.connect(self.getBirthDate)
+        
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
+        self.notiBtn.clicked.connect(self.openNotification)
+        self.historyBtn.clicked.connect(self.openHistory)
+        self.feedbackBtn.clicked.connect(self.openFeedback)
+        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        
+        self.confirmBtn.clicked.connect(self.register)
+    
+    def getBirthDate(self):
+        self.birthDate = self.birthCalendar.selectedDate()
+        self.userSelect.setText(self.birthDate.toString("dd/MM/yyyy"))
+        
+    def openHomePage(self):
+        self.mainPage.show()
+        self.mainPage.openHomePage()
+        self.hide()
+    
+    def openUserInfo(self):
+        self.mainPage.show()
+        self.mainPage.openUserInfo()
+        self.hide()
+    
+    def openNotification(self):
+        self.mainPage.show()
+        self.mainPage.openNotification()
+        self.hide()
+    
+    def openHistory(self):
+        self.mainPage.show()
+        self.mainPage.openHistory()
+        self.hide()
+    
+    def openFeedback(self):
+        self.mainPage.show()
+        self.mainPage.openFeedback()
+        self.hide()
+        
+    def register(self):
+        self.mainPage.show()
+        self.mainPage.openUserInfo()
+        self.hide()
         
     
