@@ -144,7 +144,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(Qt.AlignCenter)
         self.birthCalenda = QCalendarWidget(self.reservationFrame)
         self.birthCalenda.setObjectName(u"birthCalenda")
-        self.birthCalenda.setGeometry(QRect(440, 260, 411, 261))
+        self.birthCalenda.setGeometry(QRect(360, 310, 411, 261))
         self.birthCalenda.setStyleSheet(u"background-color: #E7E5DF;\n"
 "color: rgb(0, 0, 0);\n"
 "border-radius: 0px")
@@ -155,7 +155,7 @@ class Ui_MainWindow(object):
         self.birthCalenda.setDateEditEnabled(True)
         self.confirmBtn = QPushButton(self.reservationFrame)
         self.confirmBtn.setObjectName(u"confirmBtn")
-        self.confirmBtn.setGeometry(QRect(440, 580, 251, 41))
+        self.confirmBtn.setGeometry(QRect(440, 600, 251, 41))
         self.confirmBtn.setStyleSheet(u"QPushButton{\n"
 "background-color: #C63428;\n"
 "color: rgb(231, 229, 223);\n"
@@ -167,30 +167,36 @@ class Ui_MainWindow(object):
 "}")
         self.nameLabel = QLabel(self.reservationFrame)
         self.nameLabel.setObjectName(u"nameLabel")
-        self.nameLabel.setGeometry(QRect(280, 120, 71, 31))
+        self.nameLabel.setGeometry(QRect(340, 120, 71, 31))
         self.nameLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";")
-        self.lineEdit_2 = QLineEdit(self.reservationFrame)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setGeometry(QRect(450, 190, 321, 31))
-        self.lineEdit_2.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
+        self.userSurname = QLineEdit(self.reservationFrame)
+        self.userSurname.setObjectName(u"userSurname")
+        self.userSurname.setGeometry(QRect(480, 190, 321, 31))
+        self.userSurname.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 16pt \"Arial\";\n"
 "padding:8px;")
-        self.lineEdit = QLineEdit(self.reservationFrame)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(450, 120, 321, 31))
-        self.lineEdit.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
+        self.userName = QLineEdit(self.reservationFrame)
+        self.userName.setObjectName(u"userName")
+        self.userName.setGeometry(QRect(480, 120, 321, 31))
+        self.userName.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 16pt \"Arial\";\n"
 "padding:8px;")
         self.surnameLabel = QLabel(self.reservationFrame)
         self.surnameLabel.setObjectName(u"surnameLabel")
-        self.surnameLabel.setGeometry(QRect(280, 190, 111, 31))
+        self.surnameLabel.setGeometry(QRect(340, 190, 111, 31))
         self.surnameLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";")
         self.birthLabel = QLabel(self.reservationFrame)
         self.birthLabel.setObjectName(u"birthLabel")
-        self.birthLabel.setGeometry(QRect(280, 270, 131, 31))
+        self.birthLabel.setGeometry(QRect(340, 260, 131, 31))
         self.birthLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";")
+        self.userBirthDate = QLabel(self.reservationFrame)
+        self.userBirthDate.setObjectName(u"userBirthDate")
+        self.userBirthDate.setGeometry(QRect(477, 260, 321, 31))
+        self.userBirthDate.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
+"color:black;\n"
+"font: 16pt \"Arial\";")
 
         self.horizontalLayout.addWidget(self.frame_page)
 
@@ -215,9 +221,10 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Register Membership", None))
         self.confirmBtn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.nameLabel.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
-        self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Surname", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Name", None))
+        self.userSurname.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Surname", None))
+        self.userName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Name", None))
         self.surnameLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
         self.birthLabel.setText(QCoreApplication.translate("MainWindow", u"Birth Date:", None))
+        self.userBirthDate.setText("")
     # retranslateUi
 
