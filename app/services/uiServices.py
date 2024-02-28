@@ -111,6 +111,19 @@ class MainPage(QMainWindow, mainPage):
         
     def openNotification(self):
         self.pageWidget.setCurrentIndex(2)
+        self.generateNotification()
+    
+    def generateNotification(self):
+        self.notificationDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.notificationDetail.setObjectName("notificationDetail")
+        sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.notificationDetail.sizePolicy().hasHeightForWidth())
+        self.notificationDetail.setSizePolicy(sizePolicy)
+        self.notificationDetail.setMinimumSize(QSize(460, 200))
+        self.notificationDetail.setMaximumSize(QSize(460, 200))
+        self.notificationDetail.setLayoutDirection(Qt.LeftToRight)        
         
     def openHistory(self):
         self.pageWidget.setCurrentIndex(3)

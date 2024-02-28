@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -690,6 +690,29 @@ color: #7E1615</string>
             <property name="text">
              <string>Notification</string>
             </property>
+           </widget>
+           <widget class="QScrollArea" name="notificationArea">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>80</y>
+              <width>1131</width>
+              <height>591</height>
+             </rect>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1129</width>
+               <height>589</height>
+              </rect>
+             </property>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="historyPage">

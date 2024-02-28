@@ -278,6 +278,14 @@ class Ui_MainWindow(object):
         self.notiTitleLabel.setGeometry(QRect(20, 20, 261, 41))
         self.notiTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615")
+        self.notificationArea = QScrollArea(self.notiPage)
+        self.notificationArea.setObjectName(u"notificationArea")
+        self.notificationArea.setGeometry(QRect(20, 80, 1131, 591))
+        self.notificationArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1129, 589))
+        self.notificationArea.setWidget(self.scrollAreaWidgetContents_2)
         self.pageWidget.addWidget(self.notiPage)
         self.historyPage = QWidget()
         self.historyPage.setObjectName(u"historyPage")
@@ -479,7 +487,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(3)
+        self.pageWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
