@@ -272,7 +272,7 @@ class RegisterMembershipPage(QMainWindow, registerMembershipPage):
         self.setupUi(self)
         self.mainPage = MainPage()
         
-        self.birthCalendar = self.findChild(QtWidgets.QCalendarWidget, "birthCalenda")
+        self.birthCalendar = self.findChild(QtWidgets.QCalendarWidget, "birthCalendar")
         self.userSelect = self.findChild(QtWidgets.QLabel, "userBirthDate")
         self.birthCalendar.selectionChanged.connect(self.getBirthDate)
         

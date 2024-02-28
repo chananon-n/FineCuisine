@@ -142,17 +142,17 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QRect(390, 30, 341, 61))
         self.label.setStyleSheet(u"font: 700 32pt \"Arial\";")
         self.label.setAlignment(Qt.AlignCenter)
-        self.birthCalenda = QCalendarWidget(self.reservationFrame)
-        self.birthCalenda.setObjectName(u"birthCalenda")
-        self.birthCalenda.setGeometry(QRect(360, 310, 411, 261))
-        self.birthCalenda.setStyleSheet(u"background-color: #E7E5DF;\n"
+        self.birthCalendar = QCalendarWidget(self.reservationFrame)
+        self.birthCalendar.setObjectName(u"birthCalendar")
+        self.birthCalendar.setGeometry(QRect(360, 310, 411, 261))
+        self.birthCalendar.setStyleSheet(u"background-color: #E7E5DF;\n"
 "color: rgb(0, 0, 0);\n"
 "border-radius: 0px")
-        self.birthCalenda.setGridVisible(False)
-        self.birthCalenda.setHorizontalHeaderFormat(QCalendarWidget.ShortDayNames)
-        self.birthCalenda.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
-        self.birthCalenda.setNavigationBarVisible(True)
-        self.birthCalenda.setDateEditEnabled(True)
+        self.birthCalendar.setGridVisible(False)
+        self.birthCalendar.setHorizontalHeaderFormat(QCalendarWidget.ShortDayNames)
+        self.birthCalendar.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
+        self.birthCalendar.setNavigationBarVisible(True)
+        self.birthCalendar.setDateEditEnabled(True)
         self.confirmBtn = QPushButton(self.reservationFrame)
         self.confirmBtn.setObjectName(u"confirmBtn")
         self.confirmBtn.setGeometry(QRect(440, 600, 251, 41))
@@ -196,7 +196,8 @@ class Ui_MainWindow(object):
         self.userBirthDate.setGeometry(QRect(477, 260, 321, 31))
         self.userBirthDate.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
-"font: 16pt \"Arial\";")
+"font: 16pt \"Arial\";\n"
+"padding: 4px;")
 
         self.horizontalLayout.addWidget(self.frame_page)
 
@@ -225,6 +226,6 @@ class Ui_MainWindow(object):
         self.userName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Name", None))
         self.surnameLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
         self.birthLabel.setText(QCoreApplication.translate("MainWindow", u"Birth Date:", None))
-        self.userBirthDate.setText("")
+        self.userBirthDate.setText(QCoreApplication.translate("MainWindow", u"  xx/xx/xxxx", None))
     # retranslateUi
 

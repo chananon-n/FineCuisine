@@ -262,7 +262,7 @@ background-color: rgb(198, 52, 40);
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
-          <widget class="QCalendarWidget" name="birthCalenda">
+          <widget class="QCalendarWidget" name="birthCalendar">
            <property name="geometry">
             <rect>
              <x>360</x>
@@ -414,10 +414,11 @@ padding:8px;</string>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(231, 229, 223);
 color:black;
-font: 16pt &quot;Arial&quot;;</string>
+font: 16pt &quot;Arial&quot;;
+padding: 4px;</string>
            </property>
            <property name="text">
-            <string>  </string>
+            <string>  xx/xx/xxxx</string>
            </property>
           </widget>
          </widget>
