@@ -111,6 +111,35 @@ class MainPage(QMainWindow, mainPage):
         
     def openNotification(self):
         self.pageWidget.setCurrentIndex(2)
+        self.generateNotification()
+    
+    def generateNotification(self):
+        for i in range(10):
+            self.notificationDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents_2)
+            self.notificationDetail.setObjectName(f"notificationDetail_{i}")
+            sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            sizePolicy.setHorizontalStretch(0)
+            sizePolicy.setVerticalStretch(0)
+            sizePolicy.setHeightForWidth(self.notificationDetail.sizePolicy().hasHeightForWidth())
+            self.notificationDetail.setSizePolicy(sizePolicy)
+            self.notificationDetail.setMinimumSize(QSize(1100, 50))
+            self.notificationDetail.setMaximumSize(QSize(1100, 50))
+            self.notificationDetail.setLayoutDirection(Qt.LeftToRight)
+            self.notificationDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+    "font: 700 18pt \"KoHo\";\n"
+    "border: 1 solid black;\n"
+    "border-radius: 8px")
+            self.notificationDetail.setFrameShape(QFrame.NoFrame)
+            self.notificationDetail.setFrameShadow(QFrame.Sunken)
+            self.notificationDetail.setTextFormat(Qt.AutoText)
+            self.notificationDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+            self.notificationDetail.setWordWrap(True)
+            self.notificationDetail.setMargin(10)
+            self.notificationDetail.setIndent(0)
+            self.notificationDetail.setText("Notification")
+            self.verticalLayout_4.addWidget(self.notificationDetail)
+            
+            
         
     def openHistory(self):
         self.pageWidget.setCurrentIndex(3)
