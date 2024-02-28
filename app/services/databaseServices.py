@@ -7,6 +7,16 @@ class DatabaseServices:
     def validateUserLogin(username, password):
         return database.checkUser(username, password)
     
+    def getAllClients():
+        return database.getAllClients()
+    
+    def getAllAdmin():
+        return database.getAllAdmins()
+    
+    def validationUserRegister(email):
+        return database.assignRole(email)
+    
+    
     
         
         
