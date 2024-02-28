@@ -131,14 +131,21 @@ class MainPage(QMainWindow, mainPage):
         self.historyTable.setCellWidget(0, 4, self.confirmBtn)
         self.confirmBtn.clicked.connect(self.confirmation)
         self.historyTable.setCellWidget(0, 5, self.cancelBtn)
+        self.cancelBtn.clicked.connect(self.cancellation)
         self.historyTable.setItem(1, 0, QtWidgets.QTableWidgetItem("2"))
         self.historyTable.setItem(1, 1, QtWidgets.QTableWidgetItem("Course 2"))
         self.historyTable.setItem(1, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
         self.historyTable.setItem(1, 3, QtWidgets.QTableWidgetItem("Completed"))
         
+    def cancellation(self):
+        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Cancelled"))
+        self.cancelBtn.hide()
+        self.confirmBtn.hide()
+        
     def confirmation(self):
         self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Confirmed"))
-        self.confirmBtn.hide()   
+        self.confirmBtn.hide()
+        self.cancelBtn.hide()   
 
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
