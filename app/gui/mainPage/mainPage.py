@@ -289,6 +289,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.notiDetail = QLabel(self.scrollAreaWidgetContents_2)
         self.notiDetail.setObjectName(u"notiDetail")
+        self.notiDetail.setMinimumSize(QSize(1100, 50))
         self.notiDetail.setMaximumSize(QSize(1100, 50))
         self.notiDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "font: 700 18pt \"KoHo\";\n"
