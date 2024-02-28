@@ -226,6 +226,6 @@ class Ui_MainWindow(object):
         self.userName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Your Name", None))
         self.surnameLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
         self.birthLabel.setText(QCoreApplication.translate("MainWindow", u"Birth Date:", None))
-        self.userBirthDate.setText(QCoreApplication.translate("MainWindow", u"  xx/xx/xxxx", None))
+        self.userBirthDate.setText(QCoreApplication.translate("MainWindow", u"xx/xx/xxxx", None))
     # retranslateUi
 

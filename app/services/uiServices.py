@@ -315,8 +315,21 @@ class RegisterMembershipPage(QMainWindow, registerMembershipPage):
         self.hide()
         
     def register(self):
-        self.mainPage.show()
-        self.mainPage.openUserInfo()
-        self.hide()
+        self.checkUserInput()
+    
+    
+    def checkUserInput(self):
+        if self.userName.text() and self.userSurname.text() and self.userBirthDate.text() != "xx/xx/xxxx":
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Membership registered!")
+            alert.exec()
+            self.mainPage.show()
+            self.mainPage.openUserInfo()
+            self.hide()
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Please fill in all information")
+            alert.exec()
+        
         
     

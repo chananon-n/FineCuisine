@@ -418,7 +418,7 @@ font: 16pt &quot;Arial&quot;;
 padding: 4px;</string>
            </property>
            <property name="text">
-            <string>  xx/xx/xxxx</string>
+            <string>xx/xx/xxxx</string>
            </property>
           </widget>
          </widget>
