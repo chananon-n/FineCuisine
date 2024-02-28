@@ -278,6 +278,26 @@ class Ui_MainWindow(object):
         self.notiTitleLabel.setGeometry(QRect(20, 20, 261, 41))
         self.notiTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615")
+        self.scrollArea_2 = QScrollArea(self.notiPage)
+        self.scrollArea_2.setObjectName(u"scrollArea_2")
+        self.scrollArea_2.setGeometry(QRect(20, 100, 1141, 571))
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1139, 569))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.notiDetail = QLabel(self.scrollAreaWidgetContents_2)
+        self.notiDetail.setObjectName(u"notiDetail")
+        self.notiDetail.setMaximumSize(QSize(1100, 50))
+        self.notiDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 700 18pt \"KoHo\";\n"
+"border: 1 solid black;\n"
+"border-radius: 8px")
+
+        self.verticalLayout_4.addWidget(self.notiDetail)
+
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
         self.pageWidget.addWidget(self.notiPage)
         self.historyPage = QWidget()
         self.historyPage.setObjectName(u"historyPage")
@@ -479,7 +499,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(3)
+        self.pageWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -517,6 +537,7 @@ class Ui_MainWindow(object):
         self.userExpire.setText(QCoreApplication.translate("MainWindow", u"01-2025", None))
         self.registerBtn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.notiTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
+        self.notiDetail.setText(QCoreApplication.translate("MainWindow", u"Welcome to Fine Cuisine!", None))
         self.historyTitleLabel.setText(QCoreApplication.translate("MainWindow", u"History", None))
         ___qtablewidgetitem = self.historyTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
