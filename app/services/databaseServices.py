@@ -3,13 +3,9 @@ class DatabaseServices:
     def __init__(self):
         pass
     
-    def validateUserLogin(username,password):
-        result = database.check_user(username,password)
-        return result
-    
-    def validateAdminLogin(username):
-        result = database.checkAdmin(username)
-        return result
+    @staticmethod
+    def validateUserLogin(username, password):
+        return database.checkUser(username, password)
     
     
         

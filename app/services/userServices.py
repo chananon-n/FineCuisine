@@ -7,14 +7,7 @@ class UserServices:
         pass
     
     def login(self,usernameInput, passwordInput):
-        loginResult = DatabaseServices.validateLogin(usernameInput, passwordInput)
-        if (loginResult):
-            if DatabaseServices.validateAdminLogin(usernameInput):
-                return "Admin"
-            else:
-                return "Client"
-        else:
-            return "Invalid"
+        return DatabaseServices.validateUserLogin(usernameInput, passwordInput)
         
     
 def booking(self):

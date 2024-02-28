@@ -1,6 +1,6 @@
 from app.db.database import *
 from app.model.user import *
-import transaction
+from app.services.userServices import UserServices
 
 def register(username, password, email, phone):
     role = assignRole(email)
@@ -21,6 +21,10 @@ def main():
     
     print(getAllClients())
     print(getAllAdmins())
+    
+    # print(UserServices().login(user, password))
+    
+    # clearDB()
     
 if __name__ == "__main__":
     main()
