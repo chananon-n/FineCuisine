@@ -20,6 +20,7 @@ class Client(User):
     def __init__(self, username, password, email, phone):
         super().__init__(username, password, email, phone)
         self.membership = None
+        self.history = []
         self.id = client_id()
         
     def toJson(self):
@@ -28,7 +29,8 @@ class Client(User):
             "username": self.username,
             "email": self.email,
             "phone": self.phone,
-            "membership": self.membership
+            "membership": self.membership,
+            "history": self.history
         }
         
 class Admin(User):
