@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -690,6 +690,56 @@ color: #7E1615</string>
             <property name="text">
              <string>Notification</string>
             </property>
+           </widget>
+           <widget class="QScrollArea" name="scrollArea_2">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>100</y>
+              <width>1141</width>
+              <height>571</height>
+             </rect>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>1139</width>
+               <height>569</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QLabel" name="notiDetail">
+                <property name="minimumSize">
+                 <size>
+                  <width>1100</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>1100</width>
+                  <height>50</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+font: 700 18pt &quot;KoHo&quot;;
+border: 1 solid black;
+border-radius: 8px</string>
+                </property>
+                <property name="text">
+                 <string>Welcome to Fine Cuisine!</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="historyPage">
