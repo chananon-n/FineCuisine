@@ -336,7 +336,7 @@ font: 20pt &quot;Arial&quot;;</string>
            <property name="geometry">
             <rect>
              <x>570</x>
-             <y>210</y>
+             <y>190</y>
              <width>400</width>
              <height>40</height>
             </rect>
@@ -357,7 +357,7 @@ font: 20pt &quot;Arial&quot;;</string>
            <property name="geometry">
             <rect>
              <x>570</x>
-             <y>290</y>
+             <y>250</y>
              <width>400</width>
              <height>40</height>
             </rect>
@@ -375,7 +375,7 @@ font: 20pt &quot;Arial&quot;;</string>
            <property name="geometry">
             <rect>
              <x>570</x>
-             <y>370</y>
+             <y>310</y>
              <width>400</width>
              <height>120</height>
             </rect>
@@ -412,6 +412,25 @@ background-color:rgb(152, 43, 37)
            </property>
            <property name="text">
             <string>Comfirm Reservation</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="reservationoName">
+           <property name="geometry">
+            <rect>
+             <x>570</x>
+             <y>450</y>
+             <width>401</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(231, 229, 223);
+color:black;
+font: 20pt &quot;Arial&quot;;
+padding: 4px;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Reservation Name</string>
            </property>
           </widget>
          </widget>

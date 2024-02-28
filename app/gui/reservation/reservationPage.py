@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservation.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,9 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCalendarWidget, QComboBox, QFrame,
-    QHBoxLayout, QLabel, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QTextEdit, QVBoxLayout,
-    QWidget)
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QTextEdit,
+    QVBoxLayout, QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -170,20 +170,20 @@ class Ui_MainWindow(object):
         self.courseBox.setEditable(False)
         self.timeBox = QComboBox(self.reservationFrame)
         self.timeBox.setObjectName(u"timeBox")
-        self.timeBox.setGeometry(QRect(570, 210, 400, 40))
+        self.timeBox.setGeometry(QRect(570, 190, 400, 40))
         self.timeBox.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";")
         self.timeBox.setInsertPolicy(QComboBox.InsertAtBottom)
         self.partySizeBox = QComboBox(self.reservationFrame)
         self.partySizeBox.setObjectName(u"partySizeBox")
-        self.partySizeBox.setGeometry(QRect(570, 290, 400, 40))
+        self.partySizeBox.setGeometry(QRect(570, 250, 400, 40))
         self.partySizeBox.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";")
         self.noteTextEdit = QTextEdit(self.reservationFrame)
         self.noteTextEdit.setObjectName(u"noteTextEdit")
-        self.noteTextEdit.setGeometry(QRect(570, 370, 400, 120))
+        self.noteTextEdit.setGeometry(QRect(570, 310, 400, 120))
         self.noteTextEdit.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 16pt \"Arial\";\n"
@@ -200,6 +200,13 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color:rgb(152, 43, 37)\n"
 "}")
+        self.reservationoName = QLineEdit(self.reservationFrame)
+        self.reservationoName.setObjectName(u"reservationoName")
+        self.reservationoName.setGeometry(QRect(570, 450, 401, 41))
+        self.reservationoName.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
+"color:black;\n"
+"font: 20pt \"Arial\";\n"
+"padding: 4px;")
 
         self.horizontalLayout.addWidget(self.frame_page)
 
@@ -228,5 +235,6 @@ class Ui_MainWindow(object):
         self.partySizeBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Party Size", None))
         self.noteTextEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Additional Notes...", None))
         self.confirmBtn.setText(QCoreApplication.translate("MainWindow", u"Comfirm Reservation", None))
+        self.reservationoName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Reservation Name", None))
     # retranslateUi
 
