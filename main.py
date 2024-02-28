@@ -1,4 +1,4 @@
-from app.services.uiServices import LoginPage
+from app.controller.uiServices import LoginPage
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication  
 import sys

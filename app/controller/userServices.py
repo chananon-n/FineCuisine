@@ -1,4 +1,4 @@
-from app.services.databaseServices import DatabaseServices
+from app.controller.databaseServices import DatabaseServices
 
 
 class UserServices:

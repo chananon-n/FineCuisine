@@ -2,7 +2,7 @@ import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy
-from app.services.userServices import *
+from app.controller.userServices import *
 import transaction
 
 from app.gui.login.loginPage import Ui_MainWindow as loginPage
