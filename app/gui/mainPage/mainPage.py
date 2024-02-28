@@ -287,8 +287,8 @@ class Ui_MainWindow(object):
         self.historyTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615;")
         self.historyTable = QTableWidget(self.historyPage)
-        if (self.historyTable.columnCount() < 5):
-            self.historyTable.setColumnCount(5)
+        if (self.historyTable.columnCount() < 6):
+            self.historyTable.setColumnCount(6)
         font1 = QFont()
         font1.setFamilies([u"KoHo"])
         font1.setPointSize(14)
@@ -305,7 +305,11 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3.setFont(font1);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
+        __qtablewidgetitem4.setFont(font1);
         self.historyTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        __qtablewidgetitem5.setFont(font1);
+        self.historyTable.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
@@ -475,7 +479,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(4)
+        self.pageWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -517,13 +521,15 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem = self.historyTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
         ___qtablewidgetitem1 = self.historyTable.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Course", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Date", None));
         ___qtablewidgetitem2 = self.historyTable.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Date", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Course", None));
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         ___qtablewidgetitem4 = self.historyTable.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
+        ___qtablewidgetitem5 = self.historyTable.horizontalHeaderItem(5)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
         self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
