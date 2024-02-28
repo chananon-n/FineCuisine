@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#E7E5DF</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="content">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="sidebar">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color: rgb(198, 52, 40);
+}
+
+.QPushButton{
+	color:black;
+	border: 0;
+	padding: 4px;
+}
+.QPushButton:hover{
+	background-color: #7E1615;
+}
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="homeBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/restaurant.png</normaloff>:/icon/restaurant.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="userinfoBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/user-black.png</normaloff>:/icon/user-black.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="notiBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/bell.png</normaloff>:/icon/bell.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="historyBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/time-past.png</normaloff>:/icon/time-past.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="feedbackBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/feedback.png</normaloff>:/icon/feedback.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>343</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="logoutBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/exit.png</normaloff>:/icon/exit.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_page">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QFrame" name="reservationFrame">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>30</y>
+            <width>1060</width>
+            <height>661</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+	background-color: rgb(126, 22, 21);
+	border-radius: 8px;
+</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>390</x>
+             <y>30</y>
+             <width>341</width>
+             <height>61</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 700 32pt &quot;Arial&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Register Membership</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QCalendarWidget" name="birthCalenda">
+           <property name="geometry">
+            <rect>
+             <x>360</x>
+             <y>310</y>
+             <width>411</width>
+             <height>261</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #E7E5DF;
+color: rgb(0, 0, 0);
+border-radius: 0px</string>
+           </property>
+           <property name="gridVisible">
+            <bool>false</bool>
+           </property>
+           <property name="horizontalHeaderFormat">
+            <enum>QCalendarWidget::ShortDayNames</enum>
+           </property>
+           <property name="verticalHeaderFormat">
+            <enum>QCalendarWidget::NoVerticalHeader</enum>
+           </property>
+           <property name="navigationBarVisible">
+            <bool>true</bool>
+           </property>
+           <property name="dateEditEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="confirmBtn">
+           <property name="geometry">
+            <rect>
+             <x>440</x>
+             <y>600</y>
+             <width>251</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+background-color: #C63428;
+color: rgb(231, 229, 223);
+font: 16pt &quot;Arial&quot;;
+padding:8px;
+}
+QPushButton:hover{
+background-color:rgb(152, 43, 37)
+}</string>
+           </property>
+           <property name="text">
+            <string>Register</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="nameLabel">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>120</y>
+             <width>71</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 700 24pt &quot;KoHo&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_2">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>190</y>
+             <width>321</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(231, 229, 223);
+color:black;
+font: 16pt &quot;Arial&quot;;
+padding:8px;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Your Surname</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="userName">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>120</y>
+             <width>321</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(231, 229, 223);
+color:black;
+font: 16pt &quot;Arial&quot;;
+padding:8px;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Your Name</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="surnameLabel">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>190</y>
+             <width>111</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 700 24pt &quot;KoHo&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Surname:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="birthLabel">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>260</y>
+             <width>131</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 700 24pt &quot;KoHo&quot;;</string>
+           </property>
+           <property name="text">
+            <string>Birth Date:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="userBirthDate">
+           <property name="geometry">
+            <rect>
+             <x>477</x>
+             <y>260</y>
+             <width>321</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(231, 229, 223);
+color:black;
+font: 16pt &quot;Arial&quot;;</string>
+           </property>
+           <property name="text">
+            <string>  </string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../picture/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
