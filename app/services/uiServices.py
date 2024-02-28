@@ -1,6 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy
 from app.services.userServices import *
 import transaction
 
@@ -10,6 +11,8 @@ from app.gui.mainPage.mainPage import Ui_MainWindow as mainPage
 from app.gui.course.coursePage import Ui_MainWindow as coursePage
 from app.gui.reservation.reservationPage import Ui_MainWindow as reservationPage
 from app.gui.registerMembership.registerMembershipPage import Ui_MainWindow as registerMembershipPage
+from app.gui.news.newsPage import Ui_MainWindow as newsPage
+from app.gui.news.newsBlog import Ui_Blog as newsBlog
 
 from datetime import datetime
     
@@ -80,6 +83,7 @@ class MainPage(QMainWindow, mainPage):
         #homepage buttons
         self.courseBtn.clicked.connect(self.openCoursePage)
         self.reservationBtn.clicked.connect(self.openReservationPage)
+        self.newsBtn.clicked.connect(self.openNewsPage)
         
         self.logoutBtn.clicked.connect(self.logout)
         
@@ -132,10 +136,40 @@ class MainPage(QMainWindow, mainPage):
     def confirmation(self):
         self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Confirmed"))
         self.confirmBtn.hide()   
-    
+
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
+        self.addFeedback()
         
+    def addFeedback(self):
+        for i in range(5):
+            self.feedbackDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.feedbackDetail.setObjectName(f"feedbackDetail_{i}")
+            sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            sizePolicy.setHorizontalStretch(0)
+            sizePolicy.setVerticalStretch(0)
+            sizePolicy.setHeightForWidth(self.feedbackDetail.sizePolicy().hasHeightForWidth())
+            self.feedbackDetail.setSizePolicy(sizePolicy)
+            self.feedbackDetail.setMinimumSize(QSize(460, 200))
+            self.feedbackDetail.setMaximumSize(QSize(460, 200))
+            self.feedbackDetail.setLayoutDirection(Qt.LeftToRight)
+            self.feedbackDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+    "font: 16pt \"Arial\";\n"
+    "border: 1 solid black;\n"
+    "border-radius: 8px")
+            self.feedbackDetail.setFrameShape(QFrame.NoFrame)
+            self.feedbackDetail.setFrameShadow(QFrame.Sunken)
+            self.feedbackDetail.setTextFormat(Qt.AutoText)
+            self.feedbackDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+            self.feedbackDetail.setWordWrap(True)
+            self.feedbackDetail.setMargin(10)
+            self.feedbackDetail.setIndent(0)
+            
+            self.feedbackDetail.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            
+            self.verticalLayout_3.addWidget(self.feedbackDetail)
+        
+    
     def logout(self):
         self.loginPage = LoginPage()
         self.loginPage.show()
@@ -149,6 +183,11 @@ class MainPage(QMainWindow, mainPage):
     def openReservationPage(self):
         self.reservationPage = ReservationPage()
         self.reservationPage.show()
+        self.hide()
+        
+    def openNewsPage(self):
+        self.newsPage = NewsPage()
+        self.newsPage.show()
         self.hide()
         
 class CoursePage(QMainWindow, coursePage):
@@ -332,4 +371,48 @@ class RegisterMembershipPage(QMainWindow, registerMembershipPage):
             alert.exec()
         
         
-    
+class NewsPage(QMainWindow, newsPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.mainPage = MainPage()
+        
+        # Sidebar buttons
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
+        self.notiBtn.clicked.connect(self.openNotification)
+        self.historyBtn.clicked.connect(self.openHistory)
+        self.feedbackBtn.clicked.connect(self.openFeedback)
+        
+        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        
+        # News page
+        self.addNews()
+        
+    def openHomePage(self):
+        self.mainPage.show()
+        self.mainPage.openHomePage()
+        self.hide()
+        
+    def openUserInfo(self):
+        self.mainPage.show()
+        self.mainPage.openUserInfo()
+        self.hide()
+        
+    def openNotification(self):
+        self.mainPage.show()
+        self.mainPage.openNotification()
+        self.hide()
+        
+    def openHistory(self):
+        self.mainPage.show()
+        self.mainPage.openHistory()
+        self.hide()
+        
+    def openFeedback(self):
+        self.mainPage.show()
+        self.mainPage.openFeedback()
+        self.hide()
+        
+    def addNews(self):
+        pass

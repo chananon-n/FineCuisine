@@ -419,101 +419,37 @@ class Ui_MainWindow(object):
         self.scrollArea.setGeometry(QRect(50, 130, 500, 500))
         self.scrollArea.setMinimumSize(QSize(500, 500))
         self.scrollArea.setMaximumSize(QSize(500, 500))
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 1016))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 498))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.label_2 = QLabel(self.scrollAreaWidgetContents)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(420, 120))
-        self.label_2.setLayoutDirection(Qt.LeftToRight)
-        self.label_2.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+        self.feedbackDetail = QLabel(self.scrollAreaWidgetContents)
+        self.feedbackDetail.setObjectName(u"feedbackDetail")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.feedbackDetail.sizePolicy().hasHeightForWidth())
+        self.feedbackDetail.setSizePolicy(sizePolicy1)
+        self.feedbackDetail.setMinimumSize(QSize(460, 200))
+        self.feedbackDetail.setMaximumSize(QSize(460, 200))
+        self.feedbackDetail.setLayoutDirection(Qt.LeftToRight)
+        self.feedbackDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "font: 16pt \"Arial\";\n"
 "border: 1 solid black;\n"
 "border-radius: 8px")
-        self.label_2.setFrameShape(QFrame.NoFrame)
-        self.label_2.setFrameShadow(QFrame.Sunken)
-        self.label_2.setTextFormat(Qt.AutoText)
-        self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_2.setWordWrap(True)
-        self.label_2.setMargin(10)
-        self.label_2.setIndent(0)
+        self.feedbackDetail.setFrameShape(QFrame.NoFrame)
+        self.feedbackDetail.setFrameShadow(QFrame.Sunken)
+        self.feedbackDetail.setTextFormat(Qt.AutoText)
+        self.feedbackDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.feedbackDetail.setWordWrap(True)
+        self.feedbackDetail.setMargin(10)
+        self.feedbackDetail.setIndent(0)
 
-        self.verticalLayout_3.addWidget(self.label_2)
-
-        self.label_4 = QLabel(self.scrollAreaWidgetContents)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setMinimumSize(QSize(420, 120))
-        self.label_4.setLayoutDirection(Qt.LeftToRight)
-        self.label_4.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 16pt \"Arial\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-        self.label_4.setFrameShape(QFrame.NoFrame)
-        self.label_4.setFrameShadow(QFrame.Sunken)
-        self.label_4.setTextFormat(Qt.AutoText)
-        self.label_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_4.setWordWrap(True)
-        self.label_4.setMargin(10)
-        self.label_4.setIndent(0)
-
-        self.verticalLayout_3.addWidget(self.label_4)
-
-        self.label_5 = QLabel(self.scrollAreaWidgetContents)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMinimumSize(QSize(420, 120))
-        self.label_5.setLayoutDirection(Qt.LeftToRight)
-        self.label_5.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 16pt \"Arial\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-        self.label_5.setFrameShape(QFrame.NoFrame)
-        self.label_5.setFrameShadow(QFrame.Sunken)
-        self.label_5.setTextFormat(Qt.AutoText)
-        self.label_5.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_5.setWordWrap(True)
-        self.label_5.setMargin(10)
-        self.label_5.setIndent(0)
-
-        self.verticalLayout_3.addWidget(self.label_5)
-
-        self.label_3 = QLabel(self.scrollAreaWidgetContents)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setMinimumSize(QSize(420, 120))
-        self.label_3.setLayoutDirection(Qt.LeftToRight)
-        self.label_3.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 16pt \"Arial\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-        self.label_3.setFrameShape(QFrame.NoFrame)
-        self.label_3.setFrameShadow(QFrame.Sunken)
-        self.label_3.setTextFormat(Qt.AutoText)
-        self.label_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_3.setWordWrap(True)
-        self.label_3.setMargin(10)
-        self.label_3.setIndent(0)
-
-        self.verticalLayout_3.addWidget(self.label_3)
-
-        self.label_6 = QLabel(self.scrollAreaWidgetContents)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setMinimumSize(QSize(420, 120))
-        self.label_6.setLayoutDirection(Qt.LeftToRight)
-        self.label_6.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 16pt \"Arial\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-        self.label_6.setFrameShape(QFrame.NoFrame)
-        self.label_6.setFrameShadow(QFrame.Sunken)
-        self.label_6.setTextFormat(Qt.AutoText)
-        self.label_6.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_6.setWordWrap(True)
-        self.label_6.setMargin(10)
-        self.label_6.setIndent(0)
-
-        self.verticalLayout_3.addWidget(self.label_6)
+        self.verticalLayout_3.addWidget(self.feedbackDetail)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.label_7 = QLabel(self.feedbackPage)
@@ -539,7 +475,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(3)
+        self.pageWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -598,15 +534,7 @@ class Ui_MainWindow(object):
         self.star3Radio.setText(QCoreApplication.translate("MainWindow", u"3", None))
         self.star4Radio.setText(QCoreApplication.translate("MainWindow", u"4", None))
         self.star5Radio.setText(QCoreApplication.translate("MainWindow", u"5", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
-"Star: 5", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
-"Star: 5", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
-"Star: 5", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
-"Star: 5", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
+        self.feedbackDetail.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
 "Star: 5", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Review Us here", None))
     # retranslateUi
