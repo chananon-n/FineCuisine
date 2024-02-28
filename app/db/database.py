@@ -9,31 +9,24 @@ db = ZODB.DB(storage)
 connection = db.open()
 root = connection.root()
 
-if not hasattr(root, 'users'):
-    root.users = BTrees.OOBTree.BTree()
-if not hasattr(root, 'courses'):
-    root.courses = BTrees.OOBTree.BTree()
-if not hasattr(root, 'memberships'):
-    root.memberships = BTrees.OOBTree.BTree()
-
-#or
-"""
 if not hasattr(root, 'clients'):
     root.clients = BTrees.OOBTree.BTree()
 if not hasattr(root, 'admins'):
     root.admins = BTrees.OOBTree.BTree()
-if not hasattr(root, 'courses'):
-    root.courses = BTrees.OOBTree.BTree()
 if not hasattr(root, 'memberships'):
     root.memberships = BTrees.OOBTree.BTree()
-"""
 
-def user_id():
-    if not hasattr(root, 'user_id'):
-        root.user_id = 1
-    else:
-        root.user_id += 1
-    return root.user_id
+def client_id():
+    if not hasattr(root, 'client_id'):
+        root.client_id = 0
+    root.client_id += 1
+    return root.client_id
+
+def admin_id():
+    if not hasattr(root, 'admin_id'):
+        root.admin_id = 0
+    root.admin_id += 1
+    return root.admin_id
 
 def check_user(username, password):
     for user in root.users.values():
@@ -48,8 +41,20 @@ def checkAdmin(username):
                 return True
     return False
 
-def getAllUsers():
-    return [user.toJson() for user in root.users.values()]
+#regitser user
+def assignRole(email):
+    if email.endswith("@finecuisine.ac.th"):
+        return "admin"
+    else:
+        return "client"
+
+
+# check database
+def getAllClients():
+    return [client.toJson() for client in root.clients.values()]
+
+def getAllAdmins():
+    return [admin.toJson() for admin in root.admins.values()]
 
 
             
