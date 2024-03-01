@@ -10,9 +10,9 @@ root = connection.root()
 if not hasattr(root, 'clients'):
     root.clients = BTrees.OOBTree.BTree()
 if not hasattr(root, 'admins'):
-    root.admins = BTrees.OOBTree.BTree()
-if not hasattr(root, 'memberships'):
-    root.memberships = BTrees.OOBTree.BTree()
+    root.admins = BTrees.OOBTree.BTree()  
+if not hasattr(root, 'feedbacks'):
+    root.feedbacks = BTrees.OOBTree.BTree()
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -27,6 +27,18 @@ def admin_id():
     root.admin_id += 1
     formatted_id = f'A{root.admin_id:04d}'
     return formatted_id
+
+def feedback_id():
+    if not hasattr(root, 'feedback_id'):
+        root.feedback_id = 0
+    root.feedback_id += 1
+    return root.feedback_id
+
+def getClientID(username):
+    for client in root.clients.values():
+        if client.username == username:
+            return client.id
+    return None
 
 def checkUser(username, password):
     for client in root.clients.values():
@@ -43,7 +55,6 @@ def assignRole(email):
         return "admin"
     else:
         return "client"
-
 
 # check database
 def getAllClients():
