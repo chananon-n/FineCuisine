@@ -21,5 +21,13 @@ class UserServices:
         admin = DatabaseServices.getAdmin(username)
         return admin.id
     
+    def register(self,username, password, email, phone):
+        role = DatabaseServices.validationUserRegister(email)
+        print(role)
+        if role == "admin":
+            DatabaseServices.registerAdmin(username, password, email, phone)
+        else:
+            DatabaseServices.registerClient(username, password, email, phone)
+    
     
     
