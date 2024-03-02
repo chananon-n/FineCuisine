@@ -1,3 +1,4 @@
+import random
 import ZODB, ZODB.FileStorage
 import BTrees.OOBTree
 import transaction
@@ -13,6 +14,8 @@ if not hasattr(root, 'admins'):
     root.admins = BTrees.OOBTree.BTree()  
 if not hasattr(root, 'feedbacks'):
     root.feedbacks = BTrees.OOBTree.BTree()
+if not hasattr(root, 'booking'):
+    root.booking = BTrees.OOBTree.BTree()
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -33,6 +36,12 @@ def feedback_id():
         root.feedback_id = 0
     root.feedback_id += 1
     return root.feedback_id
+
+def booking_id():
+    if not hasattr(root, 'booking_id'):
+        root.booking_id = 0
+    root.booking_id += 1
+    return root.booking_id
 
 def getClientID(username):
     for client in root.clients.values():
@@ -67,5 +76,11 @@ def clearDB():
     root.clients.clear()
     root.admins.clear()
     root.memberships.clear()
-    transaction.commit()
-            
+    transaction.commit()    
+    
+def getAllBookings():
+    return [booking.toJson() for booking in root.booking.values()]
+
+def getUserBooking(clientID):
+    return [booking.toJson() for booking in root.booking[clientID]]
+   
