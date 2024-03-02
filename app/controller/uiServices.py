@@ -17,8 +17,6 @@ from app.gui.news.newsBlog import Ui_Blog as newsBlog
 from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
 
 from datetime import datetime
-    
-
 
 class LoginPage(QMainWindow, loginPage):
     def __init__(self):
@@ -74,7 +72,20 @@ class RegisterPage(QMainWindow, registerPage):
         self.hide()
     
     def register(self):
-        pass
+        global userServices
+        userServices = UserServices()
+        if self.usernameInput.text() and self.passwordInput.text() and self.emailInput.text() and self.phoneInput.text():
+            userServices.register(self.usernameInput.text(), self.passwordInput.text(), self.emailInput.text(), self.phoneInput.text())
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Registration successful!")
+            alert.exec()
+            self.loginPage = LoginPage()
+            self.loginPage.show()
+            self.hide()
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Please fill in all information")
+            alert.exec()
       
 class MainPage(QMainWindow, mainPage):
     def __init__(self):

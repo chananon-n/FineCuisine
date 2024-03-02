@@ -21,8 +21,9 @@ def clientMain():
         print("4. Logout")
         choice = int(input("Enter your choice: "))
         if choice == 1:
-            if userID in root.clients:
-                print(root.clients[userID].toJson())
+            userServices = UserServices()
+            user = userServices.getClientInfo(userID)
+            print(user.getUsername())
         elif choice == 2:
             pass
         elif choice == 3:
@@ -56,11 +57,11 @@ def main():
             user = userServices.login(username, password)
             if user == "client":
                 userRole = "client"
-                userID = getClientID(username)
+                userID = getClient(username)
                 clientMain()
             elif user == "admin":
                 userRole = "admin"
-                userID = getAdminID(username)
+                userID = getAdmin(username)
                 # adminMain()
             else:
                 print("Incorrect username or password")
@@ -68,4 +69,6 @@ def main():
             break
     
 if __name__ == "__main__":
+    print(getAllClients())
+    print(getAllAdmins())
     main()
