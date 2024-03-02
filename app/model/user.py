@@ -12,6 +12,9 @@ class User(persistent.Persistent, ABC):
         self.email = email
         self.phone = phone
         
+    def getUsername(self):
+        return self.username
+        
     @abstractmethod
     def toJson(self):
         pass

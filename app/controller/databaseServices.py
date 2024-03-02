@@ -16,7 +16,17 @@ class DatabaseServices:
     def validationUserRegister(email):
         return database.assignRole(email)
     
+    def getClient(username):
+        return database.getClient(username)
     
+    def getAdmin(username):
+        return database.getAdmin(username)
+    
+    def getClientInfo(clientID):
+        return database.getClientInfo(clientID)
+    
+    def getAdminInfo(adminID):
+        return database.getAdminInfo(adminID)
     
         
         

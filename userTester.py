@@ -60,7 +60,7 @@ def main():
                 clientMain()
             elif user == "admin":
                 userRole = "admin"
-                userID = user.id
+                userID = getAdminID(username)
                 # adminMain()
             else:
                 print("Incorrect username or password")
@@ -68,6 +68,4 @@ def main():
             break
     
 if __name__ == "__main__":
-    print(getAllAdmins())
-    print(getAllClients())
     main()
