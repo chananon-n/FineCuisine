@@ -1,6 +1,7 @@
 import random
 import ZODB, ZODB.FileStorage
 import BTrees.OOBTree
+
 import transaction
 
 storage = ZODB.FileStorage.FileStorage('app/db/data.fs')
@@ -43,11 +44,29 @@ def booking_id():
     root.booking_id += 1
     return root.booking_id
 
-def getClientID(username):
+
+def getClient(username):
+
     for client in root.clients.values():
         if client.username == username:
-            return client.id
+            return client
     return None
+
+def getAdmin(username):
+    for admin in root.admins.values():
+        if admin.username == username:
+            return admin
+    return None
+
+def getClientInfo(clientID):
+    for client in root.clients.values():
+        if client.id == clientID:
+            return client
+
+def getAdminInfo(adminID):
+    for admin in root.admins.values():
+        if admin.id == adminID:
+            return admin
 
 def checkUser(username, password):
     for client in root.clients.values():

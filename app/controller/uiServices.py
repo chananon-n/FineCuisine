@@ -14,8 +14,9 @@ from app.gui.registerMembership.registerMembershipPage import Ui_MainWindow as r
 from app.gui.news.newsPage import Ui_MainWindow as newsPage
 from app.gui.news.newsBlog import Ui_Blog as newsBlog
 
+from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
+
 from datetime import datetime
-    
 
 class LoginPage(QMainWindow, loginPage):
     def __init__(self):
@@ -31,24 +32,30 @@ class LoginPage(QMainWindow, loginPage):
         self.hide()
     
     def loginBTN(self):
-        self.mainPage = MainPage()
-        self.mainPage.show()
-        self.hide()
-        # result = UserServices.login(self.usernameInput.text(), self.passwordInput.text())
-        # if result == "Admin":
-        #     # self.adminPage = AdminPage()
-        #     # self.adminPage.show()
-        #     # self.hide()
-        #     pass
-        # elif result == "Client":
-        #     # self.clientPage = ClientPage()
-        #     # self.clientPage.show()
-        #     # self.hide()
-        #     pass
-        # else:
-        #     alert =QtWidgets.QMessageBox()
-        #     alert.setText("Invalid username or password")
-        #     alert.exec()
+        global userRole
+        global userID
+        global userServices 
+        userServices = UserServices()
+        userRole = userServices.login(self.usernameInput.text(), self.passwordInput.text())
+        if userRole == "admin":
+            userID = userServices.getAdminID(self.usernameInput.text())
+            userRole = "admin"
+            print(userID)
+            self.adminMainPage = AdminMainPage()
+            self.adminMainPage.show()
+            self.hide()
+            pass
+        elif userRole == "client":
+            userID = userServices.getClientID(self.usernameInput.text())
+            userRole = "client"
+            print(userID)
+            self.mainPage = MainPage()
+            self.mainPage.show()
+            self.hide()
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Invalid username or password")
+            alert.exec()
 
 class RegisterPage(QMainWindow, registerPage):
     def __init__(self):
@@ -65,7 +72,20 @@ class RegisterPage(QMainWindow, registerPage):
         self.hide()
     
     def register(self):
-        pass
+        global userServices
+        userServices = UserServices()
+        if self.usernameInput.text() and self.passwordInput.text() and self.emailInput.text() and self.phoneInput.text():
+            userServices.register(self.usernameInput.text(), self.passwordInput.text(), self.emailInput.text(), self.phoneInput.text())
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Registration successful!")
+            alert.exec()
+            self.loginPage = LoginPage()
+            self.loginPage.show()
+            self.hide()
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Please fill in all information")
+            alert.exec()
       
 class MainPage(QMainWindow, mainPage):
     def __init__(self):
@@ -455,3 +475,27 @@ class NewsPage(QMainWindow, newsPage):
         
     def addNews(self):
         pass
+    
+    
+    
+#-----------------Admin Page-----------------
+class AdminMainPage(QMainWindow, adminMainPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.title = self.findChild(QtWidgets.QLabel, "label")
+        adminUser = userServices.getAdminInfo(userID)
+        self.title.setText(f"Welcome Back, {adminUser.getUsername()}")
+        
+        # self.reservationListBtn.clicked.connect(self.openReservationList)
+        # self.menuAdjustmentBtn.clicked.connect(self.openCourseList)
+        # self.feedbacksBtn.clicked.connect(self.openFeedbackList)
+        # self.createNewsBtn.clicked.connect(self.openNewsList)
+        
+        self.logoutBtn.clicked.connect(self.logout)
+        
+    def logout(self):
+        self.loginPage = LoginPage()
+        self.loginPage.show()
+        self.hide()
