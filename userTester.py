@@ -11,7 +11,7 @@ def register(username, password, email, phone):
         user = Admin(username, password, email, phone)
         root.admins[user.id] = user
     else:
-        user = Client(username, password, email, phone)
+        user = Client(username, password, email, phone, False)
         root.clients[user.id] = user
         
 def clientMain():
@@ -89,8 +89,24 @@ def bookingMain():
         else:
             break
     
+def membershipMain():
+    while True:
+        print("1. View membership")
+        print("2. Make membership")
+        print("3. Logout")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            print(getMembership(userID))
+        elif choice == 2:
+            memberName = input("Enter member name: ")
+            memberSurname = input("Enter member surname: ")
+            memberBirth = input("Enter member birth: ")    
+            dateExpired = datetime.datetime.now() + datetime.timedelta(days=365)            
+            data = {"memberName": memberName, "memberSurname": memberSurname, "memberBirth": memberBirth, "dateExpired": dateExpired}
+            registerMembership(userID, data)
+        else:
+            break
+    
 if __name__ == "__main__":
-    print(getAllClients())
-    print(getAllAdmins())
-    main()
+    membershipMain()
 

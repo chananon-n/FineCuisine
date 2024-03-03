@@ -17,17 +17,20 @@ class User(persistent.Persistent, ABC):
         pass
     
 class Client(User):
-    def __init__(self, username, password, email, phone):
+    def __init__(self, username, password, email, phone, ):
         super().__init__(username, password, email, phone)
-        self.membership = None
+        self.membership = False
         self.history = []
-        self.id = client_id()
-        
-    def getUsername(self):
+        self.id = client_id()        
+    def getUsername(self): 
         return self.username
         
     def addHistory(self, booking):
-        self.history.append(booking)    
+        self.history.append(booking) 
+    
+    def addMembership(self,membership):
+        self.membership = membership
+    
     
     def toJson(self):
         return {
