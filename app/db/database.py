@@ -44,7 +44,6 @@ def booking_id():
     root.booking_id += 1
     return root.booking_id
 
-
 def getClient(username):
 
     for client in root.clients.values():
@@ -102,4 +101,34 @@ def getAllBookings():
 
 def getUserBooking(clientID):
     return [booking.toJson() for booking in root.booking[clientID]]
-   
+
+def getBooking(bookingID):
+    for booking in root.booking.values():
+        if booking.bookingID == bookingID:
+            return booking
+    return "Booking not found"
+
+def getMembership(clientID):
+    for client in root.clients.values():
+        if client.id == clientID:
+            return client.membership
+    return "Not found user"
+
+# def registerMembership(clientID,membership):
+#     root.clients[clientID].membership = membership.id
+#     transaction.commit()
+
+# def registerAdmin(admin):
+#     root.admins[admin.id] = admin
+#     transaction.commit()
+        
+def registerClient(client):
+    root.clients[client.id] = client
+    transaction.commit()
+
+
+def checkMembership(clientID):
+    for client in root.clients.values():
+        if client.id == clientID and client.membership != False:
+            return client.membership
+    return "No membership"
