@@ -17,6 +17,11 @@ if not hasattr(root, 'feedbacks'):
     root.feedbacks = BTrees.OOBTree.BTree()
 if not hasattr(root, 'booking'):
     root.booking = BTrees.OOBTree.BTree()
+if not hasattr(root,'DinnerBooking'):
+    root.DinnerBooking = BTrees.OOBTree.BTree()
+if not hasattr(root,'LunchBooking'):
+    root.LunchBooking = BTrees.OOBTree.BTree()
+
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -95,7 +100,7 @@ def clearDB():
     root.admins.clear()
     root.memberships.clear()
     transaction.commit()    
-    
+
 def getAllBookings():
     return [booking.toJson() for booking in root.booking.values()]
 
@@ -132,3 +137,5 @@ def checkMembership(clientID):
         if client.id == clientID and client.membership != False:
             return client.membership
     return "No membership"
+
+#
