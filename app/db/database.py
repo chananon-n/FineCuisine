@@ -1,3 +1,4 @@
+import datetime
 import random
 import ZODB, ZODB.FileStorage
 import BTrees.OOBTree
@@ -138,4 +139,49 @@ def checkMembership(clientID):
             return client.membership
     return "No membership"
 
-#
+def generateMealBooking(root, meal_type, t_time, t_left, num_bookings):
+    # Get the current date
+    current_date = datetime.datetime.now()
+
+    # Find the latest existing date in the booking, if any
+    latest_date_entry = max(getattr(root, f'{meal_type}Booking').values(), key=lambda x: datetime.datetime.strptime(x['T_DATE'], '%d/%m/%Y'), default=None)
+
+    if latest_date_entry:
+        latest_date = datetime.datetime.strptime(latest_date_entry['T_DATE'], '%d/%m/%Y') + datetime.timedelta(days=1)
+    else:
+        latest_date = current_date
+
+    for i in range(num_bookings):
+        # Set the date to the latest date plus i days
+        t_date = latest_date + datetime.timedelta(days=i)
+
+        # Create a unique key (number) for the booking
+        booking_key = len(getattr(root, f'{meal_type}Booking')) + 1
+
+        # Check if the key already exists
+        while booking_key in getattr(root, f'{meal_type}Booking'):
+            booking_key += 1
+
+        # Create a new booking entry
+        booking_data = {
+            'T_ID': booking_key,
+            'T_DATE': t_date.strftime('%d/%m/%Y'),  # Use dd/mm/yyyy format
+            'T_TIME': t_time,
+            'T_LEFT': t_left
+        }
+
+        # Store the data in the BTree
+        getattr(root, f'{meal_type}Booking')[booking_key] = booking_data
+        transaction.commit()
+
+def getAllMealBookings(root, meal_type):
+    # print data for each booking
+    print(f'All {meal_type} bookings:')
+    for booking_key in getattr(root, f'{meal_type}Booking'):
+        print(getattr(root, f'{meal_type}Booking')[booking_key])
+    # return [getattr(root, f'{meal_type}Booking')[booking_key] for booking_key in getattr(root, f'{meal_type}Booking')]
+
+def clearMealBookings(root, meal_type):
+    getattr(root, f'{meal_type}Booking').clear()
+    transaction.commit()
+    
