@@ -108,5 +108,9 @@ def membershipMain():
             break
     
 if __name__ == "__main__":
-    membershipMain()
+    clearMealBookings(root, "Lunch")
+    clearMealBookings(root, "Dinner")
+    generateMealBooking(root, "Lunch", "12:00", 10, 10)
+    generateMealBooking(root, "Dinner", "18:00", 10, 10)
+    getAllMealBookings(root, "Lunch")
 
