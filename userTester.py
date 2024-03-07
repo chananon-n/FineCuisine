@@ -13,6 +13,14 @@ def register(username, password, email, phone):
     else:
         user = Client(username, password, email, phone, False)
         root.clients[user.id] = user
+
+# this function must in databaseServices
+def checkBookingAvailable(time, date, partySize, mealType):
+    bookInfo = getMealBooking(mealType, date, time)
+    if bookInfo['T_LEFT'] >= partySize:
+        return True
+    else:
+        return False
         
 def clientMain():
     while True:
@@ -78,14 +86,17 @@ def bookingMain():
         if choice == 1:
             print(getAllBookings())
         elif choice == 2:
+            course = input("Enter course: ")
             time = input("Enter time: ")
             date = input("Enter date: ")
             partySize = int(input("Enter party size: "))
             persons = input("Enter persons: ")
             userNotes = input("Enter user notes: ")
-            booking = Booking(time, date, partySize, persons, userNotes)
-            root.booking[booking.bookingID] = booking
-            transaction.commit()
+            status = checkBookingAvailable(time, date, partySize, course)
+            if status:
+                updateMealBooking(course, date, time, partySize)
+                booking = Booking(time, date, partySize, persons, userNotes)
+                addUserBooking(booking)
         else:
             break
     
@@ -106,11 +117,10 @@ def membershipMain():
             registerMembership(userID, data)
         else:
             break
+
     
 if __name__ == "__main__":
-    clearMealBookings(root, "Lunch")
-    clearMealBookings(root, "Dinner")
-    generateMealBooking(root, "Lunch", "12:00", 10, 10)
-    generateMealBooking(root, "Dinner", "18:00", 10, 10)
-    getAllMealBookings(root, "Lunch")
+    generateMealBooking("Lunch", "08:00", 10, 1)
+    bookingMain()
+    getAllMealBookings("Lunch")
 
