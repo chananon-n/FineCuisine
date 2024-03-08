@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservation.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -26,6 +26,8 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1280, 720)
+        MainWindow.setMinimumSize(QSize(1280, 720))
+        MainWindow.setMaximumSize(QSize(1280, 720))
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"background-color:#E7E5DF")
         self.centralwidget = QWidget(MainWindow)
@@ -163,27 +165,28 @@ class Ui_MainWindow(object):
 "padding: 4px;")
         self.courseBox = QComboBox(self.reservationFrame)
         self.courseBox.setObjectName(u"courseBox")
-        self.courseBox.setGeometry(QRect(570, 130, 400, 40))
+        self.courseBox.setGeometry(QRect(570, 190, 400, 40))
         self.courseBox.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";")
         self.courseBox.setEditable(False)
+        self.courseBox.setInsertPolicy(QComboBox.InsertAtBottom)
         self.timeBox = QComboBox(self.reservationFrame)
         self.timeBox.setObjectName(u"timeBox")
-        self.timeBox.setGeometry(QRect(570, 190, 400, 40))
+        self.timeBox.setGeometry(QRect(570, 250, 400, 40))
         self.timeBox.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";")
         self.timeBox.setInsertPolicy(QComboBox.InsertAtBottom)
         self.partySizeBox = QComboBox(self.reservationFrame)
         self.partySizeBox.setObjectName(u"partySizeBox")
-        self.partySizeBox.setGeometry(QRect(570, 250, 400, 40))
+        self.partySizeBox.setGeometry(QRect(570, 310, 400, 40))
         self.partySizeBox.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";")
         self.noteTextEdit = QTextEdit(self.reservationFrame)
         self.noteTextEdit.setObjectName(u"noteTextEdit")
-        self.noteTextEdit.setGeometry(QRect(570, 310, 400, 120))
+        self.noteTextEdit.setGeometry(QRect(570, 370, 400, 120))
         self.noteTextEdit.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 16pt \"Arial\";\n"
@@ -202,7 +205,7 @@ class Ui_MainWindow(object):
 "}")
         self.reservationoName = QLineEdit(self.reservationFrame)
         self.reservationoName.setObjectName(u"reservationoName")
-        self.reservationoName.setGeometry(QRect(570, 450, 401, 41))
+        self.reservationoName.setGeometry(QRect(570, 130, 401, 41))
         self.reservationoName.setStyleSheet(u"background-color: rgb(231, 229, 223);\n"
 "color:black;\n"
 "font: 20pt \"Arial\";\n"
