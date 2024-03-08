@@ -1,33 +1,46 @@
-from app.controller.databaseServices import DatabaseServices
+from app.controller.databaseManager import dataManager
 
 
 class UserServices:
     def login(self,usernameInput, passwordInput):
-        return DatabaseServices.validateUserLogin(usernameInput, passwordInput)
+        return dataManager.validateUserLogin(usernameInput, passwordInput)
     
     def getClientInfo(self,userId):
-        client = DatabaseServices.getClientInfo(userId)
+        client = dataManager.getClientInfo(userId)
         return client
     
     def getAdminInfo(self,userId):
-        admin = DatabaseServices.getAdminInfo(userId)
+        admin = dataManager.getAdminInfo(userId)
         return admin
         
     def getClientID(self,username):
-        client = DatabaseServices.getClient(username)
+        client = dataManager.getClient(username)
         return client.id
     
     def getAdminID(self,username):
-        admin = DatabaseServices.getAdmin(username)
+        admin = dataManager.getAdmin(username)
         return admin.id
     
     def register(self,username, password, email, phone):
-        role = DatabaseServices.validationUserRegister(email)
+        role = dataManager.validationUserRegister(email)
         print(role)
         if role == "admin":
-            DatabaseServices.registerAdmin(username, password, email, phone)
+            dataManager.registerAdmin(username, password, email, phone)
         else:
-            DatabaseServices.registerClient(username, password, email, phone)
+            dataManager.registerClient(username, password, email, phone)
+    
+    def reservation(self,bookingInfo):
+        checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
+
+        if checkAvailable:
+            dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
+            dataManager.addUserBooking(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
+            return True
+        else:
+            print("Booking not available")
+            return False
     
     
+            
+        
     
