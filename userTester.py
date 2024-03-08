@@ -95,8 +95,7 @@ def bookingMain():
             status = checkBookingAvailable(time, date, partySize, course)
             if status:
                 updateMealBooking(course, date, time, partySize)
-                booking = Booking(time, date, partySize, persons, userNotes)
-                addUserBooking(booking)
+                addUserBooking(userID, course, time, date, partySize, persons, userNotes)
         else:
             break
     

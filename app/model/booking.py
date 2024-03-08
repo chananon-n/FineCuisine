@@ -7,8 +7,10 @@ from app.db.database import booking_id
 
 class Booking(persistent.Persistent):
     
-    def __init__(self,time,date,partySize,persons,userNotes):
+    def __init__(self,clientID,course,time,date,partySize,persons,userNotes):
         self.bookingID = booking_id()
+        self.clientID = clientID
+        self.course = course
         self.time = time
         self.date = date
         self.partySize = partySize
@@ -19,6 +21,8 @@ class Booking(persistent.Persistent):
     def toJson(self):
         return {
             "bookingID": self.bookingID,
+            "clientID": self.clientID, 
+            "course": self.course,
             "time": self.time,
             "date": self.date,
             "partySize": self.partySize,
