@@ -71,9 +71,18 @@ class DatabaseServices:
     def getUserBookings(clientID):
         return getUserBookings(clientID)
     
+    def updateMealBooking(mealType, date, time, partySize):
+        return updateMealBooking(mealType, date, time, partySize)
+    
     def changeBookingStatus(bookingID, status):
-        updateBookingStatus(bookingID, status)
-        
+        return updateBookingStatus(bookingID, status)
+   
+    def checkBookingAvailable(time, date, partySize, mealType):
+        bookInfo = getMealBooking(mealType, date, time)
+        if bookInfo['T_LEFT'] >= partySize:
+            return True
+        else:
+            return False     
         
 
     
