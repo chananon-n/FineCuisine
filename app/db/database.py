@@ -117,17 +117,17 @@ def getMembership(clientID):
             return client.membership
     return "Not found user"
 
-# def registerMembership(clientID,membership):
-#     root.clients[clientID].membership = membership.id
-#     transaction.commit()
+def registerMembership(clientID,membership):
+    root.clients[clientID].membership = membership.id
+    transaction.commit()
 
 # def registerAdmin(admin):
 #     root.admins[admin.id] = admin
 #     transaction.commit()
         
-def registerClient(client):
-    root.clients[client.id] = client
-    transaction.commit()
+# def registerClient(client):
+#     root.clients[client.id] = client
+#     transaction.commit()
 
 
 def checkMembership(clientID):
@@ -203,3 +203,14 @@ def addUserBooking(booking):
     root.booking[booking.bookingID] = booking
     transaction.commit()
     return True
+
+def getUserBookings(clientID):
+    return [booking.toJson() for booking in root.booking.values() if booking.clientID == clientID]
+
+def updateBookingStatus(bookingID, status):
+    for booking in root.booking.values():
+        if booking.bookingID == bookingID:
+            booking.status = status
+            transaction.commit()
+            return True
+    return False

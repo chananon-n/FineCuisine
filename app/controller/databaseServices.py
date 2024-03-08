@@ -67,6 +67,12 @@ class DatabaseServices:
         booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
         addUserBooking(booking)
         return True
+    
+    def getUserBookings(clientID):
+        return getUserBookings(clientID)
+    
+    def changeBookingStatus(bookingID, status):
+        updateBookingStatus(bookingID, status)
         
         
 
