@@ -117,17 +117,17 @@ def getMembership(clientID):
             return client.membership
     return "Not found user"
 
-# def registerMembership(clientID,membership):
-#     root.clients[clientID].membership = membership.id
-#     transaction.commit()
+def registerMembership(clientID,membership):
+    root.clients[clientID].membership = membership.id
+    transaction.commit()
 
 # def registerAdmin(admin):
 #     root.admins[admin.id] = admin
 #     transaction.commit()
         
-def registerClient(client):
-    root.clients[client.id] = client
-    transaction.commit()
+# def registerClient(client):
+#     root.clients[client.id] = client
+#     transaction.commit()
 
 
 def checkMembership(clientID):
