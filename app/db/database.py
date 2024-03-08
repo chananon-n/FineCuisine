@@ -185,3 +185,7 @@ def clearMealBookings(root, meal_type):
     getattr(root, f'{meal_type}Booking').clear()
     transaction.commit()
     
+def getMealBooking(root, meal_type, t_date, t_time):
+    for booking in getattr(root, f'{meal_type}Booking').values():
+        if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
+            return booking
