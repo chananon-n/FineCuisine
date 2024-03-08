@@ -1,4 +1,5 @@
 from app.db.database import *
+from app.model.booking import Booking
 from app.model.user import *
 import transaction
 class DatabaseServices:
@@ -40,9 +41,32 @@ class DatabaseServices:
         root.clients[user.id] = user
         transaction.commit()
         
+    def createMealBooking(mealType, date, time, partySize):
+        generateMealBooking(mealType, date, time, partySize)
+        return True
     
+    def getBooking(bookingID):
+        return getBooking(bookingID)
     
+    def getAllUserBookings():
+        return getAllBookings()
+    
+    def getAllMealBookings(mealType):
+        return getAllMealBookings(mealType)
         
+    def getBooking(mealType, date, time):
+        return getMealBooking(mealType, date, time)
+    
+    def clearBookingDB():
+        clearMealBookings()
+        
+    def clearUserBookingDB():
+        clearUserBookings()
+    
+    def addBookingDB(clientID, course, time, date, partySize, persons, userNotes):
+        booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
+        addUserBooking(booking)
+        return True
         
         
 

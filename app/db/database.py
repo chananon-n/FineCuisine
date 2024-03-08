@@ -105,9 +105,6 @@ def clearDB():
 def getAllBookings():
     return [booking.toJson() for booking in root.booking.values()]
 
-def getUserBooking(clientID):
-    return [booking.toJson() for booking in root.booking[clientID]]
-
 def getBooking(bookingID):
     for booking in root.booking.values():
         if booking.bookingID == bookingID:
@@ -139,7 +136,7 @@ def checkMembership(clientID):
             return client.membership
     return "No membership"
 
-def generateMealBooking(root, meal_type, t_time, t_left, num_bookings):
+def generateMealBooking(meal_type, t_time, t_left, num_bookings):
     # Get the current date
     current_date = datetime.datetime.now()
 
@@ -174,18 +171,35 @@ def generateMealBooking(root, meal_type, t_time, t_left, num_bookings):
         getattr(root, f'{meal_type}Booking')[booking_key] = booking_data
         transaction.commit()
 
-def getAllMealBookings(root, meal_type):
+def getAllMealBookings(meal_type):
     # print data for each booking
     print(f'All {meal_type} bookings:')
     for booking_key in getattr(root, f'{meal_type}Booking'):
         print(getattr(root, f'{meal_type}Booking')[booking_key])
     # return [getattr(root, f'{meal_type}Booking')[booking_key] for booking_key in getattr(root, f'{meal_type}Booking')]
 
-def clearMealBookings(root, meal_type):
+def clearMealBookings(meal_type):
     getattr(root, f'{meal_type}Booking').clear()
     transaction.commit()
     
-def getMealBooking(root, meal_type, t_date, t_time):
+def getMealBooking(meal_type, t_date, t_time):
     for booking in getattr(root, f'{meal_type}Booking').values():
         if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
             return booking
+        
+def clearUserBookings():
+    root.booking.clear()
+    transaction.commit()
+    
+def updateMealBooking(meal_type, t_date, t_time, t_left):
+    for booking in getattr(root, f'{meal_type}Booking').values():
+        if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
+            booking['T_LEFT'] -= t_left
+            transaction.commit()
+            return True
+    return False
+
+def addUserBooking(booking):
+    root.booking[booking.bookingID] = booking
+    transaction.commit()
+    return True
