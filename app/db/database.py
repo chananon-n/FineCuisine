@@ -50,6 +50,12 @@ def booking_id():
     root.booking_id += 1
     return root.booking_id
 
+def membership_id():
+    if not hasattr(root, 'membership_id'):
+        root.membership_id = 0
+    root.membership_id += 1
+    return root.membership_id
+
 def getClient(username):
 
     for client in root.clients.values():
@@ -118,8 +124,12 @@ def getMembership(clientID):
     return "Not found user"
 
 def registerMembership(clientID,membership):
-    root.clients[clientID].membership = membership.id
-    transaction.commit()
+    for client in root.clients.values():
+        if client.id == clientID:
+            client.membership = membership
+            transaction.commit()
+            return True
+    return False
 
 # def registerAdmin(admin):
 #     root.admins[admin.id] = admin

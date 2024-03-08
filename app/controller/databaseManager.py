@@ -2,7 +2,9 @@ from app.db.database import *
 from app.model.booking import Booking
 from app.model.user import *
 import transaction
-class DatabaseServices:
+
+from datetime import datetime, timedelta
+class dataManager:
     def __init__(self):
         pass
     
@@ -84,6 +86,15 @@ class DatabaseServices:
         else:
             return False     
         
-
+    def registerMembership(clientID, fname, lname, dateOfBirth):
+        dateExpired = datetime.now() + timedelta(days=365)
+        formatedDate = dateExpired.strftime("%d/%m/%Y")
+        data = {
+            "memberName": fname,
+            "memberSurname": lname,
+            "memberBirth": dateOfBirth,
+            "dateExpired": formatedDate
+        }
+        return registerMembership(clientID, data)
     
     

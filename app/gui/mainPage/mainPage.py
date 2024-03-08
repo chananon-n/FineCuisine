@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -205,72 +205,118 @@ class Ui_MainWindow(object):
 "color: black;")
         self.userID = QLabel(self.userinfoPage)
         self.userID.setObjectName(u"userID")
-        self.userID.setGeometry(QRect(200, 30, 61, 21))
+        self.userID.setGeometry(QRect(200, 30, 91, 21))
         self.userID.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;")
         self.nameLabel = QLabel(self.userinfoPage)
         self.nameLabel.setObjectName(u"nameLabel")
-        self.nameLabel.setGeometry(QRect(25, 140, 71, 31))
+        self.nameLabel.setGeometry(QRect(24, 140, 121, 31))
         self.nameLabel.setStyleSheet(u"color: black;\n"
 "font: 700 24pt \"KoHo\";")
         self.userName = QLabel(self.userinfoPage)
         self.userName.setObjectName(u"userName")
-        self.userName.setGeometry(QRect(100, 140, 71, 31))
+        self.userName.setGeometry(QRect(140, 140, 241, 31))
         self.userName.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "color: black;")
-        self.surnameLabel = QLabel(self.userinfoPage)
-        self.surnameLabel.setObjectName(u"surnameLabel")
-        self.surnameLabel.setGeometry(QRect(25, 200, 111, 31))
-        self.surnameLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
+        self.userEmailLabel = QLabel(self.userinfoPage)
+        self.userEmailLabel.setObjectName(u"userEmailLabel")
+        self.userEmailLabel.setGeometry(QRect(24, 220, 71, 31))
+        self.userEmailLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;")
-        self.userSur = QLabel(self.userinfoPage)
-        self.userSur.setObjectName(u"userSur")
-        self.userSur.setGeometry(QRect(140, 200, 61, 31))
-        self.userSur.setStyleSheet(u"font: 24pt \"KoHo\";\n"
+        self.userEmail = QLabel(self.userinfoPage)
+        self.userEmail.setObjectName(u"userEmail")
+        self.userEmail.setGeometry(QRect(100, 220, 351, 31))
+        self.userEmail.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "color: black;")
         self.telLabel = QLabel(self.userinfoPage)
         self.telLabel.setObjectName(u"telLabel")
-        self.telLabel.setGeometry(QRect(25, 260, 41, 31))
+        self.telLabel.setGeometry(QRect(24, 300, 41, 31))
         self.telLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;")
         self.userTel = QLabel(self.userinfoPage)
         self.userTel.setObjectName(u"userTel")
-        self.userTel.setGeometry(QRect(70, 260, 211, 31))
+        self.userTel.setGeometry(QRect(70, 300, 211, 31))
         self.userTel.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "color: black;")
         self.membershipLabel = QLabel(self.userinfoPage)
         self.membershipLabel.setObjectName(u"membershipLabel")
-        self.membershipLabel.setGeometry(QRect(25, 340, 131, 31))
+        self.membershipLabel.setGeometry(QRect(600, 140, 131, 31))
+        font1 = QFont()
+        font1.setFamilies([u"KoHo"])
+        font1.setPointSize(24)
+        font1.setBold(True)
+        font1.setItalic(False)
+        font1.setUnderline(True)
+        self.membershipLabel.setFont(font1)
         self.membershipLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;\n"
 "")
         self.birthDateLabel = QLabel(self.userinfoPage)
         self.birthDateLabel.setObjectName(u"birthDateLabel")
-        self.birthDateLabel.setGeometry(QRect(25, 400, 121, 31))
+        self.birthDateLabel.setGeometry(QRect(600, 380, 121, 31))
         self.birthDateLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black")
         self.dateExpireLabel = QLabel(self.userinfoPage)
         self.dateExpireLabel.setObjectName(u"dateExpireLabel")
-        self.dateExpireLabel.setGeometry(QRect(25, 460, 131, 31))
+        self.dateExpireLabel.setGeometry(QRect(600, 460, 131, 31))
         self.dateExpireLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;")
         self.userBirth = QLabel(self.userinfoPage)
         self.userBirth.setObjectName(u"userBirth")
-        self.userBirth.setGeometry(QRect(150, 400, 121, 31))
+        self.userBirth.setGeometry(QRect(740, 380, 171, 31))
         self.userBirth.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "color: black;")
         self.userExpire = QLabel(self.userinfoPage)
         self.userExpire.setObjectName(u"userExpire")
-        self.userExpire.setGeometry(QRect(160, 460, 91, 31))
+        self.userExpire.setGeometry(QRect(740, 460, 191, 31))
         self.userExpire.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "color: black;")
-        self.registerBtn = QPushButton(self.userinfoPage)
-        self.registerBtn.setObjectName(u"registerBtn")
-        self.registerBtn.setGeometry(QRect(20, 510, 331, 40))
-        self.registerBtn.setStyleSheet(u"font: 24pt \"KoHo\";\n"
+        self.registerMembershipBtn = QPushButton(self.userinfoPage)
+        self.registerMembershipBtn.setObjectName(u"registerMembershipBtn")
+        self.registerMembershipBtn.setGeometry(QRect(600, 220, 331, 40))
+        self.registerMembershipBtn.setStyleSheet(u"font: 24pt \"KoHo\";\n"
 "border-radius: 12px;\n"
 "background-color: #7E1615;")
+        self.userFirstLabel = QLabel(self.userinfoPage)
+        self.userFirstLabel.setObjectName(u"userFirstLabel")
+        self.userFirstLabel.setGeometry(QRect(600, 220, 131, 31))
+        self.userFirstLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
+"color: black")
+        self.userSur = QLabel(self.userinfoPage)
+        self.userSur.setObjectName(u"userSur")
+        self.userSur.setGeometry(QRect(740, 300, 311, 31))
+        self.userSur.setStyleSheet(u"font: 24pt \"KoHo\";\n"
+"color: black;")
+        self.userFirst = QLabel(self.userinfoPage)
+        self.userFirst.setObjectName(u"userFirst")
+        self.userFirst.setGeometry(QRect(740, 220, 331, 31))
+        self.userFirst.setStyleSheet(u"font: 24pt \"KoHo\";\n"
+"color: black;")
+        self.userSurLabel = QLabel(self.userinfoPage)
+        self.userSurLabel.setObjectName(u"userSurLabel")
+        self.userSurLabel.setGeometry(QRect(600, 300, 131, 31))
+        self.userSurLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
+"color: black;")
         self.pageWidget.addWidget(self.userinfoPage)
+        self.picUser.raise_()
+        self.uidLabel.raise_()
+        self.userID.raise_()
+        self.nameLabel.raise_()
+        self.userName.raise_()
+        self.userEmailLabel.raise_()
+        self.userEmail.raise_()
+        self.telLabel.raise_()
+        self.userTel.raise_()
+        self.membershipLabel.raise_()
+        self.birthDateLabel.raise_()
+        self.dateExpireLabel.raise_()
+        self.userBirth.raise_()
+        self.userExpire.raise_()
+        self.userFirstLabel.raise_()
+        self.userSur.raise_()
+        self.userFirst.raise_()
+        self.userSurLabel.raise_()
+        self.registerMembershipBtn.raise_()
         self.notiPage = QWidget()
         self.notiPage.setObjectName(u"notiPage")
         self.notiTitleLabel = QLabel(self.notiPage)
@@ -310,26 +356,26 @@ class Ui_MainWindow(object):
         self.historyTable = QTableWidget(self.historyPage)
         if (self.historyTable.columnCount() < 6):
             self.historyTable.setColumnCount(6)
-        font1 = QFont()
-        font1.setFamilies([u"KoHo"])
-        font1.setPointSize(14)
+        font2 = QFont()
+        font2.setFamilies([u"KoHo"])
+        font2.setPointSize(14)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font1);
+        __qtablewidgetitem.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setFont(font1);
+        __qtablewidgetitem1.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font1);
+        __qtablewidgetitem2.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        __qtablewidgetitem3.setFont(font1);
+        __qtablewidgetitem3.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        __qtablewidgetitem4.setFont(font1);
+        __qtablewidgetitem4.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setFont(font1);
+        __qtablewidgetitem5.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
@@ -358,10 +404,10 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
-        font2 = QFont()
-        font2.setFamilies([u"Arial"])
-        font2.setPointSize(20)
-        self.label.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setPointSize(20)
+        self.label.setFont(font3)
         self.label.setStyleSheet(u"color: black;")
         self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
         self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
@@ -376,9 +422,9 @@ class Ui_MainWindow(object):
         self.feedbackTextBox = QTextEdit(self.feedbackPage)
         self.feedbackTextBox.setObjectName(u"feedbackTextBox")
         self.feedbackTextBox.setGeometry(QRect(650, 310, 351, 191))
-        font3 = QFont()
-        font3.setPointSize(16)
-        self.feedbackTextBox.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(16)
+        self.feedbackTextBox.setFont(font4)
         self.feedbackTextBox.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "padding: 8px;\n"
@@ -480,13 +526,13 @@ class Ui_MainWindow(object):
         self.label_7 = QLabel(self.feedbackPage)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(640, 150, 151, 41))
-        font4 = QFont()
-        font4.setFamilies([u"Arial"])
-        font4.setPointSize(14)
-        font4.setBold(False)
-        font4.setItalic(False)
-        font4.setUnderline(True)
-        self.label_7.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Arial"])
+        font5.setPointSize(14)
+        font5.setBold(False)
+        font5.setItalic(False)
+        font5.setUnderline(True)
+        self.label_7.setFont(font5)
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
         self.pageWidget.addWidget(self.feedbackPage)
@@ -500,7 +546,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(2)
+        self.pageWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -525,10 +571,10 @@ class Ui_MainWindow(object):
         self.picUser.setText("")
         self.uidLabel.setText(QCoreApplication.translate("MainWindow", u"UID:", None))
         self.userID.setText(QCoreApplication.translate("MainWindow", u"1234", None))
-        self.nameLabel.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
+        self.nameLabel.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.userName.setText(QCoreApplication.translate("MainWindow", u"Test1", None))
-        self.surnameLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
-        self.userSur.setText(QCoreApplication.translate("MainWindow", u"Test2", None))
+        self.userEmailLabel.setText(QCoreApplication.translate("MainWindow", u"Email:", None))
+        self.userEmail.setText(QCoreApplication.translate("MainWindow", u"Test2", None))
         self.telLabel.setText(QCoreApplication.translate("MainWindow", u"Tel:", None))
         self.userTel.setText(QCoreApplication.translate("MainWindow", u"(+66) 12-345-6789", None))
         self.membershipLabel.setText(QCoreApplication.translate("MainWindow", u"Membership", None))
@@ -536,7 +582,11 @@ class Ui_MainWindow(object):
         self.dateExpireLabel.setText(QCoreApplication.translate("MainWindow", u"Date expire:", None))
         self.userBirth.setText(QCoreApplication.translate("MainWindow", u"01-01-2024", None))
         self.userExpire.setText(QCoreApplication.translate("MainWindow", u"01-2025", None))
-        self.registerBtn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
+        self.registerMembershipBtn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
+        self.userFirstLabel.setText(QCoreApplication.translate("MainWindow", u"First Name:", None))
+        self.userSur.setText(QCoreApplication.translate("MainWindow", u"Doe", None))
+        self.userFirst.setText(QCoreApplication.translate("MainWindow", u"John", None))
+        self.userSurLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
         self.notiTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
         self.notiDetail.setText(QCoreApplication.translate("MainWindow", u"Welcome to Fine Cuisine!", None))
         self.historyTitleLabel.setText(QCoreApplication.translate("MainWindow", u"History", None))
