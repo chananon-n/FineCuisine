@@ -203,3 +203,14 @@ def addUserBooking(booking):
     root.booking[booking.bookingID] = booking
     transaction.commit()
     return True
+
+def getUserBookings(clientID):
+    return [booking.toJson() for booking in root.booking.values() if booking.clientID == clientID]
+
+def updateBookingStatus(bookingID, status):
+    for booking in root.booking.values():
+        if booking.bookingID == bookingID:
+            booking.status = status
+            transaction.commit()
+            return True
+    return False
