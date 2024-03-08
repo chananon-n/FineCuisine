@@ -1,18 +1,10 @@
+from app.controller.uiServices import RegisterMembershipPage
 from app.db.database import *
 from app.model.booking import Booking
 from app.model.user import *
 from app.controller.userServices import UserServices
 
 from app.model.feedback import *
-
-def register(username, password, email, phone):
-    role = assignRole(email)
-    if role == "admin":
-        user = Admin(username, password, email, phone)
-        root.admins[user.id] = user
-    else:
-        user = Client(username, password, email, phone, False)
-        root.clients[user.id] = user
 
 # this function must in databaseServices
 def checkBookingAvailable(time, date, partySize, mealType):
@@ -34,7 +26,7 @@ def clientMain():
             user = userServices.getClientInfo(userID)
             print(user.getUsername())
         elif choice == 2:
-            pass
+            membershipMain()
         elif choice == 3:
             detail = input("Enter feedback: ")
             rating = int(input("Enter rating: "))
@@ -57,7 +49,8 @@ def main():
             password = input("Enter password: ")
             email = input("Enter email: ")
             phone = input("Enter phone: ")
-            register(username, password, email, phone)
+            userServices = UserServices()
+            userServices.register(username, password, email, phone)
             transaction.commit()
         elif choice == 2:
             username = input("Enter username: ")
@@ -66,7 +59,7 @@ def main():
             user = userServices.login(username, password)
             if user == "client":
                 userRole = "client"
-                userID = getClient(username)
+                userID = userServices.getClientID(username)
                 clientMain()
             elif user == "admin":
                 userRole = "admin"
@@ -95,7 +88,8 @@ def bookingMain():
             status = checkBookingAvailable(time, date, partySize, course)
             if status:
                 updateMealBooking(course, date, time, partySize)
-                addUserBooking(userID, course, time, date, partySize, persons, userNotes)
+                booking = Booking(time, date, partySize, persons, userNotes)
+                addUserBooking(booking)
         else:
             break
     
@@ -111,15 +105,15 @@ def membershipMain():
             memberName = input("Enter member name: ")
             memberSurname = input("Enter member surname: ")
             memberBirth = input("Enter member birth: ")    
-            dateExpired = datetime.datetime.now() + datetime.timedelta(days=365)            
-            data = {"memberName": memberName, "memberSurname": memberSurname, "memberBirth": memberBirth, "dateExpired": dateExpired}
+            dateExpired = datetime.datetime.now() + datetime.timedelta(days=365)
+            formatedDate = dateExpired.strftime("%Y-%m-%d")
+            data = {"memberName": memberName, "memberSurname": memberSurname, "memberBirth": memberBirth, "dateExpired": formatedDate}
+            print()
+            print(data)
             registerMembership(userID, data)
         else:
             break
 
     
 if __name__ == "__main__":
-    generateMealBooking("Lunch", "08:00", 10, 1)
-    bookingMain()
-    getAllMealBookings("Lunch")
-
+    print(getAllClients())

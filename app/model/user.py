@@ -19,11 +19,9 @@ class User(persistent.Persistent, ABC):
 class Client(User):
     def __init__(self, username, password, email, phone, ):
         super().__init__(username, password, email, phone)
-        self.membership = False
+        self.membership = None
         self.history = []
-        self.id = client_id()        
-    def getUsername(self): 
-        return self.username
+        self.id = client_id()    
         
     def addHistory(self, booking):
         self.history.append(booking) 
@@ -31,6 +29,29 @@ class Client(User):
     def addMembership(self,membership):
         self.membership = membership
     
+    def getUsername(self):
+        return self.username
+    
+    def getEmail(self):
+        return self.email
+    
+    def getTel(self):
+        return self.phone
+    
+    def getMembership(self):
+        return self.membership
+    
+    def getFname(self):
+        return self.membership.get('memberName')
+    
+    def getLname(self):
+        return self.membership.get('memberSurname')
+    
+    def getDob(self):
+        return self.membership.get('memberBirth')
+    
+    def getExpireDate(self):
+        return self.membership.get('dateExpired')
     
     def toJson(self):
         return {

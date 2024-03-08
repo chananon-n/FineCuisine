@@ -40,7 +40,7 @@ class UserServices:
             print("Booking not available")
             return False
     
-    
-            
-        
-    
+    def registerMembership(self, clientID, fname, lname, dateOfBirth):
+        dataManager.registerMembership(clientID, fname, lname, dateOfBirth)
+        return True
+       

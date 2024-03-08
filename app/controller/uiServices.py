@@ -114,15 +114,29 @@ class MainPage(QMainWindow, mainPage):
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
-        membership = False
-        if membership:
-            self.registerBtn.hide()
-        else:
+        
+        self.userID.setText(userID)
+        
+        self.userName.setText(userServices.getClientInfo(userID).getUsername())
+        self.userEmail.setText(userServices.getClientInfo(userID).getEmail())
+        self.userTel.setText(userServices.getClientInfo(userID).getTel())
+        
+        if userServices.getClientInfo(userID).getMembership() == None:
+            self.userFirst.hide()
+            self.userSurLabel.hide()
             self.birthDateLabel.hide()
-            self.userBirth.hide()
             self.dateExpireLabel.hide()
+            self.userFirst.hide()
+            self.userSur.hide()
+            self.userBirth.hide()
             self.userExpire.hide()
-        self.registerBtn.clicked.connect(self.openRegisterMemberPage)
+            self.registerMembershipBtn.clicked.connect(self.openRegisterMemberPage)
+        else:
+            self.userFirst.setText(userServices.getClientInfo(userID).getFname())
+            self.userSur.setText(userServices.getClientInfo(userID).getLname())
+            self.userBirth.setText(userServices.getClientInfo(userID).getDob())
+            self.userExpire.setText(userServices.getClientInfo(userID).getExpireDate())
+            self.registerMembershipBtn.hide()
         
     def openRegisterMemberPage(self):
         self.registerMembershipPage = RegisterMembershipPage()
@@ -420,6 +434,7 @@ class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     
     def checkUserInput(self):
         if self.userName.text() and self.userSurname.text() and self.userBirthDate.text() != "xx/xx/xxxx":
+            userServices.registerMembership(userID, self.userName.text(), self.userSurname.text(), self.userBirthDate.text())
             alert =QtWidgets.QMessageBox()
             alert.setText("Membership registered!")
             alert.exec()
@@ -430,7 +445,6 @@ class RegisterMembershipPage(QMainWindow, registerMembershipPage):
             alert =QtWidgets.QMessageBox()
             alert.setText("Please fill in all information")
             alert.exec()
-        
         
 class NewsPage(QMainWindow, newsPage):
     def __init__(self):
