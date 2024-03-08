@@ -309,6 +309,8 @@ class ReservationPage(QMainWindow, reservationPage):
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
         self.calendar.selectionChanged.connect(self.getDate)
         
+        self.reservationName = self.findChild(QtWidgets.QLineEdit, "reservationoName")
+        
         self.course = self.findChild(QtWidgets.QComboBox, "courseBox")
         self.course.addItems(["Lunch", "Dinner"])
         self.time = self.findChild(QtWidgets.QComboBox, "timeBox")
@@ -354,7 +356,7 @@ class ReservationPage(QMainWindow, reservationPage):
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
-            print(f"Reservation confirmed! {self.date.toString('dd/MM/yyyy')}, {self.course.currentText()},{self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
+            print(f"Reservation confirmed! This Client: {userID} \n{self.date.toString('dd/MM/yyyy')}, {self.reservationName.text()}, {self.course.currentText()}, {self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
             alert =QtWidgets.QMessageBox()
             alert.setText("Reservation confirmed!")
             alert.exec()
