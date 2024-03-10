@@ -142,7 +142,7 @@ def registerMembership(clientID,membership):
 
 def checkMembership(clientID):
     for client in root.clients.values():
-        if client.id == clientID and client.membership != False:
+        if client.id == clientID and client.membership != None:
             return client.membership
     return "No membership"
 
@@ -224,3 +224,28 @@ def updateBookingStatus(bookingID, status):
             transaction.commit()
             return True
     return False
+
+def clearClientInfo():
+    root.clients.clear()
+    transaction.commit()
+    
+def clearAdminInfo():
+    root.admins.clear()
+    transaction.commit()
+    
+def removeClient(clientID):
+    for client in root.clients.values():
+        if client.id == clientID:
+            del root.clients[client.id]
+            transaction.commit()
+            return True
+    return False
+
+def removeAdmin(adminID):
+    for admin in root.admins.values():
+        if admin.id == adminID:
+            del root.admins[admin.id]
+            transaction.commit()
+            return True
+    return False
+
