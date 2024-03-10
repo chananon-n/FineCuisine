@@ -22,20 +22,25 @@ class UserServices:
         return admin.id
     
     def register(self,username, password, email, phone):
-        role = dataManager.validationUserRegister(email)
-        print(role)
-        if role == "admin":
-            dataManager.registerAdmin(username, password, email, phone)
+        checkUser = dataManager.checkDuplicateUser(username,email)
+        if checkUser:
+            role = dataManager.validationUserRegister(email)
+            print(role)
+            if role == "admin":
+                dataManager.registerAdmin(username, password, email, phone)
+            else:
+                dataManager.registerClient(username, password, email, phone)
         else:
-            dataManager.registerClient(username, password, email, phone)
+            return False
     
     def reservation(self,bookingInfo):
         checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
 
         if checkAvailable:
+            membership = dataManager.checkMembership(bookingInfo.clientID)
             dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
             dataManager.addUserBooking(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
-            return True
+            return bookingInfo, membership
         else:
             print("Booking not available")
             return False
@@ -43,4 +48,6 @@ class UserServices:
     def registerMembership(self, clientID, fname, lname, dateOfBirth):
         dataManager.registerMembership(clientID, fname, lname, dateOfBirth)
         return True
+    
+    
        

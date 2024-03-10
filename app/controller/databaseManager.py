@@ -97,4 +97,19 @@ class dataManager:
         }
         return registerMembership(clientID, data)
     
+    def checkMembership(clientID):
+        return checkMembership(clientID)
+    
+    def checkDuplicateUser(username, email):
+        clientInfo = getAllClients()
+        adminInfo = getAllAdmins()
+        for client in clientInfo:
+            if client.username == username or client.email == email:
+                return "client duplicate"
+        for admin in adminInfo:
+            if admin.username == username or admin.email == email:
+                return "admin duplicate"
+        return True
+    
+    
     
