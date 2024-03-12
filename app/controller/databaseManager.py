@@ -42,6 +42,7 @@ class dataManager:
         user = Client(username, password, email, phone)
         root.clients[user.id] = user
         transaction.commit()
+        return user
         
     def createMealBooking(mealType, date, time, partySize):
         generateMealBooking(mealType, date, time, partySize)
@@ -111,5 +112,8 @@ class dataManager:
                 return "admin duplicate"
         return True
     
+    def addNotification(clientID,notification):
+        return createNotification(clientID,notification)
     
-    
+    def getUserNotifications(clientID):
+        return getNotifications(clientID)

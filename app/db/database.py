@@ -22,7 +22,8 @@ if not hasattr(root,'DinnerBooking'):
     root.DinnerBooking = BTrees.OOBTree.BTree()
 if not hasattr(root,'LunchBooking'):
     root.LunchBooking = BTrees.OOBTree.BTree()
-
+if not hasattr(root,'notification'):
+    root.notification = BTrees.OOBTree.BTree()
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -249,3 +250,20 @@ def removeAdmin(adminID):
             return True
     return False
 
+def createNotification(clientID, message):
+    for client in root.notification.values():
+        if client.id == clientID:
+            client.notifications.append(message)
+            transaction.commit()
+            return True
+        elif client.id != clientID:
+            root.notification[clientID] = message
+            transaction.commit()
+            return True
+    return False
+
+def getNotifications(clientID):
+    for client in root.notification.values():
+        if client.id == clientID:
+            return client.notifications
+    return "No notifications"
