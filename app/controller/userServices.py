@@ -29,7 +29,9 @@ class UserServices:
             if role == "admin":
                 dataManager.registerAdmin(username, password, email, phone)
             else:
-                dataManager.registerClient(username, password, email, phone)
+                user = dataManager.registerClient(username, password, email, phone)
+                dataManager.addNotification(user.id,"Welcome to the Fine Cuisine!!!")
+            
         else:
             return False
     
@@ -40,6 +42,7 @@ class UserServices:
             membership = dataManager.checkMembership(bookingInfo.clientID)
             dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
             dataManager.addUserBooking(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
+            dataManager.addNotification(bookingInfo.clientID,"Your booking has been confirmed")
             return bookingInfo, membership
         else:
             print("Booking not available")
@@ -47,7 +50,14 @@ class UserServices:
     
     def registerMembership(self, clientID, fname, lname, dateOfBirth):
         dataManager.registerMembership(clientID, fname, lname, dateOfBirth)
+        dataManager.addNotification(clientID,"Congratulations, you have successfully registered for membership")
+        dataManager.addNotification(clientID,"You have been awarded Birthday Cake on your birthday")
         return True
+    
+    def getNotifications(self,clientID):
+        notifications = dataManager.getNotifications(clientID)
+        return notifications
+    
     
     
        
