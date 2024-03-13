@@ -266,4 +266,3 @@ def getNotifications(clientID):
     for client in root.notification.values():
         if client.id == clientID:
             return client.notifications
-    return "No notifications"
