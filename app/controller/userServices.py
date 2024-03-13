@@ -55,7 +55,7 @@ class UserServices:
         return True
     
     def getNotifications(self,clientID):
-        notifications = dataManager.getNotifications(clientID)
+        notifications = dataManager.getUserNotifications(clientID)
         return notifications
     
     
