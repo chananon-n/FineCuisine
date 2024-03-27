@@ -116,4 +116,6 @@ def membershipMain():
 
     
 if __name__ == "__main__":
-    print(getAllClients())
+    info = getAllClients()
+    for i in info:
+        print(i)

@@ -28,10 +28,11 @@ class UserServices:
             print(role)
             if role == "admin":
                 dataManager.registerAdmin(username, password, email, phone)
+                return True
             else:
                 user = dataManager.registerClient(username, password, email, phone)
                 dataManager.addNotification(user.id,"Welcome to the Fine Cuisine!!!")
-            
+                return True
         else:
             return False
     

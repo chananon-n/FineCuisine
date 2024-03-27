@@ -75,13 +75,18 @@ class RegisterPage(QMainWindow, registerPage):
         global userServices
         userServices = UserServices()
         if self.usernameInput.text() and self.passwordInput.text() and self.emailInput.text() and self.phoneInput.text():
-            userServices.register(self.usernameInput.text(), self.passwordInput.text(), self.emailInput.text(), self.phoneInput.text())
-            alert =QtWidgets.QMessageBox()
-            alert.setText("Registration successful!")
-            alert.exec()
-            self.loginPage = LoginPage()
-            self.loginPage.show()
-            self.hide()
+            status = userServices.register(self.usernameInput.text(), self.passwordInput.text(), self.emailInput.text(), self.phoneInput.text())
+            if status:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Registration successful!")
+                alert.exec()
+                self.loginPage = LoginPage()
+                self.loginPage.show()
+                self.hide()
+            else:
+                alert =QtWidgets.QMessageBox()
+                alert.setText("Username or email already exists")
+                alert.exec()
         else:
             alert =QtWidgets.QMessageBox()
             alert.setText("Please fill in all information")

@@ -105,11 +105,13 @@ class dataManager:
         clientInfo = getAllClients()
         adminInfo = getAllAdmins()
         for client in clientInfo:
-            if client.username == username or client.email == email:
-                return "client duplicate"
+            if username == client['username'] or email == client['email']:
+                print("Username or email already exists")
+                return False
         for admin in adminInfo:
-            if admin.username == username or admin.email == email:
-                return "admin duplicate"
+            if username == admin['username'] or email == admin['email']:
+                print("Username or email already exists")
+                return False
         return True
     
     def addNotification(clientID,notification):
