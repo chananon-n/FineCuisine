@@ -58,7 +58,6 @@ def membership_id():
     return root.membership_id
 
 def getClient(username):
-
     for client in root.clients.values():
         if client.username == username:
             return client
@@ -95,6 +94,23 @@ def assignRole(email):
         return "admin"
     else:
         return "client"
+def checkDuplicate(username):
+    for client in root.clients.values():
+        if client.username == username:
+            return True
+    for admin in root.admins.values():
+        if admin.username == username:
+            return True
+    return False
+
+def checkDuplicateEmail(email):
+    for client in root.clients.values():
+        if client.email == email:
+            return True
+    for admin in root.admins.values():
+        if admin.email == email:
+            return True
+    return False
 
 # check database
 def getAllClients():
