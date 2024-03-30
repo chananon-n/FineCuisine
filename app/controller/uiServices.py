@@ -12,11 +12,12 @@ from app.gui.course.coursePage import Ui_MainWindow as coursePage
 from app.gui.reservation.reservationPage import Ui_MainWindow as reservationPage
 from app.gui.registerMembership.registerMembershipPage import Ui_MainWindow as registerMembershipPage
 from app.gui.news.newsPage import Ui_MainWindow as newsPage
-from app.gui.news.newsBlog import Ui_Blog as newsBlog
 
 from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
+from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdminPage
 
 from datetime import datetime
+import webbrowser
 
 class LoginPage(QMainWindow, loginPage):
     def __init__(self):
@@ -281,6 +282,10 @@ class CoursePage(QMainWindow, coursePage):
         self.historyBtn.clicked.connect(self.openHistory)
         self.feedbackBtn.clicked.connect(self.openFeedback)
         
+        # Course page
+        self.lunchMenuBtn.clicked.connect(self.openLunchMenuLink)
+        self.dinnerMenuBtn.clicked.connect(self.openDinnerMenuLink)
+        
         self.logoutBtn.clicked.connect(self.mainPage.logout)
         
     def openHomePage(self):
@@ -307,6 +312,18 @@ class CoursePage(QMainWindow, coursePage):
         self.mainPage.show()
         self.mainPage.openFeedback()
         self.hide()
+        
+    def openLunchMenuLink(self):
+        url = userServices.getCourseMenu("Lunch")
+        if not url:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Lunch menu is not available yet")
+            alert.exec()
+        webbrowser.open(url)
+        
+    def openDinnerMenuLink(self):
+        url = userServices.getCourseMenu("Dinner")
+        webbrowser.open(url)
 
 class ReservationPage(QMainWindow, reservationPage):
     def __init__(self):
@@ -510,13 +527,57 @@ class AdminMainPage(QMainWindow, adminMainPage):
         self.title.setText(f"Welcome Back, {adminUser.getUsername()}")
         
         # self.reservationListBtn.clicked.connect(self.openReservationList)
-        # self.menuAdjustmentBtn.clicked.connect(self.openCourseList)
+        self.menuAdjustmentBtn.clicked.connect(self.openMenuAdjustPage)
         # self.feedbacksBtn.clicked.connect(self.openFeedbackList)
         # self.createNewsBtn.clicked.connect(self.openNewsList)
         
         self.logoutBtn.clicked.connect(self.logout)
         
+    def openMenuAdjustPage(self):
+        self.menuAdjustPage = MenuAdjustPage()
+        self.menuAdjustPage.show()
+        self.hide()
+        
     def logout(self):
         self.loginPage = LoginPage()
         self.loginPage.show()
+        self.hide()
+        
+class MenuAdjustPage(QMainWindow, courseAdminPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.courseComboBox.addItems(["Lunch", "Dinner"])
+        self.submitBtn.clicked.connect(self.submit)
+        
+        self.logoutBtn.clicked.connect(self.backtoAdminMain)
+        
+        
+    def submit(self):
+        if self.courseComboBox.currentText() and self.linkInput.text():
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Confirm adjustment?")
+            alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
+            ret = alert.exec()
+            if ret == QtWidgets.QMessageBox.Yes:
+                print(f"Menu adjusted! {self.courseComboBox.currentText()}, {self.linkInput.text()}")
+                userServices.addCourseMenu(self.courseComboBox.currentText(), self.linkInput.text())
+                alert =QtWidgets.QMessageBox()
+                alert.setText("Menu adjusted!")
+                alert.exec()
+                self.adminMainPage = AdminMainPage()
+                self.adminMainPage.show()
+                self.hide()
+            else:
+                pass
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Please fill in all information")
+            alert.exec()
+        
+    def backtoAdminMain(self):
+        self.adminMainPage = AdminMainPage()
+        self.adminMainPage.show()
         self.hide()

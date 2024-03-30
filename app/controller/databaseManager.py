@@ -1,6 +1,7 @@
 from app.db.database import *
 from app.model.booking import Booking
 from app.model.user import *
+from app.model.courseDetail import CourseMenu
 import transaction
 
 from datetime import datetime, timedelta
@@ -119,3 +120,22 @@ class dataManager:
     
     def getUserNotifications(clientID):
         return getNotifications(clientID)
+    
+    # Course Menu
+    def addCourseMenu(courseType, courseLink):
+        if courseType in root.courseMenu:
+            dataManager.autoRemoveCourseMenu(courseType)
+        course = CourseMenu(courseType, courseLink)
+        root.courseMenu[courseType] = course
+        transaction.commit()
+        print("Course Menu Added")
+        return True
+    
+    def autoRemoveCourseMenu(courseType):
+        del root.courseMenu[courseType]
+        transaction.commit()
+        print("Course Menu Removed")
+        return True
+    
+    def getCourseMenu(courseType):
+        return getCourseMenu(courseType)

@@ -24,6 +24,8 @@ if not hasattr(root,'LunchBooking'):
     root.LunchBooking = BTrees.OOBTree.BTree()
 if not hasattr(root,'notification'):
     root.notification = BTrees.OOBTree.BTree()
+if not hasattr(root, 'courseMenu'):
+    root.courseMenu = BTrees.OOBTree.BTree()
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -94,24 +96,7 @@ def assignRole(email):
         return "admin"
     else:
         return "client"
-def checkDuplicate(username):
-    for client in root.clients.values():
-        if client.username == username:
-            return True
-    for admin in root.admins.values():
-        if admin.username == username:
-            return True
-    return False
-
-def checkDuplicateEmail(email):
-    for client in root.clients.values():
-        if client.email == email:
-            return True
-    for admin in root.admins.values():
-        if admin.email == email:
-            return True
-    return False
-
+    
 # check database
 def getAllClients():
     return [client.toJson() for client in root.clients.values()]
@@ -282,3 +267,13 @@ def getNotifications(clientID):
     for client in root.notification.values():
         if client.id == clientID:
             return client.notifications
+        
+def getCourseMenu(type):
+    for course in root.courseMenu.values():
+        if course.type == type:
+            return course.links
+    return False
+
+def clearCourseMenu():
+    root.courseMenu.clear()
+    transaction.commit()
