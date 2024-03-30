@@ -59,6 +59,10 @@ class UserServices:
         notifications = dataManager.getUserNotifications(clientID)
         return notifications
     
+    def addCourseMenu(self, type, links):
+        dataManager.addCourseMenu(type, links)
+        return True
     
-    
-       
+    def getCourseMenu(self, type):
+        courseMenu = dataManager.getCourseMenu(type)
+        return courseMenu

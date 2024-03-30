@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
+    <width>1248</width>
     <height>720</height>
    </rect>
   </property>
@@ -283,9 +283,9 @@ border-image: url(:/icon/dinnerBtn.jpg);</string>
          <widget class="QLabel" name="label_2">
           <property name="geometry">
            <rect>
-            <x>970</x>
+            <x>790</x>
             <y>690</y>
-            <width>221</width>
+            <width>341</width>
             <height>20</height>
            </rect>
           </property>
@@ -299,7 +299,7 @@ border-image: url(:/icon/dinnerBtn.jpg);</string>
 </string>
           </property>
           <property name="text">
-           <string>*You will get the menu as PDF file</string>
+           <string>*Application will automatically open PDF in Drive for you</string>
           </property>
          </widget>
          <widget class="QPushButton" name="lunchMenuBtn">

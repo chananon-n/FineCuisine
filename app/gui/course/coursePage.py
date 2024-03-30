@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1280, 720)
+        MainWindow.resize(1248, 720)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"background-color:#E7E5DF")
         self.centralwidget = QWidget(MainWindow)
@@ -148,7 +148,7 @@ class Ui_MainWindow(object):
         self.dinnerPic.setScaledContents(True)
         self.label_2 = QLabel(self.frame_page)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(970, 690, 221, 20))
+        self.label_2.setGeometry(QRect(790, 690, 341, 20))
         font = QFont()
         font.setFamilies([u"Arial"])
         self.label_2.setFont(font)
@@ -198,7 +198,7 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Course", None))
         self.lunchPic.setText("")
         self.dinnerPic.setText("")
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"*You will get the menu as PDF file", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"*Application will automatically open PDF in Drive for you", None))
         self.lunchMenuBtn.setText(QCoreApplication.translate("MainWindow", u"Lunch", None))
         self.dinnerMenuBtn.setText(QCoreApplication.translate("MainWindow", u"Dinner", None))
     # retranslateUi
