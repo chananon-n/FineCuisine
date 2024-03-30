@@ -42,7 +42,7 @@ class UserServices:
         if checkAvailable:
             membership = dataManager.checkMembership(bookingInfo.clientID)
             dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
-            dataManager.addUserBooking(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
+            dataManager.addBookingDB(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
             dataManager.addNotification(bookingInfo.clientID,"Your booking has been confirmed")
             return bookingInfo, membership
         else:
@@ -66,3 +66,19 @@ class UserServices:
     def getCourseMenu(self, type):
         courseMenu = dataManager.getCourseMenu(type)
         return courseMenu
+    
+    def createNews(self, title, image, details, date):
+        dataManager.createNews(title, image, details, date)
+        return True
+    
+    def getAllNews(self):  
+        data =  dataManager.getNews()
+        return data
+        
+    def getNewInfo(self,id):
+        data = dataManager.getNewByID(id)
+        return data
+    
+    
+        
+    

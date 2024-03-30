@@ -2,6 +2,7 @@ from app.db.database import *
 from app.model.booking import Booking
 from app.model.user import *
 from app.model.courseDetail import CourseMenu
+from app.model.news import *
 import transaction
 
 from datetime import datetime, timedelta
@@ -139,3 +140,20 @@ class dataManager:
     
     def getCourseMenu(courseType):
         return getCourseMenu(courseType)
+    
+    def addNews(title,image,details,PostDate):
+        new = News(title,image,details,PostDate)
+        addNews(new)
+        return True
+    
+    def getNews():
+        return getAllNews()
+    
+    def getNewByID(id):
+        data = getNewsInformation(id)
+        return data
+
+
+    
+        
+        

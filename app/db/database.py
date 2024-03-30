@@ -26,6 +26,8 @@ if not hasattr(root,'notification'):
     root.notification = BTrees.OOBTree.BTree()
 if not hasattr(root, 'courseMenu'):
     root.courseMenu = BTrees.OOBTree.BTree()
+if not hasattr(root,'news'):
+    root.news = BTrees.OOBTree.BTree()
 
 def client_id():
     if not hasattr(root, 'client_id'):
@@ -58,6 +60,12 @@ def membership_id():
         root.membership_id = 0
     root.membership_id += 1
     return root.membership_id
+
+def news_id():
+    if not hasattr(root, 'news_id'):
+        root.news_id = 0
+    root.membership_id += 1
+    return root.news_id
 
 def getClient(username):
     for client in root.clients.values():
@@ -277,3 +285,18 @@ def getCourseMenu(type):
 def clearCourseMenu():
     root.courseMenu.clear()
     transaction.commit()
+    
+def addNews(information):
+    root.news[information.id] = information
+    transaction.commit()
+    return True
+
+def getAllNews():
+    return [news.toJson() for news in root.news.values()]
+
+def getNewsInformation(newsID):
+    for news in root.news.values():
+        if news.id == newsID:
+            return news
+    return False
+
