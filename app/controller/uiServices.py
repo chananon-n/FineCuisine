@@ -29,6 +29,7 @@ class LoginPage(QMainWindow, loginPage):
         
     def openRegisterPage(self):
         self.registerPage = RegisterPage()
+        self.registerPage.setWindowTitle("FineCusine - Register Page")
         self.registerPage.show()
         self.hide()
     
@@ -43,6 +44,7 @@ class LoginPage(QMainWindow, loginPage):
             userRole = "admin"
             print(userID)
             self.adminMainPage = AdminMainPage()
+            self.adminMainPage.setWindowTitle("FineCusine - Admin Page")
             self.adminMainPage.show()
             self.hide()
             pass
@@ -51,6 +53,7 @@ class LoginPage(QMainWindow, loginPage):
             userRole = "client"
             print(userID)
             self.mainPage = MainPage()
+            self.mainPage.setWindowTitle("FineCusine - Main Page")
             self.mainPage.show()
             self.hide()
         else:
@@ -69,6 +72,7 @@ class RegisterPage(QMainWindow, registerPage):
         
     def backToLogin(self):
         self.loginPage = LoginPage()
+        self.loginPage.setWindowTitle("FineCusine - Login Page")
         self.loginPage.show()
         self.hide()
     
@@ -82,6 +86,7 @@ class RegisterPage(QMainWindow, registerPage):
                 alert.setText("Registration successful!")
                 alert.exec()
                 self.loginPage = LoginPage()
+                self.loginPage.setWindowTitle("FineCusine - Login Page")
                 self.loginPage.show()
                 self.hide()
             else:
@@ -120,7 +125,7 @@ class MainPage(QMainWindow, mainPage):
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
-        
+
         self.userID.setText(userID)
         
         self.userName.setText(userServices.getClientInfo(userID).getUsername())
@@ -256,16 +261,19 @@ class MainPage(QMainWindow, mainPage):
         
     def openCoursePage(self):
         self.coursePage = CoursePage()
+        self.coursePage.setWindowTitle("FineCusine - Course Page")
         self.coursePage.show()
         self.hide()
         
     def openReservationPage(self):
         self.reservationPage = ReservationPage()
+        self.reservationPage.setWindowTitle("FineCusine - Reservation Page")
         self.reservationPage.show()
         self.hide()
         
     def openNewsPage(self):
         self.newsPage = NewsPage()
+        self.newsPage.setWindowTitle("FineCusine - News Page")
         self.newsPage.show()
         self.hide()
         
@@ -286,7 +294,7 @@ class CoursePage(QMainWindow, coursePage):
         self.lunchMenuBtn.clicked.connect(self.openLunchMenuLink)
         self.dinnerMenuBtn.clicked.connect(self.openDinnerMenuLink)
         
-        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        self.logoutBtn.clicked.connect(self.logout)
         
     def openHomePage(self):
         self.mainPage.show()
@@ -311,6 +319,11 @@ class CoursePage(QMainWindow, coursePage):
     def openFeedback(self):
         self.mainPage.show()
         self.mainPage.openFeedback()
+        self.hide()
+        
+    def logout(self):
+        self.loginPage = LoginPage()
+        self.loginPage.show()
         self.hide()
         
     def openLunchMenuLink(self):
@@ -338,7 +351,7 @@ class ReservationPage(QMainWindow, reservationPage):
         self.historyBtn.clicked.connect(self.openHistory)
         self.feedbackBtn.clicked.connect(self.openFeedback)
         
-        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        self.logoutBtn.clicked.connect(self.logout)
         
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
@@ -379,6 +392,11 @@ class ReservationPage(QMainWindow, reservationPage):
     def openFeedback(self):
         self.mainPage.show()
         self.mainPage.openFeedback()
+        self.hide()
+        
+    def logout(self):
+        self.loginPage = LoginPage()
+        self.loginPage.show()
         self.hide()
         
     def getDate(self):

@@ -5,6 +5,8 @@ import BTrees.OOBTree
 
 import transaction
 
+from app.model.courseDetail import CourseMenu
+
 storage = ZODB.FileStorage.FileStorage('app/db/data.fs')
 db = ZODB.DB(storage)
 connection = db.open()
@@ -275,6 +277,21 @@ def getNotifications(clientID):
     for client in root.notification.values():
         if client.id == clientID:
             return client.notifications
+        
+def addCourseMenu(courseType, courseLink):
+    if courseType in root.courseMenu:
+        autoRemoveCourseMenu(courseType)
+    course = CourseMenu(courseType, courseLink)
+    root.courseMenu[courseType] = course
+    transaction.commit()
+    print("Course Menu Added")
+    return True
+
+def autoRemoveCourseMenu(courseType):
+    del root.courseMenu[courseType]
+    transaction.commit()
+    print("Course Menu Removed")
+    return True
         
 def getCourseMenu(type):
     for course in root.courseMenu.values():

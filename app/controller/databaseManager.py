@@ -123,20 +123,8 @@ class dataManager:
         return getNotifications(clientID)
     
     # Course Menu
-    def addCourseMenu(courseType, courseLink):
-        if courseType in root.courseMenu:
-            dataManager.autoRemoveCourseMenu(courseType)
-        course = CourseMenu(courseType, courseLink)
-        root.courseMenu[courseType] = course
-        transaction.commit()
-        print("Course Menu Added")
-        return True
-    
-    def autoRemoveCourseMenu(courseType):
-        del root.courseMenu[courseType]
-        transaction.commit()
-        print("Course Menu Removed")
-        return True
+    def addCourseMenu(type, links):
+        return addCourseMenu(type, links)
     
     def getCourseMenu(courseType):
         return getCourseMenu(courseType)
