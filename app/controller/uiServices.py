@@ -1,7 +1,8 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog
+from PySide6.QtGui import QImage, QPixmap
 from app.controller.userServices import *
 import transaction
 
@@ -12,9 +13,11 @@ from app.gui.course.coursePage import Ui_MainWindow as coursePage
 from app.gui.reservation.reservationPage import Ui_MainWindow as reservationPage
 from app.gui.registerMembership.registerMembershipPage import Ui_MainWindow as registerMembershipPage
 from app.gui.news.newsPage import Ui_MainWindow as newsPage
+from app.gui.news.newsDetail import Ui_MainWindow as newsDetail
 
 from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
 from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdminPage
+from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
 
 from datetime import datetime
 import webbrowser
@@ -492,6 +495,8 @@ class NewsPage(QMainWindow, newsPage):
         self.setupUi(self)
         self.mainPage = MainPage()
         
+        self.mapIDandTitle = []
+        
         # Sidebar buttons
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
@@ -499,10 +504,11 @@ class NewsPage(QMainWindow, newsPage):
         self.historyBtn.clicked.connect(self.openHistory)
         self.feedbackBtn.clicked.connect(self.openFeedback)
         
-        self.logoutBtn.clicked.connect(self.mainPage.logout)
+        self.logoutBtn.clicked.connect(self.logout)
         
         # News page
-        self.addNews()
+        self.listWidget.itemClicked.connect(self.openNews)
+        self.updateNews()
         
     def openHomePage(self):
         self.mainPage.show()
@@ -529,11 +535,50 @@ class NewsPage(QMainWindow, newsPage):
         self.mainPage.openFeedback()
         self.hide()
         
-    def addNews(self):
-        pass
+    def logout(self):
+        self.loginPage = LoginPage()
+        self.loginPage.show()
+        self.hide()
+        
+    def openNews(self, item):
+        newsID = 0
+        for title, id in self.mapIDandTitle:
+            if title == item.text():
+                newsID = id
+                break
+        self.news = userServices.getNewInfo(newsID).toJson()
+        self.newsDetail = NewsDetail(self.news)
+        self.newsDetail.show()
     
+    def updateNews(self):
+        self.listWidget.clear()
+        newsList = userServices.getAllNews()
+        curentmap = []
+        for news in newsList:
+            self.listWidget.insertItem(0, news["title"])
+            curentmap.append((news["title"], news["id"]))
+        self.mapIDandTitle = curentmap
     
-    
+class NewsDetail(QMainWindow, newsDetail):
+    def __init__(self, news):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.mainPage = MainPage()
+        
+        self.newsTitle.setText(news["title"])
+        pixmap = self.convert_to_qpixmap(news["image"])
+        self.neswImage.setPixmap(QtGui.QPixmap(pixmap))
+        self.newsDetail.setText(news["details"])
+        self.newsDate.setText(news["datePost"])
+        
+    def convert_to_qpixmap(self, image_data):
+        # Convert image data to QImage
+        image = QImage.fromData(image_data)
+        # Convert QImage to QPixmap
+        pixmap = QPixmap.fromImage(image)
+        return pixmap
+
 #-----------------Admin Page-----------------
 class AdminMainPage(QMainWindow, adminMainPage):
     def __init__(self):
@@ -547,13 +592,18 @@ class AdminMainPage(QMainWindow, adminMainPage):
         # self.reservationListBtn.clicked.connect(self.openReservationList)
         self.menuAdjustmentBtn.clicked.connect(self.openMenuAdjustPage)
         # self.feedbacksBtn.clicked.connect(self.openFeedbackList)
-        # self.createNewsBtn.clicked.connect(self.openNewsList)
+        self.createNewsBtn.clicked.connect(self.openCreateNews)
         
         self.logoutBtn.clicked.connect(self.logout)
         
     def openMenuAdjustPage(self):
         self.menuAdjustPage = MenuAdjustPage()
         self.menuAdjustPage.show()
+        self.hide()
+        
+    def openCreateNews(self):
+        self.newsAdminPage = NewsAdminPage()
+        self.newsAdminPage.show()
         self.hide()
         
     def logout(self):
@@ -584,6 +634,55 @@ class MenuAdjustPage(QMainWindow, courseAdminPage):
                 userServices.addCourseMenu(self.courseComboBox.currentText(), self.linkInput.text())
                 alert =QtWidgets.QMessageBox()
                 alert.setText("Menu adjusted!")
+                alert.exec()
+                self.adminMainPage = AdminMainPage()
+                self.adminMainPage.show()
+                self.hide()
+            else:
+                pass
+        else:
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Please fill in all information")
+            alert.exec()
+
+    def backtoAdminMain(self):
+        self.adminMainPage = AdminMainPage()
+        self.adminMainPage.show()
+        self.hide()
+
+class NewsAdminPage(QMainWindow, newsAdminPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.browseBtn.clicked.connect(self.browse)
+        self.selected = False
+        
+        self.submitBtn.clicked.connect(self.submit)
+        
+        self.backBtn.clicked.connect(self.backtoAdminMain)
+        
+    def browse(self):
+        fname = QFileDialog.getOpenFileName(self, 'Open file', 'c:\\', "Image files (*.jpg *.png)")
+        self.fileLabel.setText(fname[0])
+        self.selected = True
+        
+    def submit(self):
+        if self.selected and self.titleInput.text() and self.desTextBox.toPlainText():
+            alert =QtWidgets.QMessageBox()
+            alert.setText("Confirm news?")
+            alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
+            ret = alert.exec()
+            if ret == QtWidgets.QMessageBox.Yes:
+                with open(self.fileLabel.text(), 'rb') as f:
+                    image_data = f.read()
+                postDate = datetime.now()
+                formatedDate = postDate.strftime("%d/%m/%Y - %H:%M")
+                print(f"News created! {self.titleInput.text()}, {self.fileLabel.text()}, {self.desTextBox.toPlainText()}, {formatedDate}")
+                userServices.createNews(self.titleInput.text(), image_data, self.desTextBox.toPlainText(), formatedDate)
+                alert =QtWidgets.QMessageBox()
+                alert.setText("News created!")
                 alert.exec()
                 self.adminMainPage = AdminMainPage()
                 self.adminMainPage.show()

@@ -29,13 +29,13 @@
    <string notr="true">background-color: rgb(231, 229, 223);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="title">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>1240</width>
-      <height>52</height>
+      <width>1241</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -51,13 +51,13 @@
 color: rgb(126, 22, 21);</string>
     </property>
     <property name="text">
-     <string>Adjust Menu</string>
+     <string>News Editor</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="logoutBtn">
+   <widget class="QPushButton" name="backBtn">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -77,106 +77,132 @@ QPushButton:hover{
 }</string>
     </property>
     <property name="text">
-     <string>Back</string>
+     <string>Logout</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="linkInput">
+   <widget class="QLabel" name="fileLabel">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>310</y>
-      <width>652</width>
+      <x>189</x>
+      <y>200</y>
+      <width>661</width>
       <height>44</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">padding:8px;
-font: 16pt &quot;Arial&quot;;
-color: rgb(0, 0, 0);
-border: 2px solid;
-border-radius: 8px;
-border-color: rgb(79, 79, 79);</string>
+     <string notr="true">color: rgb(0, 0, 0);
+font: 14pt &quot;Arial&quot;;
+padding: 4px;
+border-color: rgb(102, 103, 103);
+border-radius: 8;
+background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Add Drive Link of Your Course</string>
+     <string>Add Picture</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="courseComboBox">
+   <widget class="QPushButton" name="browseBtn">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>920</x>
       <y>200</y>
-      <width>151</width>
-      <height>32</height>
+      <width>100</width>
+      <height>44</height>
      </rect>
     </property>
-    <property name="whatsThis">
-     <string/>
-    </property>
     <property name="styleSheet">
-     <string notr="true">QComboBox{
+     <string notr="true">QPushButton{
 	color: rgb(0, 0, 0);
 	font: 16pt &quot;Arial&quot;;
-	border: 1 solid;
-	border-radius:8px;
+	padding: 8pt;	
+	border: 3 solid;
+	border-radius: 8px;
+	border-color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid; /* just a single line */
-    border-top-right-radius: 3px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 3px;
-}
-QCombobox::down-arrow{
-	image: url(:/icon/User icon 100.png);
-}
-
-</string>
+QPushButton:hover{
+	background-color: rgb(104, 105, 105);
+	color:rgb(255, 255, 255);
+}</string>
     </property>
-    <property name="editable">
-     <bool>false</bool>
+    <property name="text">
+     <string>Browse</string>
     </property>
-    <property name="currentText">
-     <string/>
+   </widget>
+   <widget class="QTextEdit" name="desTextBox">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>300</y>
+      <width>831</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+padding: 8px;
+border: 0;
+border-radius: 8px;</string>
     </property>
     <property name="placeholderText">
-     <string>Course</string>
+     <string>News Description</string>
     </property>
    </widget>
    <widget class="QPushButton" name="submitBtn">
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>430</y>
+      <y>600</y>
       <width>100</width>
-      <height>32</height>
+      <height>44</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-border: 3 solid black;
-border-radius: 8px;
-color: black;
+	color: rgb(0, 0, 0);
+	font: 16pt &quot;Arial&quot;;
+	padding: 8pt;	
+	border: 3 solid;
+	border-radius: 8px;
+	border-color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
 QPushButton:hover{
-	background-color: rgb(166, 165, 161);
+	background-color: rgb(104, 105, 105);
+	color:rgb(255, 255, 255);
 }</string>
     </property>
     <property name="text">
      <string>Submit</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="titleInput">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>120</y>
+      <width>331</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+padding: 8px;
+border: 0;
+border-radius: 8px;
+font: 700 16pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>News Title</string>
+    </property>
+   </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../../picture/resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
