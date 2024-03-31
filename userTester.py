@@ -116,5 +116,6 @@ def membershipMain():
 
     
 if __name__ == "__main__":
-    info = getCourseMenu("Lunch")
-    print(info)
+    info = getAllNews()
+    for i in info:
+        print(i['title'])

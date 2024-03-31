@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
-    QLabel, QMainWindow, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QLabel, QListWidget, QListWidgetItem, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -140,36 +141,32 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QRect(0, 10, 281, 121))
         self.label.setStyleSheet(u"font: 80pt \"Arial\";\n"
 "color: rgb(126, 22, 21);")
-        self.scrollArea = QScrollArea(self.frame_page)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setGeometry(QRect(10, 110, 1151, 581))
-        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1133, 579))
-        self.formLayout = QFormLayout(self.scrollAreaWidgetContents)
-        self.formLayout.setObjectName(u"formLayout")
-        self.formLayout.setLabelAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_3 = QLabel(self.scrollAreaWidgetContents)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.label_3.setWordWrap(True)
-        self.label_3.setMargin(10)
-
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label_3)
-
-        self.label_2 = QLabel(self.scrollAreaWidgetContents)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(360, 200))
-        self.label_2.setMaximumSize(QSize(360, 200))
-        self.label_2.setPixmap(QPixmap(u":/icon/dinnerBtn.jpg"))
-        self.label_2.setScaledContents(True)
-
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_2)
-
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.listWidget = QListWidget(self.frame_page)
+        QListWidgetItem(self.listWidget)
+        self.listWidget.setObjectName(u"listWidget")
+        self.listWidget.setGeometry(QRect(45, 141, 1121, 541))
+        self.listWidget.setStyleSheet(u"QListWidget {\n"
+"    padding: 12px 12px; /* Corrected padding format */\n"
+"    font: 24pt \"Arial\";\n"
+"    color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    border: 1px solid; /* Corrected border format */\n"
+"    border-radius: 8px;\n"
+"    margin: 4px;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"    background-color: lightblue; /* Example of selecting item background color */\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}\n"
+"")
+        self.listWidget.setAutoScroll(True)
+        self.listWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
 
         self.horizontalLayout.addWidget(self.frame_page)
 
@@ -192,7 +189,12 @@ class Ui_MainWindow(object):
         self.feedbackBtn.setText("")
         self.logoutBtn.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"News", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", None))
-        self.label_2.setText("")
+
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"News 1", None));
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+
     # retranslateUi
 

@@ -68,7 +68,7 @@ class UserServices:
         return courseMenu
     
     def createNews(self, title, image, details, date):
-        dataManager.createNews(title, image, details, date)
+        dataManager.addNews(title, image, details, date)
         return True
     
     def getAllNews(self):  

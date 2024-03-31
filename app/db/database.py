@@ -66,7 +66,7 @@ def membership_id():
 def news_id():
     if not hasattr(root, 'news_id'):
         root.news_id = 0
-    root.membership_id += 1
+    root.news_id += 1
     return root.news_id
 
 def getClient(username):

@@ -257,80 +257,48 @@ color: rgb(126, 22, 21);</string>
            <string>News</string>
           </property>
          </widget>
-         <widget class="QScrollArea" name="scrollArea">
+         <widget class="QListWidget" name="listWidget">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>110</y>
-            <width>1151</width>
-            <height>581</height>
+            <x>45</x>
+            <y>141</y>
+            <width>1121</width>
+            <height>541</height>
            </rect>
           </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOn</enum>
+          <property name="styleSheet">
+           <string notr="true">QListWidget {
+    padding: 12px 12px; /* Corrected padding format */
+    font: 24pt &quot;Arial&quot;;
+    color: rgb(0, 0, 0);
+}
+
+QListWidget::item {
+    border: 1px solid; /* Corrected border format */
+    border-radius: 8px;
+    margin: 4px;
+}
+
+QListWidget::item:selected {
+    background-color: lightblue; /* Example of selecting item background color */
+}
+
+QListWidget::item {
+    qproperty-alignment: AlignCenter;
+}
+</string>
           </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="widgetResizable">
+          <property name="autoScroll">
            <bool>true</bool>
           </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>1133</width>
-             <height>579</height>
-            </rect>
+          <property name="editTriggers">
+           <set>QAbstractItemView::DoubleClicked</set>
+          </property>
+          <item>
+           <property name="text">
+            <string>News 1</string>
            </property>
-           <layout class="QFormLayout" name="formLayout">
-            <property name="labelAlignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-              <property name="margin">
-               <number>10</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_2">
-              <property name="minimumSize">
-               <size>
-                <width>360</width>
-                <height>200</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>360</width>
-                <height>200</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="../../picture/resource.qrc">:/icon/dinnerBtn.jpg</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+          </item>
          </widget>
         </widget>
        </item>
