@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -928,28 +928,6 @@ color: #7E1615;</string>
             <column>
              <property name="text">
               <string>Status</string>
-             </property>
-             <property name="font">
-              <font>
-               <family>KoHo</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Confirm</string>
-             </property>
-             <property name="font">
-              <font>
-               <family>KoHo</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Cancel</string>
              </property>
              <property name="font">
               <font>

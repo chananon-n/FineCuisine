@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -354,8 +354,8 @@ class Ui_MainWindow(object):
         self.historyTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615;")
         self.historyTable = QTableWidget(self.historyPage)
-        if (self.historyTable.columnCount() < 6):
-            self.historyTable.setColumnCount(6)
+        if (self.historyTable.columnCount() < 4):
+            self.historyTable.setColumnCount(4)
         font2 = QFont()
         font2.setFamilies([u"KoHo"])
         font2.setPointSize(14)
@@ -371,12 +371,6 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3 = QTableWidgetItem()
         __qtablewidgetitem3.setFont(font2);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        __qtablewidgetitem4.setFont(font2);
-        self.historyTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setFont(font2);
-        self.historyTable.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
@@ -546,7 +540,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(1)
+        self.pageWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -598,10 +592,6 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Course", None));
         ___qtablewidgetitem3 = self.historyTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Status", None));
-        ___qtablewidgetitem4 = self.historyTable.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
-        ___qtablewidgetitem5 = self.historyTable.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
         self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
