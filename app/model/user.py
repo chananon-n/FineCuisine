@@ -22,6 +22,10 @@ class Client(User):
         self.membership = None
         self.history = []
         self.id = client_id()    
+        self.notifications = []
+    
+    def add_notification(self, notification):
+        self.notifications.append(notification)
         
     def addHistory(self, booking):
         self.history.append(booking) 

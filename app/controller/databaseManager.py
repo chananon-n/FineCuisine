@@ -120,8 +120,13 @@ class dataManager:
         return createNotification(clientID,notification)
     
     def getUserNotifications(clientID):
-        return getNotifications(clientID)
-    
+        client = root.clients.get(clientID)
+        if client:
+            notifications = client.notifications
+            return [notification.message for notification in notifications]
+        else:
+            return []
+        
     # Course Menu
     def addCourseMenu(type, links):
         return addCourseMenu(type, links)

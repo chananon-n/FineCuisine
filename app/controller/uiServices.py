@@ -159,10 +159,11 @@ class MainPage(QMainWindow, mainPage):
         
     def openNotification(self):
         self.pageWidget.setCurrentIndex(2)
-        self.generateNotification()
+        self.populateNotifications()
     
-    def generateNotification(self):
-        for i in range(10):
+    def populateNotifications(self):
+        notifications = userServices.getNotifications(userID)
+        for i, notification in enumerate(notifications):
             self.notificationDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents_2)
             self.notificationDetail.setObjectName(f"notificationDetail_{i}")
             sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -184,7 +185,7 @@ class MainPage(QMainWindow, mainPage):
             self.notificationDetail.setWordWrap(True)
             self.notificationDetail.setMargin(10)
             self.notificationDetail.setIndent(0)
-            self.notificationDetail.setText("Notification")
+            self.notificationDetail.setText(notification)
             self.verticalLayout_4.addWidget(self.notificationDetail)
             
             
@@ -310,9 +311,8 @@ class CoursePage(QMainWindow, coursePage):
         self.hide()
         
     def openNotification(self):
-        self.mainPage.show()
-        self.mainPage.openNotification()
-        self.hide()
+        self.pageWidget.setCurrentIndex(2)
+        self.populateNotifications()
         
     def openHistory(self):
         self.mainPage.show()
