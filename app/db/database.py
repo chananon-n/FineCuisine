@@ -207,7 +207,15 @@ def clearMealBookings(meal_type):
 def getMealBooking(meal_type, t_date, t_time):
     for booking in getattr(root, f'{meal_type}Booking').values():
         if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
-            return booking
+            # Convert the booking data to a JSON-serializable dictionary
+            booking_data = {
+                'T_ID': booking['T_ID'],
+                'T_DATE': booking['T_DATE'],
+                'T_TIME': booking['T_TIME'],
+                'T_LEFT': booking['T_LEFT']
+            }
+            return booking_data
+    return None
         
 def clearUserBookings():
     root.booking.clear()

@@ -95,7 +95,7 @@ class dataManager:
         if bookInfo is not None and bookInfo.get('T_LEFT', 0) >= partySize:
             return True
         else:
-            return False    
+            return False  
         
     def registerMembership(clientID, fname, lname, dateOfBirth):
         dateExpired = datetime.now() + timedelta(days=365)
