@@ -417,7 +417,7 @@ class ReservationPage(QMainWindow, reservationPage):
                 userID,
                 self.course.currentText(),
                 self.time.currentText(),
-                self.date.toString("dd/MM/yyyy"),
+                self.getDate(),
                 int(self.size.currentText()),
                 self.reservationName.text(),
                 self.additionNote.toPlainText()
