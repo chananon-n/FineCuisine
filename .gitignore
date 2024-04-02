@@ -1,2 +1,7 @@
 env/
 __pychache__/
+*.pyc
+*.fs
+*.fs
+*.lock
+*.tmp
