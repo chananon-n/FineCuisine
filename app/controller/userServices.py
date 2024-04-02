@@ -1,5 +1,4 @@
 from app.controller.databaseManager import dataManager
-from app.model.booking import Booking
 
 
 class UserServices:
@@ -37,18 +36,15 @@ class UserServices:
         else:
             return False
     
-    def reservation(self, clientID, course, time, date, partySize, persons, userNotes):
-        booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
-        checkAvailable = dataManager.checkBookingAvailable(booking.time, booking.date, booking.partySize, booking.course)
+    def reservation(self,bookingInfo):
+        checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
 
         if checkAvailable:
-            membership = dataManager.checkMembership(booking.clientID)
-            dataManager.updateMealBooking(booking.course, booking.date, booking.time, booking.partySize)
-            bookingId = dataManager.addBookingDB(booking)
-            if bookingId:
-                notificationMessage = f"Your booking for {booking.course} on {booking.date} at {booking.time} is pending confirmation."
-                dataManager.addNotification(booking.clientID, notificationMessage)
-            return booking, membership
+            membership = dataManager.checkMembership(bookingInfo.clientID)
+            dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
+            dataManager.addBookingDB(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
+            dataManager.addNotification(bookingInfo.clientID,"Your booking has been confirmed")
+            return bookingInfo, membership
         else:
             print("Booking not available")
             return False
