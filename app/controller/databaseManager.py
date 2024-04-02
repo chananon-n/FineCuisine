@@ -90,12 +90,12 @@ class dataManager:
             dataManager.addNotification(clientID, notificationMessage)
         return True
    
-    def checkBookingAvailable(time, date, partySize, mealType):
-        bookInfo = getMealBooking(mealType, date, time)
-        if bookInfo['T_LEFT'] >= partySize:
+    def checkBookingAvailable(self, time, date, partySize, mealType):
+        bookInfo = self.getMealBooking(mealType, date, time)
+        if bookInfo is not None and bookInfo.get('T_LEFT', 0) >= partySize:
             return True
         else:
-            return False     
+            return False    
         
     def registerMembership(clientID, fname, lname, dateOfBirth):
         dateExpired = datetime.now() + timedelta(days=365)
