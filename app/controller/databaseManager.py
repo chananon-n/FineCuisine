@@ -68,10 +68,9 @@ class dataManager:
     def clearUserBookingDB():
         clearUserBookings()
     
-    def addBookingDB(clientID, course, time, date, partySize, persons, userNotes):
-        booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
+    def addBookingDB(booking):
         addUserBooking(booking)
-        return True
+        return booking.bookingID
     
     def getUserBookings(clientID):
         return getUserBookings(clientID)
@@ -80,7 +79,16 @@ class dataManager:
         return updateMealBooking(mealType, date, time, partySize)
     
     def changeBookingStatus(bookingID, status):
-        return updateBookingStatus(bookingID, status)
+        updateBookingStatus(bookingID, status)
+        booking = getBooking(bookingID)
+        clientID = booking.clientID
+        if status == "Confirmed":
+            notificationMessage = f"Your booking for {booking.course} on {booking.date} at {booking.time} has been confirmed."
+            dataManager.addNotification(clientID, notificationMessage)
+        elif status == "Cancelled":
+            notificationMessage = f"Your booking for {booking.course} on {booking.date} at {booking.time} has been cancelled."
+            dataManager.addNotification(clientID, notificationMessage)
+        return True
    
     def checkBookingAvailable(time, date, partySize, mealType):
         bookInfo = getMealBooking(mealType, date, time)
@@ -129,23 +137,14 @@ class dataManager:
         
     # Course Menu
     def addCourseMenu(type, links):
-        addCourseMenu(type, links)
-        clients = root.clients.values()
-        for client in clients:
-            notificationMessage = f"New {type} menu is now available!"
-            dataManager.addNotification(client.id, notificationMessage)
-        return True
+        return addCourseMenu(type, links)
     
     def getCourseMenu(courseType):
         return getCourseMenu(courseType)
     
     def addNews(title,image,details,PostDate):
-        new = News(title, image, details, PostDate)
+        new = News(title,image,details,PostDate)
         addNews(new)
-        clients = root.clients.values()
-        for client in clients:
-            notificationMessage = f"New news article: {title}"
-            dataManager.addNotification(client.id, notificationMessage)
         return True
     
     def getNews():
@@ -155,19 +154,7 @@ class dataManager:
         data = getNewsInformation(id)
         return data
 
-    def checkMembershipExpired(clientID):
-        client = root.clients.get(clientID)
-        if client:
-            if client.membership:
-                dateExpired = datetime.strptime(client.membership['dateExpired'], "%d/%m/%Y")
-                if dateExpired < datetime.now():
-                    return True
-                else:
-                    return False
-            else:
-                return True
-        else:
-            return False
+
     
         
         

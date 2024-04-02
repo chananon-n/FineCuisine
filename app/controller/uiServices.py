@@ -407,19 +407,32 @@ class ReservationPage(QMainWindow, reservationPage):
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         
     def confirmReservation(self):
-        alert =QtWidgets.QMessageBox()
+        alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
-            print(f"Reservation confirmed! This Client: {userID} \n{self.date.toString('dd/MM/yyyy')}, {self.reservationName.text()}, {self.course.currentText()}, {self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
-            alert =QtWidgets.QMessageBox()
-            alert.setText("Reservation confirmed!")
-            alert.exec()
-            self.mainPage.show()
-            self.mainPage.openHomePage()
-            self.hide()
+            booking = Booking(
+                userID,
+                self.course.currentText(),
+                self.time.currentText(),
+                self.date.toString("dd/MM/yyyy"),
+                int(self.size.currentText()),
+                self.reservationName.text(),
+                self.additionNote.toPlainText()
+            )
+            result = userServices.reservation(booking.clientID, booking.course, booking.time, booking.date, booking.partySize, booking.persons, booking.userNotes)
+            if result:
+                booking, membership = result
+                print(f"Reservation confirmed! Booking ID: {booking.bookingID}")
+                userServices.changeBookingStatus(booking.bookingID, "Confirmed")
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation confirmed!")
+                alert.exec()
+                self.mainPage.show()
+                self.mainPage.openHomePage()
+                self.hide()
         else:
             pass
     
