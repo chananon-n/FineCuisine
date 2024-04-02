@@ -137,14 +137,23 @@ class dataManager:
         
     # Course Menu
     def addCourseMenu(type, links):
-        return addCourseMenu(type, links)
+        addCourseMenu(type, links)
+        clients = root.clients.values()
+        for client in clients:
+            notificationMessage = f"New {type} menu is now available!"
+            dataManager.addNotification(client.id, notificationMessage)
+        return True
     
     def getCourseMenu(courseType):
         return getCourseMenu(courseType)
     
     def addNews(title,image,details,PostDate):
-        new = News(title,image,details,PostDate)
+        new = News(title, image, details, PostDate)
         addNews(new)
+        clients = root.clients.values()
+        for client in clients:
+            notificationMessage = f"New news article: {title}"
+            dataManager.addNotification(client.id, notificationMessage)
         return True
     
     def getNews():
@@ -154,7 +163,19 @@ class dataManager:
         data = getNewsInformation(id)
         return data
 
-
+    def checkMembershipExpired(clientID):
+        client = root.clients.get(clientID)
+        if client:
+            if client.membership:
+                dateExpired = datetime.strptime(client.membership['dateExpired'], "%d/%m/%Y")
+                if dateExpired < datetime.now():
+                    return True
+                else:
+                    return False
+            else:
+                return True
+        else:
+            return False
     
         
         
