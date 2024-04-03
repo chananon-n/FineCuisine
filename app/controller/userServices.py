@@ -80,6 +80,20 @@ class UserServices:
         data = dataManager.getNewByID(id)
         return data
     
+    def createNewFeedback(self,title,description,rating):
+        dataManager.addFeedback(title,description,rating)
+        return True
+    
+    def getAllFeedbacks(self):
+        data = dataManager.getFeedbacks()
+        return data
+    
+    def getFeedback(self,id):
+        data = dataManager.getFeedbackInfo(id)
+        
+        
+    
+    
     
         
     

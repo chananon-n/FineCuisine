@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -1143,105 +1143,6 @@ border-radius: 8px;</string>
              </layout>
             </widget>
            </widget>
-           <widget class="QScrollArea" name="scrollArea">
-            <property name="geometry">
-             <rect>
-              <x>50</x>
-              <y>130</y>
-              <width>500</width>
-              <height>500</height>
-             </rect>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>500</width>
-              <height>500</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>500</width>
-              <height>500</height>
-             </size>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="widgetResizable">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>498</width>
-               <height>498</height>
-              </rect>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_3">
-              <item>
-               <widget class="QLabel" name="feedbackDetail">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>460</width>
-                  <height>200</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>460</width>
-                  <height>200</height>
-                 </size>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::LeftToRight</enum>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0);
-font: 16pt &quot;Arial&quot;;
-border: 1 solid black;
-border-radius: 8px</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Sunken</enum>
-                </property>
-                <property name="text">
-                 <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-Star: 5</string>
-                </property>
-                <property name="textFormat">
-                 <enum>Qt::AutoText</enum>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
-                </property>
-                <property name="margin">
-                 <number>10</number>
-                </property>
-                <property name="indent">
-                 <number>0</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
            <widget class="QLabel" name="label_7">
             <property name="geometry">
              <rect>
@@ -1267,6 +1168,55 @@ font: 14pt &quot;Arial&quot;;</string>
             <property name="text">
              <string>Review Us here</string>
             </property>
+           </widget>
+           <widget class="QListWidget" name="feedbackListWidget">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>130</y>
+              <width>501</width>
+              <height>541</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+    padding: 12px 12px; /* Corrected padding format */
+    font: 24pt &quot;Arial&quot;;
+    color: rgb(0, 0, 0);
+}
+
+QListWidget::item {
+    border: 1px solid; /* Corrected border format */
+    border-radius: 8px;
+    margin: 4px;
+}
+
+QListWidget::item:selected {
+    background-color: lightblue; /* Example of selecting item background color */
+}
+
+QListWidget::item {
+    qproperty-alignment: AlignCenter;
+}
+</string>
+            </property>
+            <property name="autoScroll">
+             <bool>true</bool>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::DoubleClicked</set>
+            </property>
+            <item>
+             <property name="text">
+              <string>Feedback 1</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </item>
            </widget>
           </widget>
          </widget>

@@ -324,3 +324,23 @@ def delNews():
     root.news_id = 0
     transaction.commit()
     return True
+
+def createFeedbackDB(feedback):
+    root.feedbacks[feedback.id] = feedback
+    transaction.commit()
+    return True
+
+def getFeedbacksByID(feedbackID):
+    for feedback in root.feedbacks.values():
+        if feedback.id == feedbackID:
+            return feedback
+    return False
+
+def getAllFeedbacksDB():
+    return [feedback.toJson() for feedback in root.feedbacks.values()]
+
+def clearFeedbacksDB():
+    root.feedbacks.clear()
+    transaction.commit()
+    return True
+

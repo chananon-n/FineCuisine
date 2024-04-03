@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QMainWindow, QPushButton, QRadioButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QHeaderView, QLabel, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -479,44 +479,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.star5Radio)
 
-        self.scrollArea = QScrollArea(self.feedbackPage)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setGeometry(QRect(50, 130, 500, 500))
-        self.scrollArea.setMinimumSize(QSize(500, 500))
-        self.scrollArea.setMaximumSize(QSize(500, 500))
-        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 498, 498))
-        self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.feedbackDetail = QLabel(self.scrollAreaWidgetContents)
-        self.feedbackDetail.setObjectName(u"feedbackDetail")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.feedbackDetail.sizePolicy().hasHeightForWidth())
-        self.feedbackDetail.setSizePolicy(sizePolicy1)
-        self.feedbackDetail.setMinimumSize(QSize(460, 200))
-        self.feedbackDetail.setMaximumSize(QSize(460, 200))
-        self.feedbackDetail.setLayoutDirection(Qt.LeftToRight)
-        self.feedbackDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 16pt \"Arial\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-        self.feedbackDetail.setFrameShape(QFrame.NoFrame)
-        self.feedbackDetail.setFrameShadow(QFrame.Sunken)
-        self.feedbackDetail.setTextFormat(Qt.AutoText)
-        self.feedbackDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-        self.feedbackDetail.setWordWrap(True)
-        self.feedbackDetail.setMargin(10)
-        self.feedbackDetail.setIndent(0)
-
-        self.verticalLayout_3.addWidget(self.feedbackDetail)
-
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.label_7 = QLabel(self.feedbackPage)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(640, 150, 151, 41))
@@ -529,6 +491,33 @@ class Ui_MainWindow(object):
         self.label_7.setFont(font5)
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
+        self.feedbackListWidget = QListWidget(self.feedbackPage)
+        __qlistwidgetitem = QListWidgetItem(self.feedbackListWidget)
+        __qlistwidgetitem.setFont(font2);
+        self.feedbackListWidget.setObjectName(u"feedbackListWidget")
+        self.feedbackListWidget.setGeometry(QRect(60, 130, 501, 541))
+        self.feedbackListWidget.setStyleSheet(u"QListWidget {\n"
+"    padding: 12px 12px; /* Corrected padding format */\n"
+"    font: 24pt \"Arial\";\n"
+"    color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    border: 1px solid; /* Corrected border format */\n"
+"    border-radius: 8px;\n"
+"    margin: 4px;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"    background-color: lightblue; /* Example of selecting item background color */\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}\n"
+"")
+        self.feedbackListWidget.setAutoScroll(True)
+        self.feedbackListWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -540,7 +529,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(3)
+        self.pageWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -602,8 +591,13 @@ class Ui_MainWindow(object):
         self.star3Radio.setText(QCoreApplication.translate("MainWindow", u"3", None))
         self.star4Radio.setText(QCoreApplication.translate("MainWindow", u"4", None))
         self.star5Radio.setText(QCoreApplication.translate("MainWindow", u"5", None))
-        self.feedbackDetail.setText(QCoreApplication.translate("MainWindow", u"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n"
-"Star: 5", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Review Us here", None))
+
+        __sortingEnabled = self.feedbackListWidget.isSortingEnabled()
+        self.feedbackListWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.feedbackListWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
+        self.feedbackListWidget.setSortingEnabled(__sortingEnabled)
+
     # retranslateUi
 

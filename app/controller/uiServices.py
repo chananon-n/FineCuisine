@@ -215,36 +215,40 @@ class MainPage(QMainWindow, mainPage):
 
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
+        self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
         self.addFeedback()
         
+    
     def addFeedback(self):
-        for i in range(5):
-            self.feedbackDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            self.feedbackDetail.setObjectName(f"feedbackDetail_{i}")
-            sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.feedbackDetail.sizePolicy().hasHeightForWidth())
-            self.feedbackDetail.setSizePolicy(sizePolicy)
-            self.feedbackDetail.setMinimumSize(QSize(460, 200))
-            self.feedbackDetail.setMaximumSize(QSize(460, 200))
-            self.feedbackDetail.setLayoutDirection(Qt.LeftToRight)
-            self.feedbackDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-    "font: 16pt \"Arial\";\n"
-    "border: 1 solid black;\n"
-    "border-radius: 8px")
-            self.feedbackDetail.setFrameShape(QFrame.NoFrame)
-            self.feedbackDetail.setFrameShadow(QFrame.Sunken)
-            self.feedbackDetail.setTextFormat(Qt.AutoText)
-            self.feedbackDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-            self.feedbackDetail.setWordWrap(True)
-            self.feedbackDetail.setMargin(10)
-            self.feedbackDetail.setIndent(0)
+        self.feedbackListWidget.clear()
+        allFeedbacks = userServices.getAllFeedbacks()
+        for feedbackItem in allFeedbacks:
+            self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
+    def submitFeedback(self):
+        rating = None
+        for i in range(6): 
+            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
+            if button and button.isChecked():
+                rating = i
+                print(rating)
+                break 
             
-            self.feedbackDetail.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+        if rating == None:
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please rate the service")
+            alert.exec()
+            return 
+        data = self.feedbackTextBox.toPlainText()
+        title, details = (data.split("\n", 1) + [""])[:2]  
+
+        if not data:
+            userServices.createNewFeedback("", "", rating) 
+        else:
+            userServices.createNewFeedback(title, details, rating)
+        self.addFeedback()
+    
+    
             
-            self.verticalLayout_3.addWidget(self.feedbackDetail)
-        
     
     def logout(self):
         self.loginPage = LoginPage()

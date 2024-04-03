@@ -115,8 +115,26 @@ def membershipMain():
             registerMembership(userID, data)
         else:
             break
+        
+def feedbackMain():
+    while True:
+        print("1. View feedback")
+        print("2. Make feedback")
+        print("3. Logout")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            print(getAllFeedbacksDB())
+        elif choice == 2:
+            detail = input("Enter feedback: ")
+            rating = int(input("Enter rating: "))
+            title = detail.split(" ")[0]
+            feedback = Feedback(title,detail, rating)
+            createFeedbackDB(feedback)
+            
+            print("Feedback added")
+        else:
+            break
 
     
 if __name__ == "__main__":
-    news = getAllNews()
-    print(news)
+    feedbackMain()
