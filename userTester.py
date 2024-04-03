@@ -85,11 +85,13 @@ def bookingMain():
             partySize = int(input("Enter party size: "))
             persons = input("Enter persons: ")
             userNotes = input("Enter user notes: ")
-            status = checkBookingAvailable(time, date, partySize, course)
-            if status:
-                updateMealBooking(course, date, time, partySize)
-                booking = Booking(time, date, partySize, persons, userNotes)
-                addUserBooking(booking)
+            # status = checkBookingAvailable(time, date, partySize, course)
+            # if status:
+            #     updateMealBooking(course, date, time, partySize)
+            #     booking = Booking(time, date, partySize, persons, userNotes)
+            #     addUserBooking(booking)
+            res = UserServices.reservation(userID, course, time, date, partySize, persons, userNotes)
+            print(res)
         else:
             break
     

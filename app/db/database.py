@@ -69,24 +69,24 @@ def news_id():
     root.news_id += 1
     return root.news_id
 
-def getClient(username):
-    for client in root.clients.values():
-        if client.username == username:
-            return client
-    return None
+# def getClient(username):
+#     for client in root.clients.values():
+#         if client.username == username:
+#             return client
+#     return None
 
-def getAdmin(username):
-    for admin in root.admins.values():
-        if admin.username == username:
-            return admin
-    return None
+# def getAdmin(username):
+#     for admin in root.admins.values():
+#         if admin.username == username:
+#             return admin
+#     return None
 
-def getClientInfo(clientID):
+def getClientDBInfo(clientID):
     for client in root.clients.values():
         if client.id == clientID:
             return client
 
-def getAdminInfo(adminID):
+def getAdminDBInfo(adminID):
     for admin in root.admins.values():
         if admin.id == adminID:
             return admin
@@ -108,10 +108,10 @@ def assignRole(email):
         return "client"
     
 # check database
-def getAllClients():
+def getAllClientsDB():
     return [client.toJson() for client in root.clients.values()]
 
-def getAllAdmins():
+def getAllAdminsDB():
     return [admin.toJson() for admin in root.admins.values()]
 
 def clearDB():
@@ -123,7 +123,7 @@ def clearDB():
 def getAllBookings():
     return [booking.toJson() for booking in root.booking.values()]
 
-def getBooking(bookingID):
+def getBookingDB(bookingID):
     for booking in root.booking.values():
         if booking.bookingID == bookingID:
             return booking
@@ -152,7 +152,7 @@ def registerMembership(clientID,membership):
 #     transaction.commit()
 
 
-def checkMembership(clientID):
+def checkMembershipDB(clientID):
     for client in root.clients.values():
         if client.id == clientID and client.membership != None:
             return client.membership
@@ -193,7 +193,7 @@ def generateMealBooking(meal_type, t_time, t_left, num_bookings):
         getattr(root, f'{meal_type}Booking')[booking_key] = booking_data
         transaction.commit()
 
-def getAllMealBookings(meal_type):
+def getAllMealBookingsDB(meal_type):
     # print data for each booking
     print(f'All {meal_type} bookings:')
     for booking_key in getattr(root, f'{meal_type}Booking'):
@@ -278,7 +278,7 @@ def getNotifications(clientID):
         if client.id == clientID:
             return client.notifications
         
-def addCourseMenu(courseType, courseLink):
+def addCourseMenuDB(courseType, courseLink):
     if courseType in root.courseMenu:
         autoRemoveCourseMenu(courseType)
     course = CourseMenu(courseType, courseLink)
@@ -293,7 +293,7 @@ def autoRemoveCourseMenu(courseType):
     print("Course Menu Removed")
     return True
         
-def getCourseMenu(type):
+def getCourseMenuDB(type):
     for course in root.courseMenu.values():
         if course.type == type:
             return course.links
