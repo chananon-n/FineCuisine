@@ -227,10 +227,13 @@ class MainPage(QMainWindow, mainPage):
         self.feedbackListWidget.clear()
         allFeedbacks = userServices.getAllFeedbacks()
         for feedbackItem in allFeedbacks:
-            if feedbackItem['title'] == "" and feedbackItem['detail'] == "":
-                self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5")
-            else:
-                self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
+            feedback_text = f"Rating: {feedbackItem['rating']}/5"
+            if feedbackItem['title']== "": 
+                feedback_text += f"\n{feedbackItem['title']}"
+            if feedbackItem['detail']== "":
+                feedback_text += f"\n{feedbackItem['detail']}"
+            
+            self.feedbackListWidget.insertItem(0, feedback_text)
             #set font size
             self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
             #set font color
@@ -249,13 +252,9 @@ class MainPage(QMainWindow, mainPage):
             alert.setText("Please rate the service")
             alert.exec()
             return 
-        data = self.feedbackTextBox.toPlainText()
-        title = self.lineEdit.text()
+        title = self.feedbackTitle.text()
         detail = self.feedbackTextBox.toPlainText()
-        if not data:
-            userServices.createNewFeedback("", "", rating) 
-        else:
-            userServices.createNewFeedback(title, detail, rating)
+        userServices.createNewFeedback("", "", rating) 
         self.addFeedback()
     
     
