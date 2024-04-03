@@ -127,7 +127,8 @@ def feedbackMain():
         elif choice == 2:
             detail = input("Enter feedback: ")
             rating = int(input("Enter rating: "))
-            feedback = Feedback(detail, rating)
+            title = detail.split(" ")[0]
+            feedback = Feedback(title,detail, rating)
             createFeedbackDB(feedback)
             
             print("Feedback added")
