@@ -90,12 +90,20 @@ class dataManager:
         return updateBookingStatus(bookingID, status)
    
     def checkBookingAvailable(time, date, partySize, mealType):
-        bookInfo = getMealBooking(mealType, date, time)
-        if bookInfo.totalSize >= partySize:
+        print("\nChecking booking availability")
+
+        print("Time: ", time)
+        print("Date: ", date)
+        print("Party Size: ", partySize)
+        print("Meal Type: ", mealType)
+
+        booking = getMealBooking(mealType, date, time)
+        print(booking)
+        if booking == None:
+            print(booking)
             return True
-        else:
-            return False     
-        
+        return False
+            
     def registerMembership(clientID, fname, lname, dateOfBirth):
         dateExpired = datetime.now() + timedelta(days=365)
         formatedDate = dateExpired.strftime("%d/%m/%Y")

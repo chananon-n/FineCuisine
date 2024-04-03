@@ -1,7 +1,7 @@
 import datetime
 import random
 import ZODB, ZODB.FileStorage
-import BTrees.OOBTree
+import BTrees
 
 import transaction
 
@@ -188,10 +188,12 @@ def clearMealBookings(meal_type):
     getattr(root, f'{meal_type}Booking').clear()
     transaction.commit()
     
+@staticmethod
 def getMealBooking(meal_type, t_date, t_time):
     for booking in getattr(root, f'{meal_type}Booking').values():
         if booking.date == t_date and booking.time == t_time:
             return booking
+    return None
         
 def clearUserBookings():
     root.booking.clear()

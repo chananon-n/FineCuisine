@@ -37,13 +37,25 @@ class UserServices:
         else:
             return False
     
-    def reservation(clientID, course, date, time, partySize, persons, userNotes):
-        checkAvailable = dataManager.checkBookingAvailable(time,date,partySize,course)
+    def reservation(self, clientID, course, date, time, partySize, persons, userNotes):
+
+        print("\nReservation")
+
+        print("Client ID: ", clientID)
+        print("Course: ", course)
+        print("Date: ", date)
+        print("Time: ", time)
+        print("Party Size: ", partySize)
+        print("Persons: ", persons)
+        print("User Notes: ", userNotes)
+
+        print(dataManager.checkBookingAvailable(time, date, partySize, course))
+        checkAvailable = dataManager.checkBookingAvailable(time, date, partySize, course)
 
         if checkAvailable:
-            dataManager.updateMealBooking(course,date,time,partySize)
-            dataManager.addBookingDB(clientID,course,time,date,partySize,persons,userNotes)
-            dataManager.addNotification(clientID,"Your booking has been confirmed")
+            dataManager.updateMealBooking(course, date, time, partySize)
+            dataManager.addBookingDB(clientID, course, time, date, partySize, persons, userNotes)
+            dataManager.addNotification(clientID, "Your booking has been confirmed")
             return True
         else:
             print("Booking not available")
@@ -103,8 +115,3 @@ class UserServices:
         if currentMonth == userMonth:
             return True
         return False
-        
-    
-    
-        
-    

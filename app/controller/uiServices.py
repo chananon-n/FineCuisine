@@ -431,21 +431,38 @@ class ReservationPage(QMainWindow, reservationPage):
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         
     def confirmReservation(self):
-        alert =QtWidgets.QMessageBox()
+        alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
-            print(f"Reservation confirmed! This Client: {userID} \n{self.date.toString('dd/MM/yyyy')}, {self.reservationName.text()}, {self.course.currentText()}, {self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
-            alert =QtWidgets.QMessageBox()
-            alert.setText("Reservation confirmed!")
-            alert.exec()
-            self.mainPage.show()
-            self.mainPage.openHomePage()
-            self.hide()
-        else:
-            pass
+            course = self.course.currentText()
+            time = self.time.currentText()
+            date = self.date.toString("dd/MM/yyyy")
+            partySize = int(self.size.currentText())
+            persons = self.reservationName.text()
+            userNotes = self.additionNote.toPlainText()
+
+            print("User ID is: ", userID)
+            print("Course is:", course)
+            print("Date is:", date)
+            print("Time is:", time)
+            print("Party size is:", partySize)
+            print("Persons is:", persons)
+            print("User notes is:", userNotes)
+
+            if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation confirmed!")
+                alert.exec()
+                self.mainPage.show()
+                self.mainPage.openHomePage()
+                self.hide()
+            else:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation failed. Please try again.")
+                alert.exec()
     
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
