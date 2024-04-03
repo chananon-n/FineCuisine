@@ -306,6 +306,7 @@ def clearCourseMenu():
 def addNews(information):
     root.news[information.id] = information
     transaction.commit()
+    print("News Added")
     return True
 
 def getAllNews():
@@ -317,3 +318,9 @@ def getNewsInformation(newsID):
             return news
     return False
 
+def delNews():
+    root.news.clear()
+    #set id to 0
+    root.news_id = 0
+    transaction.commit()
+    return True

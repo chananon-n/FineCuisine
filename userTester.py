@@ -118,6 +118,5 @@ def membershipMain():
 
     
 if __name__ == "__main__":
-    info = getAllNews()
-    for i in info:
-        print(i['title'])
+    news = getAllNews()
+    print(news)

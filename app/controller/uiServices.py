@@ -1,7 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem
 from PySide6.QtGui import QImage, QPixmap
 from app.controller.userServices import *
 import transaction
@@ -531,23 +531,18 @@ class NewsPage(QMainWindow, newsPage):
         self.hide()
         
     def openNews(self, item):
-        newsID = 0
-        for title, id in self.mapIDandTitle:
-            if title == item.text():
-                newsID = id
-                break
-        self.news = userServices.getNewInfo(newsID).toJson()
-        self.newsDetail = NewsDetail(self.news)
-        self.newsDetail.show()
+        newsID = item.data(QtCore.Qt.UserRole)
+        news = userServices.getNewInfo(newsID).toJson()
+        self.newsDetail = NewsDetail(news)
+        self.newsDetail.show()  
     
     def updateNews(self):
         self.listWidget.clear()
         newsList = userServices.getAllNews()
-        curentmap = []
-        for news in newsList:
-            self.listWidget.insertItem(0, news["title"])
-            curentmap.append((news["title"], news["id"]))
-        self.mapIDandTitle = curentmap
+        for newsItem in newsList:
+            news = QListWidgetItem(newsItem['title'])
+            news.setData(QtCore.Qt.UserRole, newsItem['id'])
+            self.listWidget.insertItem(0, news)
     
 class NewsDetail(QMainWindow, newsDetail):
     def __init__(self, news):
