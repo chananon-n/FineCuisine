@@ -427,7 +427,7 @@ class Ui_MainWindow(object):
         self.feedbackTextBox.setLineWrapMode(QTextEdit.WidgetWidth)
         self.radioWidget = QWidget(self.feedbackPage)
         self.radioWidget.setObjectName(u"radioWidget")
-        self.radioWidget.setGeometry(QRect(640, 230, 391, 61))
+        self.radioWidget.setGeometry(QRect(640, 170, 391, 61))
         self.layoutWidget = QWidget(self.radioWidget)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(20, 30, 375, 20))
@@ -518,6 +518,16 @@ class Ui_MainWindow(object):
 "")
         self.feedbackListWidget.setAutoScroll(True)
         self.feedbackListWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.feedbackUserTitle = QTextEdit(self.feedbackPage)
+        self.feedbackUserTitle.setObjectName(u"feedbackUserTitle")
+        self.feedbackUserTitle.setGeometry(QRect(650, 253, 351, 51))
+        self.feedbackUserTitle.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 700 14pt \"KoHo\";\n"
+"background-color: rgb(255, 255, 255);\n"
+"padding: 8px;\n"
+"border: 0;\n"
+"border-radius: 8px;\n"
+"")
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -599,5 +609,6 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
         self.feedbackListWidget.setSortingEnabled(__sortingEnabled)
 
+        self.feedbackUserTitle.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Title", None))
     # retranslateUi
 
