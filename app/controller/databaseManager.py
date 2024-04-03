@@ -15,81 +15,110 @@ class dataManager:
     def validateUserLogin(username, password):
         return checkUser(username, password)
     
+    @staticmethod
     def getAllClients():
         return getAllClientsDB()
     
+    @staticmethod
     def getAllAdmin():
         return getAllAdminsDB()
     
+    @staticmethod
     def validationUserRegister(email):
         return assignRole(email)
     
+    @staticmethod
     def getClient(username):
         return getClient(username)
     
+    @staticmethod
     def getAdmin(username):
         return getAdmin(username)
     
+    @staticmethod
     def getClientInfo(clientID):
         return getClientDBInfo(clientID)
     
+    @staticmethod
     def getAdminInfo(adminID):
         return getAdminDBInfo(adminID)
     
+    @staticmethod
     def registerAdmin(username, password, email, phone):
         user = Admin(username, password, email, phone)
         root.admins[user.id] = user
         transaction.commit()
-        
+
+    @staticmethod    
     def registerClient(username, password, email, phone):
         user = Client(username, password, email, phone)
         root.clients[user.id] = user
         transaction.commit()
         return user
-        
+    
+    @staticmethod
     def createMealBooking(mealType, date, time, number):
         generateMealBooking(mealType, date, time, number)
         return True
     
+    @staticmethod
     def getBooking(bookingID):
         return getBookingDB(bookingID)
     
+    @staticmethod
     def getAllUserBookings():
         return getAllBookings()
     
+    @staticmethod
     def getAllMealBookings(mealType):
         return getAllMealBookingsDB(mealType)
     
     def getBooking(mealType, date, time):
         return getMealBooking(mealType, date, time)
     
+    @staticmethod
     def clearBookingDB():
         clearMealBookings()
-        
+    
+    @staticmethod
     def clearUserBookingDB():
         clearUserBookings()
     
-    def addBookingDB(clientID, course, time, date, partySize, persons, userNotes):
-        booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
+    @staticmethod
+    def addBookingDB(booking):
         addUserBooking(booking)
-        return True
+        return booking.bookingID
     
+    @staticmethod
     def getUserBookings(clientID):
         return getUserBookings(clientID)
     
+    @staticmethod
     def updateMealBooking(mealType, date, time, partySize):
         return updateMealBookingDB(mealType, date, time, partySize)
     
+    @staticmethod
     def changeBookingStatus(bookingID, status):
-        return updateBookingStatus(bookingID, status)
+        updateBookingStatus(bookingID, status)
+        booking = getBooking(bookingID)
+        clientID = booking.clientID
+        if status == "Confirmed":
+            notificationMessage = f"Your booking for {booking.course} on {booking.date} at {booking.time} has been confirmed."
+            dataManager.addNotification(clientID, notificationMessage)
+        elif status == "Cancelled":
+            notificationMessage = f"Your booking for {booking.course} on {booking.date} at {booking.time} has been cancelled."
+            dataManager.addNotification(clientID, notificationMessage)
+        return True
    
+    @staticmethod
     def checkBookingAvailable(time, date, partySize, mealType):
         bookInfo = getMealBooking(mealType, date, time)
-        if bookInfo['T_LEFT'] >= partySize:
+        if bookInfo is not None and bookInfo.get('T_LEFT', 0) >= partySize:
             return True
         else:
-            return False     
-        
+            return False  
+
+    @staticmethod    
     def registerMembership(clientID, fname, lname, dateOfBirth):
         dateExpired = datetime.now() + timedelta(days=365)
         formatedDate = dateExpired.strftime("%d/%m/%Y")
@@ -101,9 +130,11 @@ class dataManager:
         }
         return registerMembership(clientID, data)
     
+    @staticmethod
     def checkMembership(clientID):
         return checkMembershipDB(clientID)
     
+    @staticmethod
     def checkDuplicateUser(username, email):
         clientInfo = getAllClientsDB()
         adminInfo = getAllAdminsDB()
@@ -117,27 +148,39 @@ class dataManager:
                 return False
         return True
     
+    @staticmethod
     def addNotification(clientID,notification):
         return createNotification(clientID,notification)
     
+    @staticmethod
     def getUserNotifications(clientID):
-        return getNotifications(clientID)
-    
+        client = root.clients.get(clientID)
+        if client:
+            notifications = client.notifications
+            return [notification.message for notification in notifications]
+        else:
+            return []
+        
     # Course Menu
+    @staticmethod
     def addCourseMenu(type, links):
         return addCourseMenuDB(type, links)
     
+    @staticmethod
     def getCourseMenu(courseType):
         return getCourseMenuDB(courseType)
     
+    @staticmethod
     def addNews(title,image,details,PostDate):
         new = News(title,image,details,PostDate)
         addNews(new)
         return True
     
+    @staticmethod
     def getNews():
         return getAllNews()
     
+    @staticmethod
     def getNewByID(id):
         data = getNewsInformation(id)
         return data
