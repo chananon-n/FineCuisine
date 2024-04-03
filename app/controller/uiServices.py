@@ -107,6 +107,10 @@ class MainPage(QMainWindow, mainPage):
         self.setupUi(self)
         self.pageWidget.setCurrentIndex(0)
         
+        rating = self.findaverageFeedbackRating()
+        
+        self.label_2.setText(f"Rating: {rating:.1f}/5")
+        
         #sidebar buttons
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
@@ -121,10 +125,16 @@ class MainPage(QMainWindow, mainPage):
         
         self.logoutBtn.clicked.connect(self.logout)
         
+    def findaverageFeedbackRating(self):
+        feedbacks = userServices.getAllFeedbacks()
+        totalRating = 0
+        for feedback in feedbacks:
+            totalRating += feedback['rating']
+            print(feedback['rating'])
+        return totalRating/len(feedbacks)
+        
     def openHomePage(self):
         self.pageWidget.setCurrentIndex(0)
-        
-        self.courseBtn.clicked.connect(self.openCoursePage)
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
@@ -218,7 +228,6 @@ class MainPage(QMainWindow, mainPage):
         self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
         self.addFeedback()
         
-    
     def addFeedback(self):
         #unchecked all radio buttons
         self.feedbackListWidget.clear()
@@ -235,6 +244,7 @@ class MainPage(QMainWindow, mainPage):
             self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
             #set font color
             self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+            
     def submitFeedback(self):
         rating = None
         for i in range(6): 
@@ -382,6 +392,7 @@ class ReservationPage(QMainWindow, reservationPage):
         self.additionNote = self.findChild(QtWidgets.QTextEdit, "noteTextEdit")
         
         self.confirmBtn.clicked.connect(self.confirmReservation)
+        
     def openHomePage(self):
         self.mainPage.show()
         self.mainPage.openHomePage()
@@ -573,6 +584,16 @@ class NewsDetail(QMainWindow, newsDetail):
         
         self.newsTitle.setText(news["title"])
         pixmap = self.convert_to_qpixmap(news["image"])
+        if pixmap.width() > pixmap.height():
+            aspect_ratio = pixmap.height() / pixmap.width()
+            label_width = 841
+            label_height = int(label_width * aspect_ratio)
+            self.neswImage.setFixedSize(label_width, label_height)
+        else:
+            aspect_ratio = pixmap.width() / pixmap.height()
+            label_height = 1100
+            label_width = int(label_height * aspect_ratio)
+            self.neswImage.setFixedSize(label_width, label_height)
         self.neswImage.setPixmap(QtGui.QPixmap(pixmap))
         self.newsDetail.setText(news["details"])
         self.newsDate.setText(news["datePost"])
@@ -626,7 +647,7 @@ class MenuAdjustPage(QMainWindow, courseAdminPage):
         
         self.logoutBtn.clicked.connect(self.backtoAdminMain)
         
-        
+
     def submit(self):
         if self.courseComboBox.currentText() and self.linkInput.text():
             alert =QtWidgets.QMessageBox()

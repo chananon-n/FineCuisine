@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'first.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -141,16 +141,22 @@ class Ui_MainWindow(object):
         self.titleLabel = QLabel(self.homePage)
         self.titleLabel.setObjectName(u"titleLabel")
         self.titleLabel.setGeometry(QRect(10, 0, 431, 100))
+        font = QFont()
+        font.setFamilies([u"Arial"])
+        font.setPointSize(80)
+        font.setBold(True)
+        font.setItalic(False)
+        self.titleLabel.setFont(font)
         self.titleLabel.setStyleSheet(u"color: #7E1615;\n"
-"font: 700 80pt \"KoHo\";")
+"font: 700 80pt \"Arial\";")
         self.detailLabel = QLabel(self.homePage)
         self.detailLabel.setObjectName(u"detailLabel")
         self.detailLabel.setGeometry(QRect(20, 100, 1060, 200))
         self.detailLabel.setMaximumSize(QSize(1060, 200))
-        font = QFont()
-        font.setFamilies([u"KoHo"])
-        font.setPointSize(24)
-        self.detailLabel.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Arial"])
+        font1.setPointSize(24)
+        self.detailLabel.setFont(font1)
         self.detailLabel.setLayoutDirection(Qt.LeftToRight)
         self.detailLabel.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.detailLabel.setWordWrap(True)
@@ -184,6 +190,15 @@ class Ui_MainWindow(object):
         self.picNews.setGeometry(QRect(830, 310, 320, 350))
         self.picNews.setPixmap(QPixmap(u":/icon/picBtn_1.jpeg"))
         self.picNews.setScaledContents(True)
+        self.starPic = QLabel(self.homePage)
+        self.starPic.setObjectName(u"starPic")
+        self.starPic.setGeometry(QRect(930, 20, 32, 32))
+        self.starPic.setPixmap(QPixmap(u":/icon/star.png"))
+        self.starPic.setScaledContents(True)
+        self.label_2 = QLabel(self.homePage)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(980, 20, 101, 31))
+        self.label_2.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.pageWidget.addWidget(self.homePage)
         self.titleLabel.raise_()
         self.detailLabel.raise_()
@@ -193,6 +208,8 @@ class Ui_MainWindow(object):
         self.courseBtn.raise_()
         self.reservationBtn.raise_()
         self.newsBtn.raise_()
+        self.starPic.raise_()
+        self.label_2.raise_()
         self.userinfoPage = QWidget()
         self.userinfoPage.setObjectName(u"userinfoPage")
         self.picUser = QLabel(self.userinfoPage)
@@ -242,13 +259,13 @@ class Ui_MainWindow(object):
         self.membershipLabel = QLabel(self.userinfoPage)
         self.membershipLabel.setObjectName(u"membershipLabel")
         self.membershipLabel.setGeometry(QRect(600, 140, 131, 31))
-        font1 = QFont()
-        font1.setFamilies([u"KoHo"])
-        font1.setPointSize(24)
-        font1.setBold(True)
-        font1.setItalic(False)
-        font1.setUnderline(True)
-        self.membershipLabel.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies([u"KoHo"])
+        font2.setPointSize(24)
+        font2.setBold(True)
+        font2.setItalic(False)
+        font2.setUnderline(True)
+        self.membershipLabel.setFont(font2)
         self.membershipLabel.setStyleSheet(u"font: 700 24pt \"KoHo\";\n"
 "color: black;\n"
 "")
@@ -357,20 +374,20 @@ class Ui_MainWindow(object):
         self.historyTable = QTableWidget(self.historyPage)
         if (self.historyTable.columnCount() < 4):
             self.historyTable.setColumnCount(4)
-        font2 = QFont()
-        font2.setFamilies([u"KoHo"])
-        font2.setPointSize(14)
+        font3 = QFont()
+        font3.setFamilies([u"KoHo"])
+        font3.setPointSize(14)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font2);
+        __qtablewidgetitem.setFont(font3);
         self.historyTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setFont(font2);
+        __qtablewidgetitem1.setFont(font3);
         self.historyTable.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font2);
+        __qtablewidgetitem2.setFont(font3);
         self.historyTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        __qtablewidgetitem3.setFont(font2);
+        __qtablewidgetitem3.setFont(font3);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
@@ -399,10 +416,10 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
-        font3 = QFont()
-        font3.setFamilies([u"Arial"])
-        font3.setPointSize(20)
-        self.label.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Arial"])
+        font4.setPointSize(20)
+        self.label.setFont(font4)
         self.label.setStyleSheet(u"color: black;")
         self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
         self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
@@ -417,9 +434,9 @@ class Ui_MainWindow(object):
         self.feedbackTextBox = QTextEdit(self.feedbackPage)
         self.feedbackTextBox.setObjectName(u"feedbackTextBox")
         self.feedbackTextBox.setGeometry(QRect(650, 310, 351, 191))
-        font4 = QFont()
-        font4.setPointSize(16)
-        self.feedbackTextBox.setFont(font4)
+        font5 = QFont()
+        font5.setPointSize(16)
+        self.feedbackTextBox.setFont(font5)
         self.feedbackTextBox.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "padding: 8px;\n"
@@ -483,18 +500,18 @@ class Ui_MainWindow(object):
         self.label_7 = QLabel(self.feedbackPage)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(640, 150, 151, 41))
-        font5 = QFont()
-        font5.setFamilies([u"Arial"])
-        font5.setPointSize(14)
-        font5.setBold(False)
-        font5.setItalic(False)
-        font5.setUnderline(True)
-        self.label_7.setFont(font5)
+        font6 = QFont()
+        font6.setFamilies([u"Arial"])
+        font6.setPointSize(14)
+        font6.setBold(False)
+        font6.setItalic(False)
+        font6.setUnderline(True)
+        self.label_7.setFont(font6)
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
         self.feedbackListWidget = QListWidget(self.feedbackPage)
         __qlistwidgetitem = QListWidgetItem(self.feedbackListWidget)
-        __qlistwidgetitem.setFont(font2);
+        __qlistwidgetitem.setFont(font3);
         self.feedbackListWidget.setObjectName(u"feedbackListWidget")
         self.feedbackListWidget.setGeometry(QRect(60, 130, 501, 541))
         self.feedbackListWidget.setStyleSheet(u"QListWidget {\n"
@@ -539,7 +556,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(4)
+        self.pageWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -561,6 +578,8 @@ class Ui_MainWindow(object):
         self.picReservation.setText("")
         self.newsBtn.setText(QCoreApplication.translate("MainWindow", u"News", None))
         self.picNews.setText("")
+        self.starPic.setText("")
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Rating", None))
         self.picUser.setText("")
         self.uidLabel.setText(QCoreApplication.translate("MainWindow", u"UID:", None))
         self.userID.setText(QCoreApplication.translate("MainWindow", u"1234", None))

@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -256,9 +256,17 @@ background-color: rgb(198, 52, 40);
               <height>100</height>
              </rect>
             </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>80</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: #7E1615;
-font: 700 80pt &quot;KoHo&quot;;</string>
+font: 700 80pt &quot;Arial&quot;;</string>
             </property>
             <property name="text">
              <string>Fine Cuisine</string>
@@ -281,7 +289,7 @@ font: 700 80pt &quot;KoHo&quot;;</string>
             </property>
             <property name="font">
              <font>
-              <family>KoHo</family>
+              <family>Arial</family>
               <pointsize>24</pointsize>
              </font>
             </property>
@@ -406,6 +414,41 @@ border-radius: 12px;</string>
              <bool>true</bool>
             </property>
            </widget>
+           <widget class="QLabel" name="starPic">
+            <property name="geometry">
+             <rect>
+              <x>930</x>
+              <y>20</y>
+              <width>32</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/star.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+            <property name="geometry">
+             <rect>
+              <x>980</x>
+              <y>20</y>
+              <width>101</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Rating</string>
+            </property>
+           </widget>
            <zorder>titleLabel</zorder>
            <zorder>detailLabel</zorder>
            <zorder>picCourse</zorder>
@@ -414,6 +457,8 @@ border-radius: 12px;</string>
            <zorder>courseBtn</zorder>
            <zorder>reservationBtn</zorder>
            <zorder>newsBtn</zorder>
+           <zorder>starPic</zorder>
+           <zorder>label_2</zorder>
           </widget>
           <widget class="QWidget" name="userinfoPage">
            <widget class="QLabel" name="picUser">
