@@ -19,6 +19,7 @@ from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
 from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdminPage
 from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
 from app.gui.reservationAdminPage.reservationAdminPage import Ui_MainWindow as reservationAdminPage
+from app.gui.adminFeedback.adminFeedbackPage import Ui_MainWindow as adminFeedbackPage
 
 from datetime import datetime
 import webbrowser
@@ -748,3 +749,11 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()
         self.hide()
+
+class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        
+        self.backBtn.clicked.connect(self.backtoAdminMain)
