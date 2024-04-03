@@ -77,7 +77,7 @@ class dataManager:
         return getUserBookings(clientID)
     
     def updateMealBooking(mealType, date, time, partySize):
-        return updateMealBooking(mealType, date, time, partySize)
+        return updateMealBookingDB(mealType, date, time, partySize)
     
     def changeBookingStatus(bookingID, status):
         return updateBookingStatus(bookingID, status)

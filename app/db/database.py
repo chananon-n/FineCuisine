@@ -213,7 +213,7 @@ def clearUserBookings():
     root.booking.clear()
     transaction.commit()
     
-def updateMealBooking(meal_type, t_date, t_time, t_left):
+def updateMealBookingDB(meal_type, t_date, t_time, t_left):
     for booking in getattr(root, f'{meal_type}Booking').values():
         if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
             booking['T_LEFT'] -= t_left
