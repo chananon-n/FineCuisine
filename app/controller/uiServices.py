@@ -232,7 +232,8 @@ class MainPage(QMainWindow, mainPage):
                 rating = i
                 print(rating)
                 break 
-        if not rating:
+            
+        if rating == None:
             alert = QtWidgets.QMessageBox()
             alert.setText("Please rate the service")
             alert.exec()
