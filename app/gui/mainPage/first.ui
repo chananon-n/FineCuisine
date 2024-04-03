@@ -1218,23 +1218,22 @@ QListWidget::item {
              </property>
             </item>
            </widget>
-           <widget class="QTextEdit" name="feedbackUserTitle">
+           <widget class="QLineEdit" name="lineEdit">
             <property name="geometry">
              <rect>
               <x>650</x>
-              <y>253</y>
+              <y>260</y>
               <width>351</width>
-              <height>51</height>
+              <height>41</height>
              </rect>
             </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(0, 0, 0);
-font: 700 14pt &quot;KoHo&quot;;
+font: 700 18pt &quot;KoHo&quot;;
 background-color: rgb(255, 255, 255);
 padding: 8px;
 border: 0;
-border-radius: 8px;
-</string>
+border-radius: 8px;</string>
             </property>
             <property name="placeholderText">
              <string>Title</string>
