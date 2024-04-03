@@ -110,8 +110,6 @@ class MainPage(QMainWindow, mainPage):
         
         rating = self.findaverageFeedbackRating()
         
-        self.label_2.setText(f"Rating: {rating:.1f}/5")
-        
         #sidebar buttons
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
@@ -127,12 +125,16 @@ class MainPage(QMainWindow, mainPage):
         self.logoutBtn.clicked.connect(self.logout)
         
     def findaverageFeedbackRating(self):
-        feedbacks = userServices.getAllFeedbacks()
-        totalRating = 0
-        for feedback in feedbacks:
-            totalRating += feedback['rating']
-            print(feedback['rating'])
-        return totalRating/len(feedbacks)
+        if userServices.getAllFeedbacks() == []:
+            self.label_2.setText("No rating yet")
+        else:
+            feedbacks = userServices.getAllFeedbacks()
+            totalRating = 0
+            for feedback in feedbacks:
+                totalRating += feedback['rating']
+                print(feedback['rating'])
+                result = totalRating/len(feedbacks)
+                self.label_2.setText(f"Rating: {result:.1f}/5")
         
     def openHomePage(self):
         self.pageWidget.setCurrentIndex(0)
