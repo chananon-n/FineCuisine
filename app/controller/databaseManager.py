@@ -47,8 +47,8 @@ class dataManager:
         transaction.commit()
         return user
         
-    def createMealBooking(mealType, date, time, number):
-        generateMealBooking(mealType, date, time, number)
+    def createMealBooking(mealType, time, partySize, numberBooking):
+        generateMealBooking(mealType, time,partySize, numberBooking)
         return True
     
     def getBooking(bookingID):
