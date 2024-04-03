@@ -85,11 +85,13 @@ def bookingMain():
             partySize = int(input("Enter party size: "))
             persons = input("Enter persons: ")
             userNotes = input("Enter user notes: ")
-            status = checkBookingAvailable(time, date, partySize, course)
-            if status:
-                updateMealBooking(course, date, time, partySize)
-                booking = Booking(time, date, partySize, persons, userNotes)
-                addUserBooking(booking)
+            # status = checkBookingAvailable(time, date, partySize, course)
+            # if status:
+            #     updateMealBooking(course, date, time, partySize)
+            #     booking = Booking(time, date, partySize, persons, userNotes)
+            #     addUserBooking(booking)
+            res = UserServices.reservation(userID, course, time, date, partySize, persons, userNotes)
+            print(res)
         else:
             break
     
@@ -113,9 +115,26 @@ def membershipMain():
             registerMembership(userID, data)
         else:
             break
+        
+def feedbackMain():
+    while True:
+        print("1. View feedback")
+        print("2. Make feedback")
+        print("3. Logout")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            print(getAllFeedbacksDB())
+        elif choice == 2:
+            detail = input("Enter feedback: ")
+            rating = int(input("Enter rating: "))
+            title = detail.split(" ")[0]
+            feedback = Feedback(title,detail, rating)
+            createFeedbackDB(feedback)
+            
+            print("Feedback added")
+        else:
+            break
 
     
 if __name__ == "__main__":
-    info = getAllNews()
-    for i in info:
-        print(i['title'])
+    feedbackMain()

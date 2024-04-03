@@ -1,5 +1,6 @@
 from app.db.database import *
 from app.model.booking import Booking
+from app.model.feedback import Feedback
 from app.model.user import *
 from app.model.courseDetail import CourseMenu
 from app.model.news import *
@@ -16,11 +17,11 @@ class dataManager:
     
     @staticmethod
     def getAllClients():
-        return getAllClients()
+        return getAllClientsDB()
     
     @staticmethod
     def getAllAdmin():
-        return getAllAdmins()
+        return getAllAdminsDB()
     
     @staticmethod
     def validationUserRegister(email):
@@ -36,13 +37,13 @@ class dataManager:
     
     @staticmethod
     def getClientInfo(clientID):
-        return getClientInfo(clientID)
-
-    @staticmethod    
+        return getClientDBInfo(clientID)
+    
+    @staticmethod
     def getAdminInfo(adminID):
-        return getAdminInfo(adminID)
-
-    @staticmethod 
+        return getAdminDBInfo(adminID)
+    
+    @staticmethod
     def registerAdmin(username, password, email, phone):
         user = Admin(username, password, email, phone)
         root.admins[user.id] = user
@@ -54,15 +55,15 @@ class dataManager:
         root.clients[user.id] = user
         transaction.commit()
         return user
-
-    @staticmethod    
-    def createMealBooking(mealType, date, time, partySize):
-        generateMealBooking(mealType, date, time, partySize)
+    
+    @staticmethod
+    def createMealBooking(mealType, date, time, number):
+        generateMealBooking(mealType, date, time, number)
         return True
     
     @staticmethod
     def getBooking(bookingID):
-        return getBooking(bookingID)
+        return getBookingDB(bookingID)
     
     @staticmethod
     def getAllUserBookings():
@@ -70,9 +71,8 @@ class dataManager:
     
     @staticmethod
     def getAllMealBookings(mealType):
-        return getAllMealBookings(mealType)
-
-    @staticmethod    
+        return getAllMealBookingsDB(mealType)
+    
     def getBooking(mealType, date, time):
         return getMealBooking(mealType, date, time)
     
@@ -95,7 +95,7 @@ class dataManager:
     
     @staticmethod
     def updateMealBooking(mealType, date, time, partySize):
-        return updateMealBooking(mealType, date, time, partySize)
+        return updateMealBookingDB(mealType, date, time, partySize)
     
     @staticmethod
     def changeBookingStatus(bookingID, status):
@@ -132,12 +132,12 @@ class dataManager:
     
     @staticmethod
     def checkMembership(clientID):
-        return checkMembership(clientID)
+        return checkMembershipDB(clientID)
     
     @staticmethod
     def checkDuplicateUser(username, email):
-        clientInfo = getAllClients()
-        adminInfo = getAllAdmins()
+        clientInfo = getAllClientsDB()
+        adminInfo = getAllAdminsDB()
         for client in clientInfo:
             if username == client['username'] or email == client['email']:
                 print("Username or email already exists")
@@ -164,11 +164,11 @@ class dataManager:
     # Course Menu
     @staticmethod
     def addCourseMenu(type, links):
-        return addCourseMenu(type, links)
+        return addCourseMenuDB(type, links)
     
     @staticmethod
     def getCourseMenu(courseType):
-        return getCourseMenu(courseType)
+        return getCourseMenuDB(courseType)
     
     @staticmethod
     def addNews(title,image,details,PostDate):
@@ -185,7 +185,17 @@ class dataManager:
         data = getNewsInformation(id)
         return data
 
-
+    def addFeedback(title,description, rating):
+        feedback = Feedback(title,description, rating)
+        createFeedbackDB(feedback)
+        return True
+    
+    def getFeedbackInfo(feedbackID):
+        return getFeedbacksByID(feedbackID)
+    
+    def getFeedbacks():
+        return getAllFeedbacksDB()
+  
     
         
         

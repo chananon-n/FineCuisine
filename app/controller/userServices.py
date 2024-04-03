@@ -37,9 +37,9 @@ class UserServices:
         else:
             return False
     
-    def reservation(self, clientID, course, time, date, partySize, persons, userNotes):
-        booking = Booking(clientID, course, time, date, partySize, persons, userNotes)
-        checkAvailable = dataManager.checkBookingAvailable(booking.time, booking.date, booking.partySize, booking.course)
+    def reservation(self,bookingInfo):
+        checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
+        print(checkAvailable)
 
         if checkAvailable:
             membership = dataManager.checkMembership(booking.clientID)
@@ -82,6 +82,20 @@ class UserServices:
     def getNewInfo(self,id):
         data = dataManager.getNewByID(id)
         return data
+    
+    def createNewFeedback(self,title,description,rating):
+        dataManager.addFeedback(title,description,rating)
+        return True
+    
+    def getAllFeedbacks(self):
+        data = dataManager.getFeedbacks()
+        return data
+    
+    def getFeedback(self,id):
+        data = dataManager.getFeedbackInfo(id)
+        
+        
+    
     
     
         
