@@ -250,10 +250,12 @@ class MainPage(QMainWindow, mainPage):
             alert.exec()
             return 
         data = self.feedbackTextBox.toPlainText()
+        title = self.lineEdit.text()
+        detail = self.feedbackTextBox.toPlainText()
         if not data:
             userServices.createNewFeedback("", "", rating) 
         else:
-            userServices.createNewFeedback(self.feedbackUserTitle, self.feedbackTextBox, rating)
+            userServices.createNewFeedback(title, detail, rating)
         self.addFeedback()
     
     
