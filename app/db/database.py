@@ -169,7 +169,7 @@ def checkMembershipDB(clientID):
     for client in root.clients.values():
         if client.id == clientID and client.membership != None:
             return client.membership
-    return "No membership"
+    return False
 
 def generateMealBooking(mealType,num_bookings,booking):
     # Get the current date
