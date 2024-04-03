@@ -1218,7 +1218,7 @@ QListWidget::item {
              </property>
             </item>
            </widget>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="feedbackTitle">
             <property name="geometry">
              <rect>
               <x>650</x>
