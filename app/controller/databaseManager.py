@@ -23,11 +23,11 @@ class dataManager:
     def validationUserRegister(email):
         return assignRole(email)
     
-    # def getClient(username):
-    #     return getClient(username)
+    def getClient(username):
+        return getClient(username)
     
-    # def getAdmin(username):
-    #     return getAdmin(username)
+    def getAdmin(username):
+        return getAdmin(username)
     
     def getClientInfo(clientID):
         return getClientDBInfo(clientID)

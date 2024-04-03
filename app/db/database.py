@@ -69,17 +69,17 @@ def news_id():
     root.news_id += 1
     return root.news_id
 
-# def getClient(username):
-#     for client in root.clients.values():
-#         if client.username == username:
-#             return client
-#     return None
+def getClient(username):
+    for client in root.clients.values():
+        if client.username == username:
+            return client
+    return None
 
-# def getAdmin(username):
-#     for admin in root.admins.values():
-#         if admin.username == username:
-#             return admin
-#     return None
+def getAdmin(username):
+    for admin in root.admins.values():
+        if admin.username == username:
+            return admin
+    return None
 
 def getClientDBInfo(clientID):
     for client in root.clients.values():
