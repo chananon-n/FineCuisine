@@ -123,11 +123,13 @@ def feedbackMain():
         print("3. Logout")
         choice = int(input("Enter your choice: "))
         if choice == 1:
-            print(UserServices.getAllFeedbacks())
+            print(getAllFeedbacksDB())
         elif choice == 2:
             detail = input("Enter feedback: ")
             rating = int(input("Enter rating: "))
-            UserServices.createNewFeedback(detail, rating)
+            feedback = Feedback(detail, rating)
+            createFeedbackDB(feedback)
+            
             print("Feedback added")
         else:
             break
