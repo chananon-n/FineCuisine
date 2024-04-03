@@ -1,6 +1,7 @@
 from app.db.database import *
 from app.model.booking import Booking
 from app.model.feedback import Feedback
+from app.model.meal import Dinner, Lunch
 from app.model.user import *
 from app.model.courseDetail import CourseMenu
 from app.model.news import *
@@ -48,10 +49,15 @@ class dataManager:
         return user
         
     def createMealBooking(mealType, time, partySize, numberBooking):
-        generateMealBooking(mealType, time,partySize, numberBooking)
+        date = datetime.now().strftime("%d/%m/%Y")
+        if mealType == "Dinner":
+            meal = Dinner(date,time,partySize)
+        elif mealType == "Lunch":
+            meal = Lunch(date,time,partySize)
+        generateMealBooking(mealType, numberBooking, meal)
         return True
     
-    def getBooking(bookingID):
+    def getBookingByID(bookingID):
         return getBookingDB(bookingID)
     
     def getAllUserBookings():
@@ -77,15 +83,15 @@ class dataManager:
     def getUserBookings(clientID):
         return getUserBookings(clientID)
     
-    def updateMealBooking(mealType, date, time, partySize):
-        return updateMealBookingDB(mealType, date, time, partySize)
+    def updateMealBooking( mealType, date, time, partySize):
+        return updateMealBookingDB( mealType, date, time, partySize)
     
     def changeBookingStatus(bookingID, status):
         return updateBookingStatus(bookingID, status)
    
     def checkBookingAvailable(time, date, partySize, mealType):
         bookInfo = getMealBooking(mealType, date, time)
-        if bookInfo['T_LEFT'] >= partySize:
+        if bookInfo.totalSize >= partySize:
             return True
         else:
             return False     

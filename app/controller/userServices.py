@@ -36,16 +36,15 @@ class UserServices:
         else:
             return False
     
-    def reservation(self,bookingInfo):
-        checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
-        print(checkAvailable)
+    def reservation(clientID, course, date, time, partySize, persons, userNotes):
+        checkAvailable = dataManager.checkBookingAvailable(time,date,partySize,course)
 
         if checkAvailable:
-            membership = dataManager.checkMembership(bookingInfo.clientID)
-            dataManager.updateMealBooking(bookingInfo.course,bookingInfo.date,bookingInfo.time,bookingInfo.partySizes)
-            dataManager.addBookingDB(bookingInfo.clientID,bookingInfo.course,bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.persons,bookingInfo.userNotes)
-            dataManager.addNotification(bookingInfo.clientID,"Your booking has been confirmed")
-            return bookingInfo, membership
+            membership = dataManager.checkMembership(clientID)
+            dataManager.updateMealBooking(course,date,time,partySize)
+            dataManager.addBookingDB(clientID,course,time,date,partySize,persons,userNotes)
+            dataManager.addNotification(clientID,"Your booking has been confirmed")
+            return True
         else:
             print("Booking not available")
             return False
@@ -90,6 +89,7 @@ class UserServices:
     
     def getFeedback(self,id):
         data = dataManager.getFeedbackInfo(id)
+        return data
         
         
     
