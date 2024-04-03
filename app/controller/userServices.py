@@ -1,3 +1,4 @@
+import datetime
 from app.controller.databaseManager import dataManager
 
 
@@ -40,7 +41,6 @@ class UserServices:
         checkAvailable = dataManager.checkBookingAvailable(time,date,partySize,course)
 
         if checkAvailable:
-            membership = dataManager.checkMembership(clientID)
             dataManager.updateMealBooking(course,date,time,partySize)
             dataManager.addBookingDB(clientID,course,time,date,partySize,persons,userNotes)
             dataManager.addNotification(clientID,"Your booking has been confirmed")
@@ -91,8 +91,19 @@ class UserServices:
         data = dataManager.getFeedbackInfo(id)
         return data
         
+    def checkUserMembership(self,clientID):
+        check = dataManager.checkMembership(clientID)
+        return check
+
+    def checkUserBirthday(self,clientID):
+        check = UserServices.checkUserMembership(clientID)
+        currentDate = datetime.now()
+        currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]
+        userMonth = check['memberBirth'].split('/')[1]
+        if currentMonth == userMonth:
+            return True
+        return False
         
-    
     
     
         
