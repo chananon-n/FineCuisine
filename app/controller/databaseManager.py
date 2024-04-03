@@ -1,5 +1,6 @@
 from app.db.database import *
 from app.model.booking import Booking
+from app.model.feedback import Feedback
 from app.model.user import *
 from app.model.courseDetail import CourseMenu
 from app.model.news import *
@@ -141,7 +142,17 @@ class dataManager:
         data = getNewsInformation(id)
         return data
 
-
+    def addFeedback(description, rating):
+        feedback = Feedback(description, rating)
+        createFeedbackDB(feedback)
+        return True
+    
+    def getFeedbackInfo(feedbackID):
+        return getFeedbacksByID(feedbackID)
+    
+    def getFeedbacks():
+        return getAllFeedbacksDB()
+  
     
         
         
