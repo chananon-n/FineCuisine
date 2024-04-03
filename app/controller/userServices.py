@@ -38,6 +38,7 @@ class UserServices:
     
     def reservation(self,bookingInfo):
         checkAvailable = dataManager.checkBookingAvailable(bookingInfo.time,bookingInfo.date,bookingInfo.partySize,bookingInfo.course)
+        print(checkAvailable)
 
         if checkAvailable:
             membership = dataManager.checkMembership(bookingInfo.clientID)
