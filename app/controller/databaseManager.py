@@ -142,8 +142,8 @@ class dataManager:
         data = getNewsInformation(id)
         return data
 
-    def addFeedback(description, rating):
-        feedback = Feedback(description, rating)
+    def addFeedback(title,description, rating):
+        feedback = Feedback(title,description, rating)
         createFeedbackDB(feedback)
         return True
     

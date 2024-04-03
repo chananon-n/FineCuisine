@@ -215,10 +215,12 @@ class MainPage(QMainWindow, mainPage):
 
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
+        self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
         self.addFeedback()
         
     def addFeedback(self):
-        for i in range(5):
+        allFeedbacks = userServices.getAllFeedbacks()
+        for i in range(len(allFeedbacks)):
             self.feedbackDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.feedbackDetail.setObjectName(f"feedbackDetail_{i}")
             sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -241,10 +243,48 @@ class MainPage(QMainWindow, mainPage):
             self.feedbackDetail.setMargin(10)
             self.feedbackDetail.setIndent(0)
             
-            self.feedbackDetail.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            self.feedbackDetail.setText(f"{allFeedbacks[i]['title']} \n{allFeedbacks[i]['detail']} \nRating: {allFeedbacks[i]['rating']}")
             
             self.verticalLayout_3.addWidget(self.feedbackDetail)
         
+    def submitFeedback(self):
+        # if self.star0Radio.isChecked():
+        #     rating = 0
+        # elif self.star1Radio.isChecked():
+        #     rating = 1
+        # elif self.star2Radio.isChecked():
+        #     rating = 2
+        # elif self.star3Radio.isChecked():
+        #     rating = 3
+        # elif self.star4Radio.isChecked():
+        #     rating = 4
+        # elif self.star5Radio.isChecked():
+        #     rating = 5
+        # else:
+        #     alert = QtWidgets.QMessageBox()
+        #     alert.setText("Please rate the service")
+        #     alert.exec()
+        rating = None
+        for i in range(6): 
+            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
+            if button and button.isChecked():
+                rating = i
+                print(rating)
+                break 
+        if not rating:
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please rate the service")
+            alert.exec()
+            return 
+        data = self.feedbackTextBox.toPlainText()
+        title, details = (data.split("\n", 1) + [""])[:2]  
+
+        if not data:
+            userServices.createNewFeedback("", "", rating) 
+            print("Feedback submitted!")
+        else:
+            userServices.createNewFeedback(title, details, rating)
+            print("Feedback submitted! and have details")
     
     def logout(self):
         self.loginPage = LoginPage()
