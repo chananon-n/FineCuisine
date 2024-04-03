@@ -7,6 +7,7 @@ import transaction
 
 from app.model.courseDetail import CourseMenu
 
+
 storage = ZODB.FileStorage.FileStorage('app/db/data.fs')
 db = ZODB.DB(storage)
 connection = db.open()
@@ -68,6 +69,18 @@ def news_id():
         root.news_id = 0
     root.news_id += 1
     return root.news_id
+
+def dinner_booking_id():
+    if not hasattr(root, 'dinner_id'):
+        root.dinner_id = 0
+    root.dinner_id += 1
+    return root.dinner_id
+
+def lunch_booking_id():
+    if not hasattr(root, 'lunch_id'):
+        root.lunch_id = 0
+    root.lunch_id += 1
+    return root.lunch_id
 
 def getClient(username):
     for client in root.clients.values():
@@ -158,46 +171,17 @@ def checkMembershipDB(clientID):
             return client.membership
     return "No membership"
 
-def generateMealBooking(meal_type, t_time, t_left, num_bookings):
+def generateMealBooking(mealType,num_bookings,booking):
     # Get the current date
-    current_date = datetime.datetime.now()
-
-    # Find the latest existing date in the booking, if any
-    latest_date_entry = max(getattr(root, f'{meal_type}Booking').values(), key=lambda x: datetime.datetime.strptime(x['T_DATE'], '%d/%m/%Y'), default=None)
-
-    if latest_date_entry:
-        latest_date = datetime.datetime.strptime(latest_date_entry['T_DATE'], '%d/%m/%Y') + datetime.timedelta(days=1)
-    else:
-        latest_date = current_date
-
     for i in range(num_bookings):
-        # Set the date to the latest date plus i days
-        t_date = latest_date + datetime.timedelta(days=i)
-
-        # Create a unique key (number) for the booking
-        booking_key = len(getattr(root, f'{meal_type}Booking')) + 1
-
-        # Check if the key already exists
-        while booking_key in getattr(root, f'{meal_type}Booking'):
-            booking_key += 1
-
-        # Create a new booking entry
-        booking_data = {
-            'T_ID': booking_key,
-            'T_DATE': t_date.strftime('%d/%m/%Y'),  # Use dd/mm/yyyy format
-            'T_TIME': t_time,
-            'T_LEFT': t_left
-        }
-
-        # Store the data in the BTree
-        getattr(root, f'{meal_type}Booking')[booking_key] = booking_data
+        # increment the date by 1 day
+        date = datetime.datetime.strptime(booking.date, "%d/%m/%Y") + datetime.timedelta(days=i)
+        booking.date = date.strftime("%d/%m/%Y")
+        getattr(root, f'{mealType}Booking')[booking.id] = booking
         transaction.commit()
 
 def getAllMealBookingsDB(meal_type):
-    # print data for each booking
-    print(f'All {meal_type} bookings:')
-    for booking_key in getattr(root, f'{meal_type}Booking'):
-        print(getattr(root, f'{meal_type}Booking')[booking_key])
+    return [booking.toJson() for booking in getattr(root, f'{meal_type}Booking').values()]
     # return [getattr(root, f'{meal_type}Booking')[booking_key] for booking_key in getattr(root, f'{meal_type}Booking')]
 
 def clearMealBookings(meal_type):
@@ -206,7 +190,7 @@ def clearMealBookings(meal_type):
     
 def getMealBooking(meal_type, t_date, t_time):
     for booking in getattr(root, f'{meal_type}Booking').values():
-        if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
+        if booking.date == t_date and booking.time == t_time:
             return booking
         
 def clearUserBookings():
@@ -215,8 +199,8 @@ def clearUserBookings():
     
 def updateMealBookingDB(meal_type, t_date, t_time, t_left):
     for booking in getattr(root, f'{meal_type}Booking').values():
-        if booking['T_DATE'] == t_date and booking['T_TIME'] == t_time:
-            booking['T_LEFT'] -= t_left
+        if booking.date == t_date and booking.time == t_time:
+            booking.totalSize -= t_left
             transaction.commit()
             return True
     return False

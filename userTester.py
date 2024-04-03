@@ -3,6 +3,7 @@ from app.db.database import *
 from app.model.booking import Booking
 from app.model.user import *
 from app.controller.userServices import UserServices
+from app.controller.databaseManager import dataManager
 
 from app.model.feedback import *
 
@@ -137,4 +138,7 @@ def feedbackMain():
 
     
 if __name__ == "__main__":
-    feedbackMain()
+    clearMealBookings("Dinner")
+    dataManager.createMealBooking("Dinner", "12:00", 10, 1)
+    UserServices.reservation(1, "Dinner","04/04/2024", "12:00", 2, "2", "notes")
+    
