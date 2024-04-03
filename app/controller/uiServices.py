@@ -221,16 +221,13 @@ class MainPage(QMainWindow, mainPage):
     
     def addFeedback(self):
         #unchecked all radio buttons
-        for i in range(6):
-            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
-            button.setChecked(False)
         self.feedbackListWidget.clear()
         allFeedbacks = userServices.getAllFeedbacks()
         for feedbackItem in allFeedbacks:
             feedback_text = f"Rating: {feedbackItem['rating']}/5"
-            if feedbackItem['title']== "": 
+            if feedbackItem['title'] != "": 
                 feedback_text += f"\n{feedbackItem['title']}"
-            if feedbackItem['detail']== "":
+            if feedbackItem['detail'] != "":
                 feedback_text += f"\n{feedbackItem['detail']}"
             
             self.feedbackListWidget.insertItem(0, feedback_text)
@@ -242,9 +239,8 @@ class MainPage(QMainWindow, mainPage):
         rating = None
         for i in range(6): 
             button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
-            if button and button.isChecked():
+            if button.isChecked():
                 rating = i
-                print(rating)
                 break 
             
         if rating == None:
@@ -254,11 +250,22 @@ class MainPage(QMainWindow, mainPage):
             return 
         title = self.feedbackTitle.text()
         detail = self.feedbackTextBox.toPlainText()
-        userServices.createNewFeedback("", "", rating) 
+        userServices.createNewFeedback(title,detail, rating) 
+        self.resetFeedback()
         self.addFeedback()
     
-    
-            
+    def resetFeedback(self):
+        for i in range(6):
+            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
+            button.setAutoExclusive(False)
+            button.setChecked(False)
+            button.setAutoExclusive(True)
+
+        self.feedbackTitle.clear()
+        self.feedbackTextBox.clear() 
+        self.feedbackTitle.clearFocus()
+        self.feedbackTextBox.clearFocus()
+        
     
     def logout(self):
         self.loginPage = LoginPage()
