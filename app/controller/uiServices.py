@@ -108,8 +108,6 @@ class MainPage(QMainWindow, mainPage):
         self.setupUi(self)
         self.pageWidget.setCurrentIndex(0)
         
-        rating = self.findaverageFeedbackRating()
-        
         #sidebar buttons
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
@@ -138,6 +136,7 @@ class MainPage(QMainWindow, mainPage):
         
     def openHomePage(self):
         self.pageWidget.setCurrentIndex(0)
+        self.findaverageFeedbackRating()
         
     def openUserInfo(self):
         self.pageWidget.setCurrentIndex(1)
