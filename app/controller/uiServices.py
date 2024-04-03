@@ -286,18 +286,9 @@ class MainPage(QMainWindow, mainPage):
         self.updateFeedback()
     
     def updateFeedback(self):
-        # self.listWidget.clear()
-        # newsList = userServices.getAllNews()
-        # for newsItem in newsList:
-        #     news = QListWidgetItem(newsItem['title'])
-        #     news.setData(QtCore.Qt.UserRole, newsItem['id'])
-        #     self.listWidget.insertItem(0, news)
-        self.listWidget.clear()
-        feedbackList = userServices.getAllFeedbacks()
-        for feedbackItem in feedbackList:
-            feedback = QListWidgetItem(feedbackItem['title'])
-            feedback.setData(QtCore.Qt.UserRole, feedbackItem['id'])
-            self.listWidget.insertItem(0, feedback)
+        pass
+    
+    
             
     
     def logout(self):
