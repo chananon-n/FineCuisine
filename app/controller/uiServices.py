@@ -224,6 +224,10 @@ class MainPage(QMainWindow, mainPage):
         allFeedbacks = userServices.getAllFeedbacks()
         for feedbackItem in allFeedbacks:
             self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
+            #set font size
+            self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+            #set font color
+            self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
     def submitFeedback(self):
         rating = None
         for i in range(6): 
