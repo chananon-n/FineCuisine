@@ -220,50 +220,19 @@ class MainPage(QMainWindow, mainPage):
         
     def addFeedback(self):
         allFeedbacks = userServices.getAllFeedbacks()
-        for i in range(len(allFeedbacks)):
-            self.feedbackDetail = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            self.feedbackDetail.setObjectName(f"feedbackDetail_{i}")
-            sizePolicy = QtWidgets.QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.feedbackDetail.sizePolicy().hasHeightForWidth())
-            self.feedbackDetail.setSizePolicy(sizePolicy)
-            self.feedbackDetail.setMinimumSize(QSize(460, 200))
-            self.feedbackDetail.setMaximumSize(QSize(460, 200))
-            self.feedbackDetail.setLayoutDirection(Qt.LeftToRight)
-            self.feedbackDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-    "font: 16pt \"Arial\";\n"
+        for i in allFeedbacks:
+            feedback = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            feedback.setObjectName(f"feedback_{i}")
+            feedback.setMinimumSize(QSize(1100, 50))
+            feedback.setMaximumSize(QSize(1100, 50))
+            feedback.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+    "font: 700 18pt \"KoHo\";\n"
     "border: 1 solid black;\n"
     "border-radius: 8px")
-            self.feedbackDetail.setFrameShape(QFrame.NoFrame)
-            self.feedbackDetail.setFrameShadow(QFrame.Sunken)
-            self.feedbackDetail.setTextFormat(Qt.AutoText)
-            self.feedbackDetail.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-            self.feedbackDetail.setWordWrap(True)
-            self.feedbackDetail.setMargin(10)
-            self.feedbackDetail.setIndent(0)
             
-            self.feedbackDetail.setText(f"{allFeedbacks[i]['title']} \n{allFeedbacks[i]['detail']} \nRating: {allFeedbacks[i]['rating']}")
-            
-            self.verticalLayout_3.addWidget(self.feedbackDetail)
+            feedback.setText(f"{i['title']}\n{i['details']}\nRating: {i['rating']}")
         
     def submitFeedback(self):
-        # if self.star0Radio.isChecked():
-        #     rating = 0
-        # elif self.star1Radio.isChecked():
-        #     rating = 1
-        # elif self.star2Radio.isChecked():
-        #     rating = 2
-        # elif self.star3Radio.isChecked():
-        #     rating = 3
-        # elif self.star4Radio.isChecked():
-        #     rating = 4
-        # elif self.star5Radio.isChecked():
-        #     rating = 5
-        # else:
-        #     alert = QtWidgets.QMessageBox()
-        #     alert.setText("Please rate the service")
-        #     alert.exec()
         rating = None
         for i in range(6): 
             button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
