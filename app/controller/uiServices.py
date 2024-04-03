@@ -220,10 +220,17 @@ class MainPage(QMainWindow, mainPage):
         
     
     def addFeedback(self):
+        #unchecked all radio buttons
+        for i in range(6):
+            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
+            button.setChecked(False)
         self.feedbackListWidget.clear()
         allFeedbacks = userServices.getAllFeedbacks()
         for feedbackItem in allFeedbacks:
-            self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
+            if feedbackItem['title'] == "" and feedbackItem['detail'] == "":
+                self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5")
+            else:
+                self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
             #set font size
             self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
             #set font color
@@ -243,12 +250,10 @@ class MainPage(QMainWindow, mainPage):
             alert.exec()
             return 
         data = self.feedbackTextBox.toPlainText()
-        title, details = (data.split("\n", 1) + [""])[:2]  
-
         if not data:
             userServices.createNewFeedback("", "", rating) 
         else:
-            userServices.createNewFeedback(title, details, rating)
+            userServices.createNewFeedback(self.feedbackUserTitle, self.feedbackTextBox, rating)
         self.addFeedback()
     
     
