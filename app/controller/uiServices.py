@@ -18,6 +18,7 @@ from app.gui.news.newsDetail import Ui_MainWindow as newsDetail
 from app.gui.adminMainPage.adminMainPage import Ui_MainWindow as adminMainPage
 from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdminPage
 from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
+from app.gui.reservationAdminPage.reservationAdminPage import Ui_MainWindow as reservationAdminPage
 
 from datetime import datetime
 import webbrowser
@@ -615,7 +616,7 @@ class AdminMainPage(QMainWindow, adminMainPage):
         adminUser = userServices.getAdminInfo(userID)
         self.title.setText(f"Welcome Back, {adminUser.getUsername()}")
         
-        # self.reservationListBtn.clicked.connect(self.openReservationList)
+        self.reservationListBtn.clicked.connect(self.openReservationList)
         self.menuAdjustmentBtn.clicked.connect(self.openMenuAdjustPage)
         # self.feedbacksBtn.clicked.connect(self.openFeedbackList)
         self.createNewsBtn.clicked.connect(self.openCreateNews)
@@ -632,6 +633,11 @@ class AdminMainPage(QMainWindow, adminMainPage):
         self.newsAdminPage.show()
         self.hide()
         
+    def openReservationList(self):
+        self.reservationAdminPage = ReservationAdminPage()
+        self.reservationAdminPage.show()
+        self.hide()
+    
     def logout(self):
         self.loginPage = LoginPage()
         self.loginPage.show()
@@ -719,6 +725,22 @@ class NewsAdminPage(QMainWindow, newsAdminPage):
             alert =QtWidgets.QMessageBox()
             alert.setText("Please fill in all information")
             alert.exec()
+        
+    def backtoAdminMain(self):
+        self.adminMainPage = AdminMainPage()
+        self.adminMainPage.show()
+        self.hide()
+        
+class ReservationAdminPage(QMainWindow, reservationAdminPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        
+        self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        #del all rows
+        self.reservationTable.setRowCount(0)
+        
+        self.backBtn.clicked.connect(self.backtoAdminMain)
         
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
