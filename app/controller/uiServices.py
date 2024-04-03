@@ -109,6 +109,7 @@ class MainPage(QMainWindow, mainPage):
         self.pageWidget.setCurrentIndex(0)
         
         #sidebar buttons
+        self.findaverageFeedbackRating()
         self.homeBtn.clicked.connect(self.openHomePage)
         self.userinfoBtn.clicked.connect(self.openUserInfo)
         self.notiBtn.clicked.connect(self.openNotification)
