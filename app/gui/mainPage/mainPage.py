@@ -492,7 +492,8 @@ class Ui_MainWindow(object):
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
         self.feedbackListWidget = QListWidget(self.feedbackPage)
-        QListWidgetItem(self.feedbackListWidget)
+        __qlistwidgetitem = QListWidgetItem(self.feedbackListWidget)
+        __qlistwidgetitem.setFont(font2);
         self.feedbackListWidget.setObjectName(u"feedbackListWidget")
         self.feedbackListWidget.setGeometry(QRect(60, 130, 501, 541))
         self.feedbackListWidget.setStyleSheet(u"QListWidget {\n"

@@ -1210,6 +1210,12 @@ QListWidget::item {
              <property name="text">
               <string>Feedback 1</string>
              </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
             </item>
            </widget>
           </widget>

@@ -218,20 +218,12 @@ class MainPage(QMainWindow, mainPage):
         self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
         self.addFeedback()
         
+    
     def addFeedback(self):
+        self.feedbackListWidget.clear()
         allFeedbacks = userServices.getAllFeedbacks()
-        for i in allFeedbacks:
-            feedback = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            feedback.setObjectName(f"feedback_{i}")
-            feedback.setMinimumSize(QSize(1100, 50))
-            feedback.setMaximumSize(QSize(1100, 50))
-            feedback.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-    "font: 700 18pt \"KoHo\";\n"
-    "border: 1 solid black;\n"
-    "border-radius: 8px")
-            
-            feedback.setText(f"{i['title']}\n{i['details']}\nRating: {i['rating']}")
-        
+        for feedbackItem in allFeedbacks:
+            self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
     def submitFeedback(self):
         rating = None
         for i in range(6): 
@@ -252,10 +244,7 @@ class MainPage(QMainWindow, mainPage):
             userServices.createNewFeedback("", "", rating) 
         else:
             userServices.createNewFeedback(title, details, rating)
-        self.updateFeedback()
-    
-    def updateFeedback(self):
-        pass
+        self.addFeedback()
     
     
             
