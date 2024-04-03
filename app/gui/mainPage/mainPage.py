@@ -16,10 +16,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QRadioButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
+    QHeaderView, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QPushButton, QRadioButton,
+    QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
+    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
+    QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -427,7 +428,7 @@ class Ui_MainWindow(object):
         self.feedbackTextBox.setLineWrapMode(QTextEdit.WidgetWidth)
         self.radioWidget = QWidget(self.feedbackPage)
         self.radioWidget.setObjectName(u"radioWidget")
-        self.radioWidget.setGeometry(QRect(640, 230, 391, 61))
+        self.radioWidget.setGeometry(QRect(640, 170, 391, 61))
         self.layoutWidget = QWidget(self.radioWidget)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(20, 30, 375, 20))
@@ -518,6 +519,15 @@ class Ui_MainWindow(object):
 "")
         self.feedbackListWidget.setAutoScroll(True)
         self.feedbackListWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.feedbackTitle = QLineEdit(self.feedbackPage)
+        self.feedbackTitle.setObjectName(u"feedbackTitle")
+        self.feedbackTitle.setGeometry(QRect(650, 260, 351, 41))
+        self.feedbackTitle.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"font: 700 18pt \"KoHo\";\n"
+"background-color: rgb(255, 255, 255);\n"
+"padding: 8px;\n"
+"border: 0;\n"
+"border-radius: 8px;")
         self.pageWidget.addWidget(self.feedbackPage)
 
         self.horizontalLayout.addWidget(self.frame_page)
@@ -599,5 +609,6 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
         self.feedbackListWidget.setSortingEnabled(__sortingEnabled)
 
+        self.feedbackTitle.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Title", None))
     # retranslateUi
 

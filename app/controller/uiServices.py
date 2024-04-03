@@ -220,17 +220,27 @@ class MainPage(QMainWindow, mainPage):
         
     
     def addFeedback(self):
+        #unchecked all radio buttons
         self.feedbackListWidget.clear()
         allFeedbacks = userServices.getAllFeedbacks()
         for feedbackItem in allFeedbacks:
-            self.feedbackListWidget.insertItem(0,f"Rating: {feedbackItem['rating']}/5\n{feedbackItem['title']}\n{feedbackItem['detail']}")
+            feedback_text = f"Rating: {feedbackItem['rating']}/5"
+            if feedbackItem['title'] != "": 
+                feedback_text += f"\n{feedbackItem['title']}"
+            if feedbackItem['detail'] != "":
+                feedback_text += f"\n{feedbackItem['detail']}"
+            
+            self.feedbackListWidget.insertItem(0, feedback_text)
+            #set font size
+            self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+            #set font color
+            self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
     def submitFeedback(self):
         rating = None
         for i in range(6): 
             button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
-            if button and button.isChecked():
+            if button.isChecked():
                 rating = i
-                print(rating)
                 break 
             
         if rating == None:
@@ -238,17 +248,24 @@ class MainPage(QMainWindow, mainPage):
             alert.setText("Please rate the service")
             alert.exec()
             return 
-        data = self.feedbackTextBox.toPlainText()
-        title, details = (data.split("\n", 1) + [""])[:2]  
-
-        if not data:
-            userServices.createNewFeedback("", "", rating) 
-        else:
-            userServices.createNewFeedback(title, details, rating)
+        title = self.feedbackTitle.text()
+        detail = self.feedbackTextBox.toPlainText()
+        userServices.createNewFeedback(title,detail, rating) 
+        self.resetFeedback()
         self.addFeedback()
     
-    
-            
+    def resetFeedback(self):
+        for i in range(6):
+            button = self.findChild(QtWidgets.QRadioButton, f"star{i}Radio")
+            button.setAutoExclusive(False)
+            button.setChecked(False)
+            button.setAutoExclusive(True)
+
+        self.feedbackTitle.clear()
+        self.feedbackTextBox.clear() 
+        self.feedbackTitle.clearFocus()
+        self.feedbackTextBox.clearFocus()
+        
     
     def logout(self):
         self.loginPage = LoginPage()
