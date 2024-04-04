@@ -203,6 +203,14 @@ def getMealBooking(meal_type, t_date, t_time):
         if booking.date == t_date and booking.time == t_time:
             return booking.toJson()
     return None
+
+def deleteMealBookingDB(meal_type, t_date, t_time):
+    for booking in getattr(root, f'{meal_type}Booking').values():
+        if booking.date == t_date and booking.time == t_time:
+            del getattr(root, f'{meal_type}Booking')[booking.id]
+            transaction.commit()
+            return True
+    return False
         
 def clearUserBookings():
     root.booking.clear()

@@ -157,6 +157,9 @@ class dataManager:
     
     def getFeedbacks():
         return getAllFeedbacksDB()
+    
+    def deleteMealBooking(mealType, date, time):
+        return deleteMealBookingDB(mealType, date, time)
   
     
         

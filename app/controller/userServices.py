@@ -127,3 +127,7 @@ class UserServices:
     def confirmBookingStatus(self,bookingID,status):
         dataManager.changeBookingStatus(bookingID,status)
         return True
+    
+    def closedReservation(self,mealType,date,time):
+        dataManager.deleteMealBooking(mealType,date,time)
+        return True

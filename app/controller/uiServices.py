@@ -1,7 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem, QLabel, QPushButton, QHBoxLayout, QComboBox, QWidget
 from PySide6.QtGui import QImage, QPixmap
 from app.controller.userServices import *
 import transaction
@@ -816,6 +816,8 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.reservationTable.setRowCount(0)
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
+        self.closeReservationBtn.clicked.connect(self.closedReservation)
+
         
         self.selectBtn.clicked.connect(self.reservationList)
     
@@ -859,12 +861,106 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
                 self.reservationTable.setCellWidget(i, 7, self.cancelBtn)
-            
+           
+    def closedReservation(self):
+        # Create a layout for the user input widget
+        self.closeReasonWidget = QWidget()
+        self.closeReasonWidgetLayout = QVBoxLayout(self.closeReasonWidget)
+
+        # Create a combobox for selecting close reason
+        self.mealCombo = QComboBox()
+        self.mealCombo.addItem("Select Meal")
+        self.mealCombo.addItem("Lunch")
+        self.mealCombo.addItem("Dinner")
+        self.mealComboLayout = QHBoxLayout()
+        self.mealComboLayout.addWidget(QLabel("Meal Type: "))
+        self.mealComboLayout.addWidget(self.mealCombo)
+        self.closeReasonWidgetLayout.addLayout(self.mealComboLayout)
+        
+        self.mealCombo.currentTextChanged.connect(self.updateDateCombo)
+        
+
+        self.dateCombo = QComboBox()
+        userSelectedMeal = self.mealCombo.currentText()
+        if userSelectedMeal == "Select Meal":
+            self.dateCombo.addItem("Select Date")
+        self.dateComboLayout = QHBoxLayout()
+        self.dateComboLayout.addWidget(QLabel("Date: "))
+        self.dateComboLayout.addWidget(self.dateCombo)
+        self.closeReasonWidgetLayout.addLayout(self.dateComboLayout)
+        
+        self.dateCombo.currentTextChanged.connect(self.updateTimeCombo)
+    
+
+        self.timeCombo = QComboBox()
+        userSelectedDate = self.dateCombo.currentText()
+        if userSelectedDate == "Select Date":
+            self.timeCombo.addItem("Select Time")
+        self.timeComboLayout = QHBoxLayout()
+        self.timeComboLayout.addWidget(QLabel("Time: "))
+        self.timeComboLayout.addWidget(self.timeCombo)
+        self.closeReasonWidgetLayout.addLayout(self.timeComboLayout)
+        
+
+        # Create a button to confirm closing the reservation
+        self.confirmCloseBtn = QPushButton("Confirm Close")
+        # self.confirmCloseBtn.clicked.connect(self.confirmCloseReservation)
+        self.closeReasonWidgetLayout.addWidget(self.confirmCloseBtn)
+        
+        self.confirmCloseBtn.clicked.connect(self.confirmCloseReservation)
+
+        # Display the user input widget (consider using a dialog instead)
+        self.closeReasonWidget.show()
+    
+    def confirmCloseReservation(self):
+        meal = self.mealCombo.currentText()
+        date = self.dateCombo.currentText()
+        time = self.timeCombo.currentText()
+        if meal == "Select Meal" or date == "Select Date" or time == "Select Time" or date == "" or time == "":
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please select meal, date, and time")
+            alert.exec()
+            return
+        else:
+            userServices.closedReservation(meal, date, time)
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation closed!")
+            alert.exec()
+            self.closeReasonWidget.hide()
+            self.reservationList()
+    
+    def updateDateCombo(self):
+        userSelectedMeal = self.mealCombo.currentText()
+        self.dateCombo.clear() 
+
+        if userSelectedMeal == "Select Meal":
+            self.dateCombo.addItem("Select Date")
+        else:
+            # Assuming you have logic to fetch available dates based on meal
+            data = userServices.getallMealsBooking(userSelectedMeal)
+            for date in data:
+                self.dateCombo.addItem(date['T_Date'])
+    
+    def updateTimeCombo(self):
+        userSelectedDate = self.dateCombo.currentText()
+        userSelectedMeal = self.mealCombo.currentText()
+        self.timeCombo.clear()
+
+        if userSelectedDate == "Select Date":
+            self.timeCombo.addItem("Select Time")
+        else:
+            # Assuming you have logic to fetch available times based on meal and date
+            data = userServices.getallMealsBooking(userSelectedMeal)
+            for time in data:
+                if time['T_Date'] == userSelectedDate:
+                    self.timeCombo.addItem(time['T_Time'])
+                
         
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()
         self.hide()
+    
 
 class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
     def __init__(self):
