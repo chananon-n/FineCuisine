@@ -817,6 +817,32 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
         
+        self.selectBtn.clicked.connect(self.reservationList)
+    
+    def reservationList(self):
+        data = self.dateEdit.text()
+        bookings = userServices.getAllBookingsByDate(data)
+        self.reservationTable.setRowCount(len(bookings))
+        for i in range(len(bookings)):
+            self.reservationTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(bookings[i]['id'])))
+            self.reservationTable.setItem(i, 1, QtWidgets.QTableWidgetItem(str(bookings[i]['persons'])))
+            self.reservationTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(bookings[i]['course'])))
+            self.reservationTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(bookings[i]['time'])))
+            userID = bookings[i]['userID']
+            checkMembership = userServices.checkMembership(userID)
+            if checkMembership:
+                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("Yes"))
+            else:
+                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("No"))
+            self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
+            
+            
+            
+        
+         
+    
+    
+        
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()

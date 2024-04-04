@@ -37,7 +37,7 @@ class UserServices:
         else:
             return False
     
-    def reservation(self, clientID, course, date, time, partySize, persons, userNotes):
+    def reservation(clientID, course, date, time, partySize, persons, userNotes):
 
         print("\nReservation")
 
@@ -127,4 +127,12 @@ class UserServices:
     def getallMealsBooking(self, type):
         data = dataManager.getAllMealBookings(type)
         return data
+    
+    def getAllBookingsByDate(self, date):
+        data = dataManager.getAllUserBookings()
+        bookings = []
+        for item in data:
+            if item.date == date:
+                bookings.append(item)
+        return bookings
      
