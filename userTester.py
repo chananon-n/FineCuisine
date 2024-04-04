@@ -157,7 +157,7 @@ if __name__ == "__main__":
     # print(getAllMealBookingsDB("Lunch"))
     # print(getAllMealBookingsDB("Dinner"))
 
-    
+    main()
     
 
     # print(getMealBooking("Lunch", "04/04/2024", "12:00"))
