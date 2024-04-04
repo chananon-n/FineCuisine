@@ -1,7 +1,8 @@
+import copy
 import datetime
 import random
 import ZODB, ZODB.FileStorage
-import BTrees.OOBTree
+import BTrees
 
 import transaction
 
@@ -172,13 +173,21 @@ def checkMembershipDB(clientID):
     return False
 
 def generateMealBooking(mealType,num_bookings,booking):
-    # Get the current date
+    booking_id = booking.id
+    base_date = datetime.datetime.strptime(booking.date, "%d/%m/%Y")
+
     for i in range(num_bookings):
-        # increment the date by 1 day
-        date = datetime.datetime.strptime(booking.date, "%d/%m/%Y") + datetime.timedelta(days=i)
+        date = base_date + datetime.timedelta(days=i)
         booking.date = date.strftime("%d/%m/%Y")
-        getattr(root, f'{mealType}Booking')[booking.id] = booking
+        booking_id += 1
+
+        # Create a new booking object with incremented ID and updated date
+        new_booking = copy.deepcopy(booking)  # Avoid modifying the original booking object
+        new_booking.id = booking_id
+        new_booking.date = booking.date
+        getattr(root, f'{mealType}Booking')[booking_id] = new_booking
         transaction.commit()
+        
 
 def getAllMealBookingsDB(meal_type):
     return [booking.toJson() for booking in getattr(root, f'{meal_type}Booking').values()]
@@ -188,10 +197,12 @@ def clearMealBookings(meal_type):
     getattr(root, f'{meal_type}Booking').clear()
     transaction.commit()
     
+@staticmethod
 def getMealBooking(meal_type, t_date, t_time):
     for booking in getattr(root, f'{meal_type}Booking').values():
         if booking.date == t_date and booking.time == t_time:
             return booking
+    return None
         
 def clearUserBookings():
     root.booking.clear()
@@ -328,3 +339,4 @@ def clearFeedbacksDB():
     transaction.commit()
     return True
 
+ 

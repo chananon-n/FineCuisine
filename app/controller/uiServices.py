@@ -365,6 +365,7 @@ class CoursePage(QMainWindow, coursePage):
         url = userServices.getCourseMenu("Dinner")
         webbrowser.open(url)
 
+
 class ReservationPage(QMainWindow, reservationPage):
     def __init__(self):
         super().__init__()
@@ -380,6 +381,12 @@ class ReservationPage(QMainWindow, reservationPage):
         
         self.logoutBtn.clicked.connect(self.logout)
         
+        self.selectedTime = False
+        self.selectSize = False
+        
+        # Sidebar buttons
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
@@ -389,13 +396,55 @@ class ReservationPage(QMainWindow, reservationPage):
         
         self.course = self.findChild(QtWidgets.QComboBox, "courseBox")
         self.course.addItems(["Lunch", "Dinner"])
+        self.course.currentIndexChanged.connect(self.updateReservation)
+
         self.time = self.findChild(QtWidgets.QComboBox, "timeBox")
-        self.time.addItems(["08:00-10:00", "10:00-12:00", "13:00-15:00", "15:00-17:00", "17:00-19:00", "19:00-21:00"])
+        self.time.currentIndexChanged.connect(self.updatePartySize)
+
         self.size = self.findChild(QtWidgets.QComboBox, "partySizeBox")
-        self.size.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
         self.additionNote = self.findChild(QtWidgets.QTextEdit, "noteTextEdit")
+                    
+        self.confirmBtn.clicked.connect(self.confirmReservation)  
+          
+    def updateReservation(self):
+        if self.courseBox.currentText() == "Lunch":
+            self.time.clear()
+            self.time.addItems(self.updateTimeComboBox("Lunch", self.selectedDate.text()))
+        elif self.courseBox.currentText() == "Dinner":
+            self.time.clear()
+            self.time.addItems(self.updateTimeComboBox("Dinner", self.selectedDate.text()))
+        else:
+            return
         
-        self.confirmBtn.clicked.connect(self.confirmReservation)
+    def updateTimeComboBox(self, mealType, selectedDate):
+        timeList = userServices.getallMealsBooking(mealType)
+        print(timeList)
+        availableTime = []
+        for time in timeList:
+            if time['T_Date'] == selectedDate:
+                availableTime.append(time['T_Time'])
+        return availableTime
+    
+    def updatePartySize(self):
+        # Ensure this method is connected to the signal for when the time selection changes
+        selectedDate = self.selectedDate.text()  # Again, ensure this updates correctly
+        selectedTime = self.time.currentText()
+        selectedCourse = self.course.currentText()
+        self.updateSizeComboBox(selectedCourse, selectedDate, selectedTime)
+
+    
+    def updateSizeComboBox(self, mealType, selectedDate, selectedTime):
+        print(selectedDate)
+        print(selectedTime)
+        partySize = userServices.getallMealsBooking(mealType)
+        print(partySize)
+        availableSize = []
+        for size in partySize:
+            if size['T_Date'] == selectedDate and size['T_Time'] == selectedTime:
+                for i in range(size['T_Size']):
+                    availableSize.append(str(i+1))
+        self.size.clear()
+        self.size.addItems(availableSize)
         
     def openHomePage(self):
         self.mainPage.show()
@@ -430,24 +479,42 @@ class ReservationPage(QMainWindow, reservationPage):
     def getDate(self):
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
-        
+        self.updateReservation()
+
     def confirmReservation(self):
-        alert =QtWidgets.QMessageBox()
+        alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
-            print(f"Reservation confirmed! This Client: {userID} \n{self.date.toString('dd/MM/yyyy')}, {self.reservationName.text()}, {self.course.currentText()}, {self.time.currentText()}, {self.size.currentText()}, {self.additionNote.toPlainText() if self.additionNote.toPlainText() else 'No additional note'}")
-            alert =QtWidgets.QMessageBox()
-            alert.setText("Reservation confirmed!")
-            alert.exec()
-            self.mainPage.show()
-            self.mainPage.openHomePage()
-            self.hide()
-        else:
-            pass
-    
+            course = self.course.currentText()
+            time = self.time.currentText()
+            date = self.date.toString("dd/MM/yyyy")
+            partySize = int(self.size.currentText())
+            persons = self.reservationName.text()
+            userNotes = self.additionNote.toPlainText()
+
+            print("User ID is: ", userID)
+            print("Course is:", course)
+            print("Date is:", date)
+            print("Time is:", time)
+            print("Party size is:", partySize)
+            print("Persons is:", persons)
+            print("User notes is:", userNotes)
+
+            if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation confirmed!")
+                alert.exec()
+                self.mainPage.show()
+                self.mainPage.openHomePage()
+                self.hide()
+            else:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation failed. Please try again.")
+                alert.exec()
+
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
         super().__init__()
@@ -830,7 +897,4 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
             #set font color
             self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
                 
-                
-        
-    
-    
+
