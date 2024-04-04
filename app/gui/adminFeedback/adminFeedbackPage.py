@@ -71,10 +71,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(50, 121, 100, 31))
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
+        self.AllBtn = QPushButton(self.centralwidget)
+        self.AllBtn.setObjectName(u"AllBtn")
+        self.AllBtn.setGeometry(QRect(50, 121, 100, 31))
+        self.AllBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -83,13 +83,11 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton::selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(170, 120, 100, 31))
-        self.pushButton_2.setStyleSheet(u"QPushButton{\n"
+"")
+        self.OneBtn = QPushButton(self.centralwidget)
+        self.OneBtn.setObjectName(u"OneBtn")
+        self.OneBtn.setGeometry(QRect(170, 120, 100, 31))
+        self.OneBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -98,13 +96,11 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton:selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
-        self.pushButton_3 = QPushButton(self.centralwidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(530, 120, 100, 31))
-        self.pushButton_3.setStyleSheet(u"QPushButton{\n"
+"")
+        self.FourBtn = QPushButton(self.centralwidget)
+        self.FourBtn.setObjectName(u"FourBtn")
+        self.FourBtn.setGeometry(QRect(530, 120, 100, 31))
+        self.FourBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -113,13 +109,11 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton::selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
-        self.pushButton_4 = QPushButton(self.centralwidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(410, 120, 100, 31))
-        self.pushButton_4.setStyleSheet(u"QPushButton{\n"
+"")
+        self.ThreeBtn = QPushButton(self.centralwidget)
+        self.ThreeBtn.setObjectName(u"ThreeBtn")
+        self.ThreeBtn.setGeometry(QRect(410, 120, 100, 31))
+        self.ThreeBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -128,13 +122,11 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton::selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
-        self.pushButton_5 = QPushButton(self.centralwidget)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setGeometry(QRect(290, 120, 100, 31))
-        self.pushButton_5.setStyleSheet(u"QPushButton{\n"
+"")
+        self.TwoBtn = QPushButton(self.centralwidget)
+        self.TwoBtn.setObjectName(u"TwoBtn")
+        self.TwoBtn.setGeometry(QRect(290, 120, 100, 31))
+        self.TwoBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -143,13 +135,11 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton::selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
-        self.pushButton_7 = QPushButton(self.centralwidget)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setGeometry(QRect(650, 120, 100, 31))
-        self.pushButton_7.setStyleSheet(u"QPushButton{\n"
+"")
+        self.FiveBtn = QPushButton(self.centralwidget)
+        self.FiveBtn.setObjectName(u"FiveBtn")
+        self.FiveBtn.setGeometry(QRect(650, 120, 100, 31))
+        self.FiveBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid rgb(126, 22, 21);;\n"
 "border-radius: 8px;\n"
 "color: white;\n"
@@ -158,9 +148,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(192, 80, 71);\n"
 "}\n"
-"QPushButton::selected{\n"
-"     blackground-color: rgb(192, 80, 71);\n"
-"}")
+"")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -179,11 +167,11 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedbacks", None));
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"All rating", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"1 star", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"4 stars", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"3 stars", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"2 stars", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"5 stars", None))
+        self.AllBtn.setText(QCoreApplication.translate("MainWindow", u"All rating", None))
+        self.OneBtn.setText(QCoreApplication.translate("MainWindow", u"1 star", None))
+        self.FourBtn.setText(QCoreApplication.translate("MainWindow", u"4 stars", None))
+        self.ThreeBtn.setText(QCoreApplication.translate("MainWindow", u"3 stars", None))
+        self.TwoBtn.setText(QCoreApplication.translate("MainWindow", u"2 stars", None))
+        self.FiveBtn.setText(QCoreApplication.translate("MainWindow", u"5 stars", None))
     # retranslateUi
 

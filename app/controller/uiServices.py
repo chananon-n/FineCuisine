@@ -621,11 +621,16 @@ class AdminMainPage(QMainWindow, adminMainPage):
         
         self.reservationListBtn.clicked.connect(self.openReservationList)
         self.menuAdjustmentBtn.clicked.connect(self.openMenuAdjustPage)
-        # self.feedbacksBtn.clicked.connect(self.openFeedbackList)
+        self.feedbacksBtn.clicked.connect(self.openFeedbackList)
         self.createNewsBtn.clicked.connect(self.openCreateNews)
         
         self.logoutBtn.clicked.connect(self.logout)
         
+    def openFeedbackList(self):
+        self.adminFeedbackPage = AdminFeedbackPage()
+        self.adminFeedbackPage.show()
+        self.hide()
+    
     def openMenuAdjustPage(self):
         self.menuAdjustPage = MenuAdjustPage()
         self.menuAdjustPage.show()
@@ -756,12 +761,17 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
         self.setupUi(self)
         self.addFeedback()
         self.backBtn.clicked.connect(self.backtoAdminMain)
-        self.pushButton.clicked.connect(self.addFeedback)
-        self.pushButton_2.clicked.connect(self.rating(1))
-        self.pushButton_3.clicked.connect(self.rating(2))
-        self.pushButton_4.clicked.connect(self.rating(3))
-        self.pushButton_5.clicked.connect(self.rating(4))
-        self.pushButton_6.clicked.connect(self.rating(5))
+        self.AllBtn.clicked.connect(self.addFeedback)
+        self.OneBtn.clicked.connect(self.rating(1))
+        self.TwoBtn.clicked.connect(self.rating(2))
+        self.ThreeBtn.clicked.connect(self.rating(3))
+        self.FourBtn.clicked.connect(self.rating(4))
+        self.FiveBtn.clicked.connect(self.rating(5))
+        
+    def backtoAdminMain(self):
+        self.adminMainPage = AdminMainPage()
+        self.adminMainPage.show()
+        self.hide()
 
     def addFeedback(self):
         self.listWidget.clear()
@@ -773,11 +783,11 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
             if feedbackItem['detail'] != "":
                 feedback_text += f"\n{feedbackItem['detail']}"
             
-            self.feedbackListWidget.insertItem(0, feedback_text)
+            self.listWidget.insertItem(0, feedback_text)
             #set font size
-            self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+            self.listWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
             #set font color
-            self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+            self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
             
     def rating(self,star):
         self.listWidget.clear()
@@ -790,9 +800,9 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
                 if feedbackItem['detail'] != "":
                     feedback_text += f"\n{feedbackItem['detail']}"
                 
-                self.feedbackListWidget.insertItem(0, feedback_text)
+                self.listWidget.insertItem(0, feedback_text)
                 #set font size
-                self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+                self.listWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
                 #set font color
-                self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+                self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
     

@@ -115,7 +115,7 @@ QListWidget::item {
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="AllBtn">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -134,15 +134,13 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton::selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>All rating</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="OneBtn">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -161,15 +159,13 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton:selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>1 star</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="FourBtn">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -188,15 +184,13 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton::selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>4 stars</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="ThreeBtn">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -215,15 +209,13 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton::selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>3 stars</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="TwoBtn">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -242,15 +234,13 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton::selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>2 stars</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="FiveBtn">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -269,9 +259,7 @@ background-color: rgb(126, 22, 21);
 QPushButton:hover{
 	background-color: rgb(192, 80, 71);
 }
-QPushButton::selected{
-     blackground-color: rgb(192, 80, 71);
-}</string>
+</string>
     </property>
     <property name="text">
      <string>5 stars</string>
