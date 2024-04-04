@@ -195,6 +195,8 @@ class MainPage(QMainWindow, mainPage):
         #decreasing order of id
         data = sorted(data, key=lambda x: x['bookingID'], reverse=True)
         self.historyTable.setRowCount(len(data))
+        #no edit
+        self.historyTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         
         def update_row_status(sender, row, status):
                 if  sender is self.cancelBtn:
@@ -805,6 +807,8 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         #del all rows
         self.reservationTable.setRowCount(0)
+        #no edit
+        self.reservationTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.dateEdit.setDate(QtCore.QDate.currentDate())
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
