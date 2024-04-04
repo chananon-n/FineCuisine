@@ -90,15 +90,8 @@ class dataManager:
         return updateBookingStatus(bookingID, status)
    
     def checkBookingAvailable(time, date, partySize, mealType):
-        print("\nChecking booking availability")
-
-        print("Time: ", time)
-        print("Date: ", date)
-        print("Party Size: ", partySize)
-        print("Meal Type: ", mealType)
-
-        booking = getMealBooking(mealType, date, time).toJson()
-        if booking is not None:
+        booking = getMealBooking(mealType, date, time)
+        if booking is not None and booking['T_Size'] >= partySize:
             return True
         return False
         
@@ -164,6 +157,9 @@ class dataManager:
     
     def getFeedbacks():
         return getAllFeedbacksDB()
+    
+    def deleteMealBooking(mealType, date, time):
+        return deleteMealBookingDB(mealType, date, time)
   
     
         

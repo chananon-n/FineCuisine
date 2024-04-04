@@ -302,6 +302,29 @@ QPushButton:hover{
      <string>Select</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="createReservationBtn">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>100</y>
+      <width>131</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border: 3 solid black;
+border-radius: 8px;
+color: black;
+}
+QPushButton:hover{
+	background-color: rgb(166, 165, 161);
+}</string>
+    </property>
+    <property name="text">
+     <string>Create Reservation</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

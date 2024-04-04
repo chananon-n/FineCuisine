@@ -37,28 +37,15 @@ class UserServices:
         else:
             return False
     
-    def reservation(self, clientID, course, date, time, partySize, persons, userNotes):
-
-        print("\nReservation")
-
-        print("Client ID: ", clientID)
-        print("Course: ", course)
-        print("Date: ", date)
-        print("Time: ", time)
-        print("Party Size: ", partySize)
-        print("Persons: ", persons)
-        print("User Notes: ", userNotes)
-
-        print(dataManager.checkBookingAvailable(time, date, partySize, course))
+    def reservation(clientID, course, date, time, partySize, persons, userNotes):
         checkAvailable = dataManager.checkBookingAvailable(time, date, partySize, course)
-
         if checkAvailable:
             dataManager.updateMealBooking(course, date, time, partySize)
             dataManager.addBookingDB(clientID, course, time, date, partySize, persons, userNotes)
             dataManager.addNotification(clientID, "Your booking has been confirmed")
             return True
         else:
-            print("Booking not available")
+
             return False
     
     def registerMembership(self, clientID, fname, lname, dateOfBirth):
@@ -127,4 +114,24 @@ class UserServices:
     def getallMealsBooking(self, type):
         data = dataManager.getAllMealBookings(type)
         return data
+    
+    def getAllBookingsByDate(self, date):
+        data = dataManager.getAllUserBookings()
+        bookings = []
+        for item in data:
+            if item['date'] == date:
+                bookings.append(item)
+        return bookings
      
+     
+    def confirmBookingStatus(self,bookingID,status):
+        dataManager.changeBookingStatus(bookingID,status)
+        return True
+    
+    def closedReservation(self,mealType,date,time):
+        dataManager.deleteMealBooking(mealType,date,time)
+        return True
+    
+    def createMealReservation(self,mealType,time,partySize,numBooking):
+        dataManager.createMealBooking(mealType,time,partySize,numBooking)
+        return True
