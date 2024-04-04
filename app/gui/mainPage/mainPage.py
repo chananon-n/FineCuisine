@@ -18,9 +18,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
     QHeaderView, QLabel, QLineEdit, QListWidget,
     QListWidgetItem, QMainWindow, QPushButton, QRadioButton,
-    QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextEdit, QVBoxLayout,
-    QWidget)
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
 from app.picture import resource_rc
 
 class Ui_MainWindow(object):
@@ -140,7 +139,7 @@ class Ui_MainWindow(object):
         self.homePage.setObjectName(u"homePage")
         self.titleLabel = QLabel(self.homePage)
         self.titleLabel.setObjectName(u"titleLabel")
-        self.titleLabel.setGeometry(QRect(10, 0, 431, 100))
+        self.titleLabel.setGeometry(QRect(10, 0, 521, 100))
         font = QFont()
         font.setFamilies([u"Arial"])
         font.setPointSize(80)
@@ -155,7 +154,7 @@ class Ui_MainWindow(object):
         self.detailLabel.setMaximumSize(QSize(1060, 200))
         font1 = QFont()
         font1.setFamilies([u"Arial"])
-        font1.setPointSize(24)
+        font1.setPointSize(20)
         self.detailLabel.setFont(font1)
         self.detailLabel.setLayoutDirection(Qt.LeftToRight)
         self.detailLabel.setStyleSheet(u"color: rgb(0, 0, 0);")
@@ -342,27 +341,35 @@ class Ui_MainWindow(object):
         self.notiTitleLabel.setGeometry(QRect(20, 20, 261, 41))
         self.notiTitleLabel.setStyleSheet(u"font: 700 48pt \"KoHo\";\n"
 "color: #7E1615")
-        self.scrollArea_2 = QScrollArea(self.notiPage)
-        self.scrollArea_2.setObjectName(u"scrollArea_2")
-        self.scrollArea_2.setGeometry(QRect(20, 100, 1141, 571))
-        self.scrollArea_2.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1139, 569))
-        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_2)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.notiDetail = QLabel(self.scrollAreaWidgetContents_2)
-        self.notiDetail.setObjectName(u"notiDetail")
-        self.notiDetail.setMinimumSize(QSize(1100, 50))
-        self.notiDetail.setMaximumSize(QSize(1100, 50))
-        self.notiDetail.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"font: 700 18pt \"KoHo\";\n"
-"border: 1 solid black;\n"
-"border-radius: 8px")
-
-        self.verticalLayout_4.addWidget(self.notiDetail)
-
-        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+        self.notiWidget = QListWidget(self.notiPage)
+        font3 = QFont()
+        font3.setFamilies([u"KoHo"])
+        font3.setPointSize(18)
+        __qlistwidgetitem = QListWidgetItem(self.notiWidget)
+        __qlistwidgetitem.setFont(font3);
+        __qlistwidgetitem.setFlags(Qt.NoItemFlags);
+        QListWidgetItem(self.notiWidget)
+        self.notiWidget.setObjectName(u"notiWidget")
+        self.notiWidget.setGeometry(QRect(50, 120, 1011, 541))
+        self.notiWidget.setStyleSheet(u"QListWidget {\n"
+"    padding: 12px 12px; /* Corrected padding format */\n"
+"    font: 24pt \"Arial\";\n"
+"    color: rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    border: 1px solid; /* Corrected border format */\n"
+"    border-radius: 8px;\n"
+"    margin: 4px;\n"
+"}\n"
+"\n"
+"QListWidget::item {\n"
+"    qproperty-alignment: AlignCenter;\n"
+"}\n"
+"")
+        self.notiWidget.setAutoScroll(True)
+        self.notiWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.notiWidget.setWordWrap(True)
         self.pageWidget.addWidget(self.notiPage)
         self.historyPage = QWidget()
         self.historyPage.setObjectName(u"historyPage")
@@ -374,20 +381,20 @@ class Ui_MainWindow(object):
         self.historyTable = QTableWidget(self.historyPage)
         if (self.historyTable.columnCount() < 4):
             self.historyTable.setColumnCount(4)
-        font3 = QFont()
-        font3.setFamilies([u"KoHo"])
-        font3.setPointSize(14)
+        font4 = QFont()
+        font4.setFamilies([u"KoHo"])
+        font4.setPointSize(14)
         __qtablewidgetitem = QTableWidgetItem()
-        __qtablewidgetitem.setFont(font3);
+        __qtablewidgetitem.setFont(font4);
         self.historyTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        __qtablewidgetitem1.setFont(font3);
+        __qtablewidgetitem1.setFont(font4);
         self.historyTable.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        __qtablewidgetitem2.setFont(font3);
+        __qtablewidgetitem2.setFont(font4);
         self.historyTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        __qtablewidgetitem3.setFont(font3);
+        __qtablewidgetitem3.setFont(font4);
         self.historyTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
@@ -416,10 +423,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
-        font4 = QFont()
-        font4.setFamilies([u"Arial"])
-        font4.setPointSize(20)
-        self.label.setFont(font4)
+        self.label.setFont(font1)
         self.label.setStyleSheet(u"color: black;")
         self.feedbackSubmitBtn = QPushButton(self.feedbackPage)
         self.feedbackSubmitBtn.setObjectName(u"feedbackSubmitBtn")
@@ -510,8 +514,9 @@ class Ui_MainWindow(object):
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
         self.feedbackListWidget = QListWidget(self.feedbackPage)
-        __qlistwidgetitem = QListWidgetItem(self.feedbackListWidget)
-        __qlistwidgetitem.setFont(font3);
+        __qlistwidgetitem1 = QListWidgetItem(self.feedbackListWidget)
+        __qlistwidgetitem1.setFont(font4);
+        __qlistwidgetitem1.setFlags(Qt.NoItemFlags);
         self.feedbackListWidget.setObjectName(u"feedbackListWidget")
         self.feedbackListWidget.setGeometry(QRect(60, 130, 501, 541))
         self.feedbackListWidget.setStyleSheet(u"QListWidget {\n"
@@ -526,16 +531,12 @@ class Ui_MainWindow(object):
 "    margin: 4px;\n"
 "}\n"
 "\n"
-"QListWidget::item:selected {\n"
-"    background-color: lightblue; /* Example of selecting item background color */\n"
-"}\n"
-"\n"
 "QListWidget::item {\n"
 "    qproperty-alignment: AlignCenter;\n"
 "}\n"
 "")
         self.feedbackListWidget.setAutoScroll(True)
-        self.feedbackListWidget.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.feedbackListWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.feedbackTitle = QLineEdit(self.feedbackPage)
         self.feedbackTitle.setObjectName(u"feedbackTitle")
         self.feedbackTitle.setGeometry(QRect(650, 260, 351, 41))
@@ -556,7 +557,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.pageWidget.setCurrentIndex(0)
+        self.pageWidget.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -600,7 +601,15 @@ class Ui_MainWindow(object):
         self.userFirst.setText(QCoreApplication.translate("MainWindow", u"John", None))
         self.userSurLabel.setText(QCoreApplication.translate("MainWindow", u"Surname:", None))
         self.notiTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Notification", None))
-        self.notiDetail.setText(QCoreApplication.translate("MainWindow", u"Welcome to Fine Cuisine!", None))
+
+        __sortingEnabled = self.notiWidget.isSortingEnabled()
+        self.notiWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.notiWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
+        ___qlistwidgetitem1 = self.notiWidget.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"tetwt", None));
+        self.notiWidget.setSortingEnabled(__sortingEnabled)
+
         self.historyTitleLabel.setText(QCoreApplication.translate("MainWindow", u"History", None))
         ___qtablewidgetitem = self.historyTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"ID", None));
@@ -622,11 +631,11 @@ class Ui_MainWindow(object):
         self.star5Radio.setText(QCoreApplication.translate("MainWindow", u"5", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Review Us here", None))
 
-        __sortingEnabled = self.feedbackListWidget.isSortingEnabled()
+        __sortingEnabled1 = self.feedbackListWidget.isSortingEnabled()
         self.feedbackListWidget.setSortingEnabled(False)
-        ___qlistwidgetitem = self.feedbackListWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
-        self.feedbackListWidget.setSortingEnabled(__sortingEnabled)
+        ___qlistwidgetitem2 = self.feedbackListWidget.item(0)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
+        self.feedbackListWidget.setSortingEnabled(__sortingEnabled1)
 
         self.feedbackTitle.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Title", None))
     # retranslateUi

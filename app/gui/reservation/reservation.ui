@@ -283,6 +283,11 @@ background-color: rgb(198, 52, 40);
              <height>280</height>
             </rect>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">background-color: #E7E5DF;
 color: rgb(0, 0, 0);
@@ -290,6 +295,9 @@ border-radius: 0px</string>
            </property>
            <property name="gridVisible">
             <bool>false</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QCalendarWidget::SingleSelection</enum>
            </property>
            <property name="horizontalHeaderFormat">
             <enum>QCalendarWidget::ShortDayNames</enum>

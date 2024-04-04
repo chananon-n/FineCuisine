@@ -148,10 +148,14 @@ class Ui_MainWindow(object):
         self.calendarWidget = QCalendarWidget(self.reservationFrame)
         self.calendarWidget.setObjectName(u"calendarWidget")
         self.calendarWidget.setGeometry(QRect(60, 130, 440, 280))
+        font = QFont()
+        font.setPointSize(16)
+        self.calendarWidget.setFont(font)
         self.calendarWidget.setStyleSheet(u"background-color: #E7E5DF;\n"
 "color: rgb(0, 0, 0);\n"
 "border-radius: 0px")
         self.calendarWidget.setGridVisible(False)
+        self.calendarWidget.setSelectionMode(QCalendarWidget.SingleSelection)
         self.calendarWidget.setHorizontalHeaderFormat(QCalendarWidget.ShortDayNames)
         self.calendarWidget.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
         self.calendarWidget.setNavigationBarVisible(True)

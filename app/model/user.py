@@ -21,10 +21,14 @@ class Client(User):
         super().__init__(username, password, email, phone)
         self.membership = None
         self.history = []
+        self.notifications = []
         self.id = client_id()    
         
     def addHistory(self, booking):
         self.history.append(booking) 
+        
+    def addNotification(self, notification):
+        self.notifications.append(notification)
     
     def addMembership(self,membership):
         self.membership = membership

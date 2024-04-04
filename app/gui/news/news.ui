@@ -279,8 +279,12 @@ QListWidget::item {
     margin: 4px;
 }
 
+QListWidget::item:hover {
+    background-color: grey; /* Example of selecting item background color */
+}
+
 QListWidget::item:selected {
-    background-color: lightblue; /* Example of selecting item background color */
+    background-color: black; /* Example of selecting item background color */
 }
 
 QListWidget::item {

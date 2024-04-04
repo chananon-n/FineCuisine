@@ -42,7 +42,7 @@ class UserServices:
         if checkAvailable:
             dataManager.updateMealBooking(course, date, time, partySize)
             dataManager.addBookingDB(clientID, course, time, date, partySize, persons, userNotes)
-            dataManager.addNotification(clientID, "Your booking has been confirmed")
+            dataManager.addNotification(clientID, f"Your booking has been confirmed: {course} on {date} at {time} for {partySize} persons")
             return True
         else:
 
@@ -51,8 +51,17 @@ class UserServices:
     def registerMembership(self, clientID, fname, lname, dateOfBirth):
         dataManager.registerMembership(clientID, fname, lname, dateOfBirth)
         dataManager.addNotification(clientID,"Congratulations, you have successfully registered for membership")
-        dataManager.addNotification(clientID,"You have been awarded Birthday Cake on your birthday")
         return True
+    
+    def birthdayNoti(self,clientID):
+        check = dataManager.checkMembership(clientID)
+        currentDate = datetime.now()
+        currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]
+        userMonth = check['memberBirth'].split('/')[1]
+        if currentMonth == userMonth and dataManager.markBirthday(clientID) == False:
+            dataManager.addNotification(clientID,"Happy Birthday!!!")
+            return True
+        return False
     
     def getNotifications(self,clientID):
         notifications = dataManager.getUserNotifications(clientID)
@@ -68,6 +77,13 @@ class UserServices:
     
     def createNews(self, title, image, details, date):
         dataManager.addNews(title, image, details, date)
+        
+        dataClient = dataManager.getAllClients()
+        clientList = []
+        for client in dataClient:
+            clientList.append(client['id'])
+        for client in clientList:
+            dataManager.addNotification(client, f"New news: {title}")
         return True
     
     def getAllNews(self):  
@@ -78,8 +94,9 @@ class UserServices:
         data = dataManager.getNewByID(id)
         return data
     
-    def createNewFeedback(self,title,description,rating):
+    def createNewFeedback(self,title, description, rating, clientID):
         dataManager.addFeedback(title,description,rating)
+        dataManager.addNotification(clientID,"Thank you for your feedback")
         return True
     
     def getAllFeedbacks(self):

@@ -147,18 +147,4 @@ def feedbackMain():
 
     
 if __name__ == "__main__":
-    # clearMealBookings("Dinner")
-    # clearMealBookings("Lunch")
-    # clearUserBookings()
-    # dataManager.createMealBooking("Lunch", "12:00", 10, 2)
-    # dataManager.createMealBooking("Lunch", "14:00", 10, 2)
-    # dataManager.createMealBooking("Dinner", "18:00", 10, 2)
-    # dataManager.createMealBooking("Dinner", "20:00", 10, 2)
-    # print(getAllMealBookingsDB("Lunch"))
-    # print(getAllMealBookingsDB("Dinner"))
-
-    main()
-    
-
-    # print(getMealBooking("Lunch", "04/04/2024", "12:00"))
-    
+    print(getAllClientsDB())
