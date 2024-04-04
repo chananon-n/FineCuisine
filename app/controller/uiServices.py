@@ -759,19 +759,28 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.clearFocus()
         self.addFeedback()
         self.backBtn.clicked.connect(self.backtoAdminMain)
         self.AllBtn.clicked.connect(self.addFeedback)
-        self.OneBtn.clicked.connect(self.rating(1))
-        self.TwoBtn.clicked.connect(self.rating(2))
-        self.ThreeBtn.clicked.connect(self.rating(3))
-        self.FourBtn.clicked.connect(self.rating(4))
-        self.FiveBtn.clicked.connect(self.rating(5))
+        self.OneBtn.clicked.connect(self.ratingOne)
+        self.TwoBtn.clicked.connect(self.ratingTwo)
+        self.ThreeBtn.clicked.connect(self.ratingThree)
+        self.FourBtn.clicked.connect(self.ratingFour)
+        self.FiveBtn.clicked.connect(self.ratingFive)
         
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()
         self.hide()
+    
+    def cleanFocus(self): 
+        self.AllBtn.clearFocus()
+        self.OneBtn.clearFocus()
+        self.TwoBtn.clearFocus()
+        self.ThreeBtn.clearFocus()
+        self.FourBtn.clearFocus()
+        self.FiveBtn.clearFocus()
 
     def addFeedback(self):
         self.listWidget.clear()
@@ -788,21 +797,40 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
             self.listWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
             #set font color
             self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
-            
-    def rating(self,star):
-        self.listWidget.clear()
-        allFeedbacks = userServices.getAllFeedbacks()
-        for feedbackItem in allFeedbacks:
-            if feedbackItem['rating'] == star:
-                feedback_text = f"Rating: {feedbackItem['rating']}/5"
-                if feedbackItem['title'] != "": 
-                    feedback_text += f"\n{feedbackItem['title']}"
-                if feedbackItem['detail'] != "":
-                    feedback_text += f"\n{feedbackItem['detail']}"
+    
+    def ratingOne(self):
+        self.rating(1)
                 
-                self.listWidget.insertItem(0, feedback_text)
-                #set font size
-                self.listWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
-                #set font color
-                self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+    def ratingTwo(self):
+        self.rating(2)
+                
+    def ratingThree(self):
+        self.rating(3)
+                
+    def ratingFour(self):
+        self.rating(4)
+                
+    def ratingFive(self):
+        self.rating(5)
+            
+    
+    def rating(self, rating):
+        self.listWidget.clear()
+        allFeedbacks = userServices.getFeedbacksByRating(rating)
+        for feedbackItem in allFeedbacks:
+            feedback_text = f"Rating: {feedbackItem['rating']}/5"
+            if feedbackItem['title'] != "": 
+                feedback_text += f"\n{feedbackItem['title']}"
+            if feedbackItem['detail'] != "":
+                feedback_text += f"\n{feedbackItem['detail']}"
+            
+            self.listWidget.insertItem(0, feedback_text)
+            #set font size
+            self.listWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+            #set font color
+            self.listWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+                
+                
+        
+    
     

@@ -90,6 +90,14 @@ class UserServices:
     def getFeedback(self,id):
         data = dataManager.getFeedbackInfo(id)
         return data
+    
+    def getFeedbacksByRating(self,rating):
+        data = dataManager.getFeedbacks()
+        feedbacks = []
+        for item in data:
+            if item['rating'] == rating:
+                feedbacks.append(item)
+        return feedbacks
         
     def checkUserMembership(self,clientID):
         check = dataManager.checkMembership(clientID)
