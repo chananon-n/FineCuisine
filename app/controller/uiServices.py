@@ -203,29 +203,16 @@ class MainPage(QMainWindow, mainPage):
         
     def openHistory(self):
         self.pageWidget.setCurrentIndex(3)
-        self.historyTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
         self.historyTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        data = userServices.userHistory(userID)
+        self.historyTable.setRowCount(len(data))
+        for i in range(len(data)):
+            self.historyTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(data[i]['bookingID'])))
+            self.historyTable.setItem(i, 1, QtWidgets.QTableWidgetItem(data[i]['date']))
+            self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(data[i]['course']))
+            self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(data[i]['status']))
         
-        self.cancelBtn = QtWidgets.QPushButton("Cancel")
-        self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
-        #add data to the table
-        self.historyTable.setRowCount(2)
-        self.historyTable.setColumnCount(5)
-        self.historyTable.setHorizontalHeaderLabels(["ID", "Course", "Date", "Status", "Cancel"])
-        self.historyTable.setItem(0, 0, QtWidgets.QTableWidgetItem("1"))
-        self.historyTable.setItem(0, 1, QtWidgets.QTableWidgetItem("Course 1"))
-        self.historyTable.setItem(0, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
-        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Pending"))
-        self.historyTable.setCellWidget(0, 4, self.cancelBtn)
-        self.cancelBtn.clicked.connect(self.cancellation)
-        self.historyTable.setItem(1, 0, QtWidgets.QTableWidgetItem("2"))
-        self.historyTable.setItem(1, 1, QtWidgets.QTableWidgetItem("Course 2"))
-        self.historyTable.setItem(1, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
-        self.historyTable.setItem(1, 3, QtWidgets.QTableWidgetItem("Completed"))   
         
-    def cancellation(self):
-        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Cancelled"))
-        self.cancelBtn.hide()
 
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
