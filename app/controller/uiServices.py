@@ -380,6 +380,12 @@ class ReservationPage(QMainWindow, reservationPage):
         
         self.logoutBtn.clicked.connect(self.logout)
         
+        self.selectedTime = False
+        self.selectSize = False
+        
+        # Sidebar buttons
+        self.homeBtn.clicked.connect(self.openHomePage)
+        self.userinfoBtn.clicked.connect(self.openUserInfo)
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
@@ -389,18 +395,56 @@ class ReservationPage(QMainWindow, reservationPage):
         
         self.course = self.findChild(QtWidgets.QComboBox, "courseBox")
         self.course.addItems(["Lunch", "Dinner"])
-        self.course.currentIndexChanged.connect(self.loadTimes)
+        self.course.currentIndexChanged.connect(self.updateReservation)
+
         self.time = self.findChild(QtWidgets.QComboBox, "timeBox")
-        self.time.currentIndexChanged.connect(self.loadPartySizes)
+        self.time.currentIndexChanged.connect(self.updatePartySize)
+
         self.size = self.findChild(QtWidgets.QComboBox, "partySizeBox")
         self.additionNote = self.findChild(QtWidgets.QTextEdit, "noteTextEdit")
+                    
+        self.confirmBtn.clicked.connect(self.confirmReservation)  
+          
+    def updateReservation(self):
+        if self.courseBox.currentText() == "Lunch":
+            self.time.clear()
+            self.time.addItems(self.updateTimeComboBox("Lunch", self.selectedDate.text()))
+        elif self.courseBox.currentText() == "Dinner":
+            self.time.clear()
+            self.time.addItems(self.updateTimeComboBox("Dinner", self.selectedDate.text()))
+        else:
+            return
         
-        self.confirmBtn.clicked.connect(self.confirmReservation)
-        
-        # Initially disable time and party size selection
-        self.time.setEnabled(False)
-        self.size.setEnabled(False)
+    def updateTimeComboBox(self, mealType, selectedDate):
+        timeList = userServices.getallMealsBooking(mealType)
+        print(timeList)
+        availableTime = []
+        for time in timeList:
+            if time['T_Date'] == selectedDate:
+                availableTime.append(time['T_Time'])
+        return availableTime
+    
+    def updatePartySize(self):
+        # Ensure this method is connected to the signal for when the time selection changes
+        selectedDate = self.selectedDate.text()  # Again, ensure this updates correctly
+        selectedTime = self.time.currentText()
+        selectedCourse = self.course.currentText()
+        self.updateSizeComboBox(selectedCourse, selectedDate, selectedTime)
 
+    
+    def updateSizeComboBox(self, mealType, selectedDate, selectedTime):
+        print(selectedDate)
+        print(selectedTime)
+        partySize = userServices.getallMealsBooking(mealType)
+        print(partySize)
+        availableSize = []
+        for size in partySize:
+            if size['T_Date'] == selectedDate and size['T_Time'] == selectedTime:
+                for i in range(size['T_Size']):
+                    availableSize.append(str(i+1))
+        self.size.clear()
+        self.size.addItems(availableSize)
+        
     def openHomePage(self):
         self.mainPage.show()
         self.mainPage.openHomePage()
@@ -434,8 +478,8 @@ class ReservationPage(QMainWindow, reservationPage):
     def getDate(self):
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
-        self.time.setEnabled(True)  # Enable time selection after date is selected
-
+        self.updateReservation()
+        
     def loadTimes(self):
         self.time.clear()
         self.size.clear()

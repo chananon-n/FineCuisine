@@ -97,8 +97,8 @@ class dataManager:
         print("Party Size: ", partySize)
         print("Meal Type: ", mealType)
 
-        booking = getMealBooking(mealType, date, time)
-        if booking == None:
+        booking = getMealBooking(mealType, date, time).toJson()
+        if booking is not None:
             return True
         return False
         

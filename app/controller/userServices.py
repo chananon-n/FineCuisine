@@ -116,7 +116,7 @@ class UserServices:
             return True
         return False
         
-    
-    
-        
+    def getallMealsBooking(self, type):
+        data = dataManager.getAllMealBookings(type)
+        return data
      
