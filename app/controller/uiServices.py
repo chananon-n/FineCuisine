@@ -754,6 +754,45 @@ class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        
-        
+        self.addFeedback()
         self.backBtn.clicked.connect(self.backtoAdminMain)
+        self.pushButton.clicked.connect(self.addFeedback)
+        self.pushButton_2.clicked.connect(self.rating(1))
+        self.pushButton_3.clicked.connect(self.rating(2))
+        self.pushButton_4.clicked.connect(self.rating(3))
+        self.pushButton_5.clicked.connect(self.rating(4))
+        self.pushButton_6.clicked.connect(self.rating(5))
+
+    def addFeedback(self):
+        self.listWidget.clear()
+        allFeedbacks = userServices.getAllFeedbacks()
+        for feedbackItem in allFeedbacks:
+            feedback_text = f"Rating: {feedbackItem['rating']}/5"
+            if feedbackItem['title'] != "": 
+                feedback_text += f"\n{feedbackItem['title']}"
+            if feedbackItem['detail'] != "":
+                feedback_text += f"\n{feedbackItem['detail']}"
+            
+            self.feedbackListWidget.insertItem(0, feedback_text)
+            #set font size
+            self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+            #set font color
+            self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+            
+    def rating(self,star):
+        self.listWidget.clear()
+        allFeedbacks = userServices.getAllFeedbacks()
+        for feedbackItem in allFeedbacks:
+            if feedbackItem['rating'] == star:
+                feedback_text = f"Rating: {feedbackItem['rating']}/5"
+                if feedbackItem['title'] != "": 
+                    feedback_text += f"\n{feedbackItem['title']}"
+                if feedbackItem['detail'] != "":
+                    feedback_text += f"\n{feedbackItem['detail']}"
+                
+                self.feedbackListWidget.insertItem(0, feedback_text)
+                #set font size
+                self.feedbackListWidget.item(0).setFont(QtGui.QFont("KoHo", 14))
+                #set font color
+                self.feedbackListWidget.item(0).setForeground(QtGui.QColor(0, 0, 0))
+    
