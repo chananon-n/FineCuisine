@@ -21,6 +21,7 @@ def clientMain():
         print("2. View history")
         print("3. Give feedback")
         print("4. Logout")
+        print("5. Booking")
         choice = int(input("Enter your choice: "))
         if choice == 1:
             userServices = UserServices()
@@ -34,6 +35,8 @@ def clientMain():
             feedback = Feedback(detail, rating)
             root.feedbacks[feedback.id] = feedback
             transaction.commit()
+        elif choice == 5:
+            bookingMain()
         else:
             break
 
@@ -73,9 +76,12 @@ def main():
     
 def bookingMain():
     while True:
+        print(f"UID: {userID}")
         print("1. View booking")
         print("2. Make booking")
         print("3. Logout")
+        print("4 View All Lunch")
+        print("5 View All Dinner")
         choice = int(input("Enter your choice: "))
         if choice == 1:
             print(getAllBookings())
@@ -91,8 +97,11 @@ def bookingMain():
             #     updateMealBooking(course, date, time, partySize)
             #     booking = Booking(time, date, partySize, persons, userNotes)
             #     addUserBooking(booking)
-            res = UserServices.reservation(userID, course, time, date, partySize, persons, userNotes)
-            print(res)
+            res = UserServices.reservation(userID, course, date, time, partySize, persons, userNotes)
+        elif choice == 4:
+            print(getAllMealBookingsDB("Lunch"))
+        elif choice == 5:
+            print(getAllMealBookingsDB("Dinner"))
         else:
             break
     

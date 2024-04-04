@@ -1,7 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem, QLabel, QPushButton, QHBoxLayout, QComboBox, QWidget, QSpinBox, QLineEdit
 from PySide6.QtGui import QImage, QPixmap
 from app.controller.userServices import *
 import transaction
@@ -188,29 +188,16 @@ class MainPage(QMainWindow, mainPage):
         
     def openHistory(self):
         self.pageWidget.setCurrentIndex(3)
-        self.historyTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
         self.historyTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        data = userServices.userHistory(userID)
+        self.historyTable.setRowCount(len(data))
+        for i in range(len(data)):
+            self.historyTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(data[i]['bookingID'])))
+            self.historyTable.setItem(i, 1, QtWidgets.QTableWidgetItem(data[i]['date']))
+            self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(data[i]['course']))
+            self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(data[i]['status']))
         
-        self.cancelBtn = QtWidgets.QPushButton("Cancel")
-        self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
-        #add data to the table
-        self.historyTable.setRowCount(2)
-        self.historyTable.setColumnCount(5)
-        self.historyTable.setHorizontalHeaderLabels(["ID", "Course", "Date", "Status", "Cancel"])
-        self.historyTable.setItem(0, 0, QtWidgets.QTableWidgetItem("1"))
-        self.historyTable.setItem(0, 1, QtWidgets.QTableWidgetItem("Course 1"))
-        self.historyTable.setItem(0, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
-        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Pending"))
-        self.historyTable.setCellWidget(0, 4, self.cancelBtn)
-        self.cancelBtn.clicked.connect(self.cancellation)
-        self.historyTable.setItem(1, 0, QtWidgets.QTableWidgetItem("2"))
-        self.historyTable.setItem(1, 1, QtWidgets.QTableWidgetItem("Course 2"))
-        self.historyTable.setItem(1, 2, QtWidgets.QTableWidgetItem(f"{datetime.now()}"))
-        self.historyTable.setItem(1, 3, QtWidgets.QTableWidgetItem("Completed"))   
         
-    def cancellation(self):
-        self.historyTable.setItem(0, 3, QtWidgets.QTableWidgetItem("Cancelled"))
-        self.cancelBtn.hide()
 
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
@@ -801,11 +788,214 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.reservationTable.setRowCount(0)
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
+        self.closeReservationBtn.clicked.connect(self.closedReservation)
+        self.createReservationBtn.clicked.connect(self.createReservation)
+
+        
+        self.selectBtn.clicked.connect(self.reservationList)
+    
+    def reservationList(self):
+        data = self.dateEdit.text().strip()
+        bookings = userServices.getAllBookingsByDate(data)
+        self.reservationTable.setRowCount(len(bookings))
+
+        def update_row_status(sender, row, status):
+                if sender is self.confirmBtn or sender is self.cancelBtn:
+                    bookingID = self.reservationTable.item(row, 0).text()
+                    bookingID = int(bookingID)
+                    userServices.confirmBookingStatus(bookingID, status)
+                    self.reservationTable.setItem(row, 5, QtWidgets.QTableWidgetItem(status))
+                    self.reservationTable.cellWidget(row, 6).hide()
+                    self.reservationTable.cellWidget(row, 7).hide()
+
+        # Loop through bookings and populate table
+        for i in range(len(bookings)):
+            self.reservationTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(bookings[i]['bookingID'])))
+            self.reservationTable.setItem(i, 1, QtWidgets.QTableWidgetItem(str(bookings[i]['persons'])))
+            self.reservationTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(bookings[i]['course'])))
+            self.reservationTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(bookings[i]['time'])))
+            userID = bookings[i]['clientID']
+            checkMembership = userServices.checkUserMembership(userID)
+            if checkMembership:
+                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("Yes"))
+            else:
+                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("No"))
+
+            self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
+
+            if bookings[i]['status'] == "pending":            
+                self.confirmBtn = QtWidgets.QPushButton("Confirm")
+                self.confirmBtn.setStyleSheet("background-color: #4CAF50; color: white;")
+                self.confirmBtn.clicked.connect(lambda row=i, status="confirmed": update_row_status(self.confirmBtn, row, status))  # Pass row, status, and sender (self.confirmBtn)
+                self.reservationTable.setCellWidget(i, 6, self.confirmBtn)
+
+                # Create cancel button
+                self.cancelBtn = QtWidgets.QPushButton("Cancel")
+                self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
+                self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
+                self.reservationTable.setCellWidget(i, 7, self.cancelBtn)
+     
+    def createReservation(self):
+        self.createReservationWidget = QWidget()
+        self.createReservationWidgetLayout = QVBoxLayout(self.createReservationWidget)
+        
+        self.meal = QComboBox()
+        self.meal.addItem("Select Meal")
+        self.meal.addItem("Lunch")
+        self.meal.addItem("Dinner")
+        self.mealLayout = QHBoxLayout()
+        self.mealLayout.addWidget(QLabel("Meal Type: "))
+        self.mealLayout.addWidget(self.meal)
+        self.createReservationWidgetLayout.addLayout(self.mealLayout)
+        
+        self.timeCombo = QLineEdit()
+        self.timeLayout = QHBoxLayout()
+        self.timeLayout.addWidget(QLabel("Time: "))
+        self.timeLayout.addWidget(self.timeCombo)
+        self.createReservationWidgetLayout.addLayout(self.timeLayout)
+        
+        self.size = QSpinBox()
+        self.size.setMinimum(1)
+        self.size.setMaximum(10)
+        self.sizeLayout = QHBoxLayout()
+        self.sizeLayout.addWidget(QLabel("Party Size: "))
+        self.sizeLayout.addWidget(self.size)
+        self.createReservationWidgetLayout.addLayout(self.sizeLayout)
+        
+        #create input number
+        self.day = QSpinBox()
+        self.day.setMinimum(1)
+        self.day.setMaximum(31)
+        self.dayLayout = QHBoxLayout()
+        self.dayLayout.addWidget(QLabel("Day: "))
+        self.dayLayout.addWidget(self.day)
+        self.createReservationWidgetLayout.addLayout(self.dayLayout)
+        
+        #confirm button
+        self.confirmCreateBtn = QPushButton("Confirm Create")
+        self.createReservationWidgetLayout.addWidget(self.confirmCreateBtn)
+        self.confirmCreateBtn.clicked.connect(self.confirmCreateReservation)
+        
+        self.createReservationWidget.show()
+        
+              
+    def confirmCreateReservation(self):
+        meal = self.meal.currentText()
+        time = self.timeCombo.text()
+        partySize = int(self.size.text())
+        day = int(self.day.text())
+        if meal == "Select Meal" or time == "" or day == "":
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please select meal, time, and day")
+            alert.exec()
+            return
+        else:
+            userServices.createMealReservation(meal, time,partySize, day)
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation created!")
+            alert.exec()
+            self.createReservationWidget.hide()
+            self.reservationList()
+    
+    def closedReservation(self):
+        # Create a layout for the user input widget
+        self.closeReasonWidget = QWidget()
+        self.closeReasonWidgetLayout = QVBoxLayout(self.closeReasonWidget)
+
+        # Create a combobox for selecting close reason
+        self.mealCombo = QComboBox()
+        self.mealCombo.addItem("Select Meal")
+        self.mealCombo.addItem("Lunch")
+        self.mealCombo.addItem("Dinner")
+        self.mealComboLayout = QHBoxLayout()
+        self.mealComboLayout.addWidget(QLabel("Meal Type: "))
+        self.mealComboLayout.addWidget(self.mealCombo)
+        self.closeReasonWidgetLayout.addLayout(self.mealComboLayout)
+        
+        self.mealCombo.currentTextChanged.connect(self.updateDateCombo)
+        
+
+        self.dateCombo = QComboBox()
+        userSelectedMeal = self.mealCombo.currentText()
+        if userSelectedMeal == "Select Meal":
+            self.dateCombo.addItem("Select Date")
+        self.dateComboLayout = QHBoxLayout()
+        self.dateComboLayout.addWidget(QLabel("Date: "))
+        self.dateComboLayout.addWidget(self.dateCombo)
+        self.closeReasonWidgetLayout.addLayout(self.dateComboLayout)
+        
+        self.dateCombo.currentTextChanged.connect(self.updateTimeCombo)
+    
+
+        self.timeCombo = QComboBox()
+        userSelectedDate = self.dateCombo.currentText()
+        if userSelectedDate == "Select Date":
+            self.timeCombo.addItem("Select Time")
+        self.timeComboLayout = QHBoxLayout()
+        self.timeComboLayout.addWidget(QLabel("Time: "))
+        self.timeComboLayout.addWidget(self.timeCombo)
+        self.closeReasonWidgetLayout.addLayout(self.timeComboLayout)
+        
+
+        # Create a button to confirm closing the reservation
+        self.confirmCloseBtn = QPushButton("Confirm Close")
+        # self.confirmCloseBtn.clicked.connect(self.confirmCloseReservation)
+        self.closeReasonWidgetLayout.addWidget(self.confirmCloseBtn)
+        
+        self.confirmCloseBtn.clicked.connect(self.confirmCloseReservation)
+
+        # Display the user input widget (consider using a dialog instead)
+        self.closeReasonWidget.show()
+    
+    def confirmCloseReservation(self):
+        meal = self.mealCombo.currentText()
+        date = self.dateCombo.currentText()
+        time = self.timeCombo.currentText()
+        if meal == "Select Meal" or date == "Select Date" or time == "Select Time" or date == "" or time == "":
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please select meal, date, and time")
+            alert.exec()
+            return
+        else:
+            userServices.closedReservation(meal, date, time)
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation closed!")
+            alert.exec()
+            self.closeReasonWidget.hide()
+            self.reservationList()
+    
+    def updateDateCombo(self):
+        userSelectedMeal = self.mealCombo.currentText()
+        self.dateCombo.clear() 
+
+        if userSelectedMeal == "Select Meal":
+            self.dateCombo.addItem("Select Date")
+        else:
+            # Assuming you have logic to fetch available dates based on meal
+            data = userServices.getallMealsBooking(userSelectedMeal)
+            for date in data:
+                self.dateCombo.addItem(date['T_Date'])
+    
+    def updateTimeCombo(self):
+        userSelectedDate = self.dateCombo.currentText()
+        userSelectedMeal = self.mealCombo.currentText()
+        self.timeCombo.clear()
+
+        if userSelectedDate == "Select Date":
+            self.timeCombo.addItem("Select Time")
+        else:
+            # Assuming you have logic to fetch available times based on meal and date
+            data = userServices.getallMealsBooking(userSelectedMeal)
+            for time in data:
+                if time['T_Date'] == userSelectedDate:
+                    self.timeCombo.addItem(time['T_Time'])
+                
         
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()
         self.hide()
+    
 
 class AdminFeedbackPage(QMainWindow, adminFeedbackPage):
     def __init__(self):
