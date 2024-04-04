@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservationAdminPage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -135,6 +135,17 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "	background-color: rgb(166, 165, 161);\n"
 "}")
+        self.createReservationBtn = QPushButton(self.centralwidget)
+        self.createReservationBtn.setObjectName(u"createReservationBtn")
+        self.createReservationBtn.setGeometry(QRect(580, 100, 131, 32))
+        self.createReservationBtn.setStyleSheet(u"QPushButton{\n"
+"border: 3 solid black;\n"
+"border-radius: 8px;\n"
+"color: black;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(166, 165, 161);\n"
+"}")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -181,5 +192,6 @@ class Ui_MainWindow(object):
         self.reservationTable.setSortingEnabled(__sortingEnabled)
 
         self.selectBtn.setText(QCoreApplication.translate("MainWindow", u"Select", None))
+        self.createReservationBtn.setText(QCoreApplication.translate("MainWindow", u"Create Reservation", None))
     # retranslateUi
 
