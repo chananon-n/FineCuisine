@@ -364,6 +364,7 @@ class CoursePage(QMainWindow, coursePage):
         url = userServices.getCourseMenu("Dinner")
         webbrowser.open(url)
 
+
 class ReservationPage(QMainWindow, reservationPage):
     def __init__(self):
         super().__init__()
@@ -388,14 +389,18 @@ class ReservationPage(QMainWindow, reservationPage):
         
         self.course = self.findChild(QtWidgets.QComboBox, "courseBox")
         self.course.addItems(["Lunch", "Dinner"])
+        self.course.currentIndexChanged.connect(self.loadTimes)
         self.time = self.findChild(QtWidgets.QComboBox, "timeBox")
-        self.time.addItems(["08:00-10:00", "10:00-12:00", "13:00-15:00", "15:00-17:00", "17:00-19:00", "19:00-21:00"])
+        self.time.currentIndexChanged.connect(self.loadPartySizes)
         self.size = self.findChild(QtWidgets.QComboBox, "partySizeBox")
-        self.size.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
         self.additionNote = self.findChild(QtWidgets.QTextEdit, "noteTextEdit")
         
         self.confirmBtn.clicked.connect(self.confirmReservation)
         
+        # Initially disable time and party size selection
+        self.time.setEnabled(False)
+        self.size.setEnabled(False)
+
     def openHomePage(self):
         self.mainPage.show()
         self.mainPage.openHomePage()
@@ -429,7 +434,23 @@ class ReservationPage(QMainWindow, reservationPage):
     def getDate(self):
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
-        
+        self.time.setEnabled(True)  # Enable time selection after date is selected
+
+    def loadTimes(self):
+        self.time.clear()
+        self.size.clear()
+        course = self.course.currentText()
+        if course == "Lunch":
+            available_times = ["08:00-10:00", "10:00-12:00", "13:00-15:00"]
+        else:  # Dinner
+            available_times = ["15:00-17:00", "17:00-19:00", "19:00-21:00"]
+        self.time.addItems(available_times)
+
+    def loadPartySizes(self):
+        self.size.clear()
+        self.size.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+        self.size.setEnabled(True)  # Enable party size selection after time is selected
+
     def confirmReservation(self):
         alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
@@ -465,31 +486,6 @@ class ReservationPage(QMainWindow, reservationPage):
                 alert.setText("Reservation failed. Please try again.")
                 alert.exec()
 
-        #     userServices.reservation(userID, "Dinner", "12:00", "12/12/2021", 10, 1, "No notes")
-
-        #     print("User ID is: ", userID)
-        #     print("Course is:", course)
-        #     print("Date is:", date)
-        #     print("Time is:", time)
-        #     print("Party size is:", partySize)
-        #     print("Persons is:", persons)
-        #     print("User notes is:", userNotes)
-
-        #     print(userServices.reservation(userID, course, date, time, partySize, persons, userNotes))
-        #     if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
-        #         alert = QtWidgets.QMessageBox()
-        #         alert.setText("Reservation confirmed!")
-        #         alert.exec()
-        #         self.mainPage.show()
-        #         self.mainPage.openHomePage()
-        #         self.hide()
-        #     else:
-        #         alert = QtWidgets.QMessageBox()
-        #         alert.setText("Reservation failed. Please try again.")
-        #         alert.exec()
-        # else:
-        #     pass
-    
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
         super().__init__()
