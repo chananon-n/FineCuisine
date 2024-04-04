@@ -234,10 +234,12 @@ def updateBookingStatus(bookingID, status):
 
 def clearClientInfo():
     root.clients.clear()
+    root.client_id = 0
     transaction.commit()
     
 def clearAdminInfo():
     root.admins.clear()
+    root.admin_id = 0
     transaction.commit()
     
 def removeClient(clientID):
@@ -256,22 +258,21 @@ def removeAdmin(adminID):
             return True
     return False
 
-def createNotification(clientID, message):
-    for client in root.notification.values():
+def appendNotification(clientID, notification):
+    for client in root.clients.values():
         if client.id == clientID:
-            client.notifications.append(message)
-            transaction.commit()
-            return True
-        elif client.id != clientID:
-            root.notification[clientID] = message
+            temp = client.notifications
+            temp.append(notification)
+            client.notifications = temp
             transaction.commit()
             return True
     return False
 
 def getNotifications(clientID):
-    for client in root.notification.values():
+    for client in root.clients.values():
         if client.id == clientID:
             return client.notifications
+    return False
         
 def addCourseMenuDB(courseType, courseLink):
     if courseType in root.courseMenu:

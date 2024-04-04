@@ -244,7 +244,7 @@ background-color: rgb(198, 52, 40);
            </rect>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="homePage">
            <widget class="QLabel" name="titleLabel">
@@ -252,7 +252,7 @@ background-color: rgb(198, 52, 40);
              <rect>
               <x>10</x>
               <y>0</y>
-              <width>431</width>
+              <width>521</width>
               <height>100</height>
              </rect>
             </property>
@@ -290,7 +290,7 @@ font: 700 80pt &quot;Arial&quot;;</string>
             <property name="font">
              <font>
               <family>Arial</family>
-              <pointsize>24</pointsize>
+              <pointsize>20</pointsize>
              </font>
             </property>
             <property name="layoutDirection">
@@ -832,55 +832,61 @@ color: #7E1615</string>
              <string>Notification</string>
             </property>
            </widget>
-           <widget class="QScrollArea" name="scrollArea_2">
+           <widget class="QListWidget" name="notiWidget">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>100</y>
-              <width>1141</width>
-              <height>571</height>
+              <x>50</x>
+              <y>120</y>
+              <width>1011</width>
+              <height>541</height>
              </rect>
             </property>
-            <property name="widgetResizable">
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+    padding: 12px 12px; /* Corrected padding format */
+    font: 24pt &quot;Arial&quot;;
+    color: rgb(0, 0, 0);
+}
+
+QListWidget::item {
+    border: 1px solid; /* Corrected border format */
+    border-radius: 8px;
+    margin: 4px;
+}
+
+QListWidget::item {
+    qproperty-alignment: AlignCenter;
+}
+</string>
+            </property>
+            <property name="autoScroll">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>1139</width>
-               <height>569</height>
-              </rect>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Feedback 1</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <widget class="QLabel" name="notiDetail">
-                <property name="minimumSize">
-                 <size>
-                  <width>1100</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>1100</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0);
-font: 700 18pt &quot;KoHo&quot;;
-border: 1 solid black;
-border-radius: 8px</string>
-                </property>
-                <property name="text">
-                 <string>Welcome to Fine Cuisine!</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="flags">
+              <set>NoItemFlags</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>tetwt</string>
+             </property>
+            </item>
            </widget>
           </widget>
           <widget class="QWidget" name="historyPage">
@@ -1236,10 +1242,6 @@ QListWidget::item {
     margin: 4px;
 }
 
-QListWidget::item:selected {
-    background-color: lightblue; /* Example of selecting item background color */
-}
-
 QListWidget::item {
     qproperty-alignment: AlignCenter;
 }
@@ -1249,7 +1251,7 @@ QListWidget::item {
              <bool>true</bool>
             </property>
             <property name="editTriggers">
-             <set>QAbstractItemView::DoubleClicked</set>
+             <set>QAbstractItemView::NoEditTriggers</set>
             </property>
             <item>
              <property name="text">
@@ -1260,6 +1262,9 @@ QListWidget::item {
                <family>KoHo</family>
                <pointsize>14</pointsize>
               </font>
+             </property>
+             <property name="flags">
+              <set>NoItemFlags</set>
              </property>
             </item>
            </widget>

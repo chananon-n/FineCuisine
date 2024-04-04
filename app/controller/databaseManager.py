@@ -130,7 +130,14 @@ class dataManager:
         return True
     
     def addNotification(clientID,notification):
-        return createNotification(clientID,notification)
+        return appendNotification(clientID,notification)
+    
+    def markBirthday(clientID):
+        data = getClientDBInfo(clientID)
+        for i in data['notifications']:
+            if i == "Happy Birthday!!!":
+                return True
+        return False
     
     def getUserNotifications(clientID):
         return getNotifications(clientID)
