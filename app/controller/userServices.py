@@ -131,3 +131,7 @@ class UserServices:
     def closedReservation(self,mealType,date,time):
         dataManager.deleteMealBooking(mealType,date,time)
         return True
+    
+    def createMealReservation(self,mealType,time,partySize,numBooking):
+        dataManager.createMealBooking(mealType,time,partySize,numBooking)
+        return True

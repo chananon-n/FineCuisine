@@ -1,7 +1,7 @@
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem, QLabel, QPushButton, QHBoxLayout, QComboBox, QWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QFileDialog, QVBoxLayout, QFormLayout, QSizePolicy, QDialog, QListWidgetItem, QLabel, QPushButton, QHBoxLayout, QComboBox, QWidget, QSpinBox, QLineEdit
 from PySide6.QtGui import QImage, QPixmap
 from app.controller.userServices import *
 import transaction
@@ -817,6 +817,7 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
         self.closeReservationBtn.clicked.connect(self.closedReservation)
+        self.createReservationBtn.clicked.connect(self.createReservation)
 
         
         self.selectBtn.clicked.connect(self.reservationList)
@@ -861,7 +862,69 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
                 self.reservationTable.setCellWidget(i, 7, self.cancelBtn)
-           
+     
+    def createReservation(self):
+        self.createReservationWidget = QWidget()
+        self.createReservationWidgetLayout = QVBoxLayout(self.createReservationWidget)
+        
+        self.meal = QComboBox()
+        self.meal.addItem("Select Meal")
+        self.meal.addItem("Lunch")
+        self.meal.addItem("Dinner")
+        self.mealLayout = QHBoxLayout()
+        self.mealLayout.addWidget(QLabel("Meal Type: "))
+        self.mealLayout.addWidget(self.meal)
+        self.createReservationWidgetLayout.addLayout(self.mealLayout)
+        
+        self.timeCombo = QLineEdit()
+        self.timeLayout = QHBoxLayout()
+        self.timeLayout.addWidget(QLabel("Time: "))
+        self.timeLayout.addWidget(self.timeCombo)
+        self.createReservationWidgetLayout.addLayout(self.timeLayout)
+        
+        self.size = QSpinBox()
+        self.size.setMinimum(1)
+        self.size.setMaximum(10)
+        self.sizeLayout = QHBoxLayout()
+        self.sizeLayout.addWidget(QLabel("Party Size: "))
+        self.sizeLayout.addWidget(self.size)
+        self.createReservationWidgetLayout.addLayout(self.sizeLayout)
+        
+        #create input number
+        self.day = QSpinBox()
+        self.day.setMinimum(1)
+        self.day.setMaximum(31)
+        self.dayLayout = QHBoxLayout()
+        self.dayLayout.addWidget(QLabel("Day: "))
+        self.dayLayout.addWidget(self.day)
+        self.createReservationWidgetLayout.addLayout(self.dayLayout)
+        
+        #confirm button
+        self.confirmCreateBtn = QPushButton("Confirm Create")
+        self.createReservationWidgetLayout.addWidget(self.confirmCreateBtn)
+        self.confirmCreateBtn.clicked.connect(self.confirmCreateReservation)
+        
+        self.createReservationWidget.show()
+        
+              
+    def confirmCreateReservation(self):
+        meal = self.meal.currentText()
+        time = self.timeCombo.text()
+        partySize = int(self.size.text())
+        day = int(self.day.text())
+        if meal == "Select Meal" or time == "" or day == "":
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please select meal, time, and day")
+            alert.exec()
+            return
+        else:
+            userServices.createMealReservation(meal, time,partySize, day)
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation created!")
+            alert.exec()
+            self.createReservationWidget.hide()
+            self.reservationList()
+    
     def closedReservation(self):
         # Create a layout for the user input widget
         self.closeReasonWidget = QWidget()
