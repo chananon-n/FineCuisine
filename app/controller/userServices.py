@@ -1,6 +1,7 @@
 import datetime
 from app.controller.databaseManager import dataManager
 
+from datetime import datetime
 
 class UserServices:
     def login(self,usernameInput, passwordInput):
@@ -37,7 +38,7 @@ class UserServices:
         else:
             return False
     
-    def reservation(clientID, course, date, time, partySize, persons, userNotes):
+    def reservation(self, clientID, course, date, time, partySize, persons, userNotes):
         checkAvailable = dataManager.checkBookingAvailable(time, date, partySize, course)
         if checkAvailable:
             dataManager.updateMealBooking(course, date, time, partySize)
@@ -54,13 +55,18 @@ class UserServices:
         return True
     
     def birthdayNoti(self,clientID):
-        check = dataManager.checkMembership(clientID)
-        currentDate = datetime.now()
-        currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]
-        userMonth = check['memberBirth'].split('/')[1]
-        if currentMonth == userMonth and dataManager.markBirthday(clientID) == False:
-            dataManager.addNotification(clientID,"Happy Birthday!!!")
-            return True
+        if dataManager.checkMembership(clientID):
+            check = dataManager.checkMembership(clientID)
+            currentDate = datetime.now()
+            currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]
+            userMonth = check['memberBirth'].split('/')[1]
+            print(currentMonth)
+            print(userMonth)
+            if currentMonth == userMonth:
+                print("Pass case")
+                if dataManager.markBirthday(clientID):
+                    dataManager.addNotification(clientID,"Happy Birthday!!!")
+                    return True
         return False
     
     def getNotifications(self,clientID):
@@ -115,11 +121,11 @@ class UserServices:
                 feedbacks.append(item)
         return feedbacks
         
-    def checkUserMembership(self,clientID):
+    def checkUserMembership(self, clientID):
         check = dataManager.checkMembership(clientID)
         return check
 
-    def checkUserBirthday(self,clientID):
+    def checkUserBirthday(self, clientID):
         check = UserServices.checkUserMembership(clientID)
         currentDate = datetime.now()
         currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]

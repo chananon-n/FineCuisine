@@ -64,7 +64,8 @@ class Client(User):
             "email": self.email,
             "phone": self.phone,
             "membership": self.membership,
-            "history": self.history
+            "history": self.history,
+            "notifications": self.notifications
         }
         
 class Admin(User):

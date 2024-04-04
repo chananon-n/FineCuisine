@@ -109,6 +109,8 @@ class MainPage(QMainWindow, mainPage):
         self.setupUi(self)
         self.pageWidget.setCurrentIndex(0)
         
+        userServices.birthdayNoti(userID)
+        
         #sidebar buttons
         self.findaverageFeedbackRating()
         self.homeBtn.clicked.connect(self.openHomePage)
@@ -190,15 +192,32 @@ class MainPage(QMainWindow, mainPage):
         self.pageWidget.setCurrentIndex(3)
         self.historyTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         data = userServices.userHistory(userID)
+        #decreasing order of id
+        data = sorted(data, key=lambda x: x['bookingID'], reverse=True)
         self.historyTable.setRowCount(len(data))
+        
+        def update_row_status(sender, row, status):
+                if  sender is self.cancelBtn:
+                    bookingID = self.historyTable.item(row, 0).text()
+                    bookingID = int(bookingID)
+                    userServices.confirmBookingStatus(bookingID, status)
+                    self.historyTable.setItem(row, 4, QtWidgets.QTableWidgetItem(status))
+                    self.historyTable.cellWidget(row, 5).hide()
+                    
         for i in range(len(data)):
             self.historyTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(data[i]['bookingID'])))
-            self.historyTable.setItem(i, 1, QtWidgets.QTableWidgetItem(data[i]['date']))
-            self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(data[i]['course']))
-            self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(data[i]['status']))
-        
-        
+            self.historyTable.setItem(i, 1, QtWidgets.QTableWidgetItem(str(data[i]['course'])))
+            self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(data[i]['date'])))
+            self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(data[i]['time'])))
+            self.historyTable.setItem(i, 4, QtWidgets.QTableWidgetItem(str(data[i]['status'])))
 
+            if data[i]['status'] == "pending":
+                # Create cancel button
+                self.cancelBtn = QtWidgets.QPushButton("Cancel")
+                self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
+                self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
+                self.historyTable.setCellWidget(i, 5, self.cancelBtn)
+                
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
         self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
@@ -786,17 +805,19 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         #del all rows
         self.reservationTable.setRowCount(0)
+        self.dateEdit.setDate(QtCore.QDate.currentDate())
         
         self.backBtn.clicked.connect(self.backtoAdminMain)
         self.closeReservationBtn.clicked.connect(self.closedReservation)
         self.createReservationBtn.clicked.connect(self.createReservation)
-
         
         self.selectBtn.clicked.connect(self.reservationList)
     
     def reservationList(self):
         data = self.dateEdit.text().strip()
         bookings = userServices.getAllBookingsByDate(data)
+        #sort by time
+        bookings = sorted(bookings, key=lambda x: x['time'])
         self.reservationTable.setRowCount(len(bookings))
 
         def update_row_status(sender, row, status):
@@ -804,36 +825,37 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
                     bookingID = self.reservationTable.item(row, 0).text()
                     bookingID = int(bookingID)
                     userServices.confirmBookingStatus(bookingID, status)
-                    self.reservationTable.setItem(row, 5, QtWidgets.QTableWidgetItem(status))
-                    self.reservationTable.cellWidget(row, 6).hide()
+                    self.reservationTable.setItem(row, 6, QtWidgets.QTableWidgetItem(status))
                     self.reservationTable.cellWidget(row, 7).hide()
+                    self.reservationTable.cellWidget(row, 8).hide()
 
         # Loop through bookings and populate table
         for i in range(len(bookings)):
+            self.reservationTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(bookings[i]['time'])))
             self.reservationTable.setItem(i, 0, QtWidgets.QTableWidgetItem(str(bookings[i]['bookingID'])))
             self.reservationTable.setItem(i, 1, QtWidgets.QTableWidgetItem(str(bookings[i]['persons'])))
             self.reservationTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(bookings[i]['course'])))
-            self.reservationTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(bookings[i]['time'])))
+            self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem(str(bookings[i]['partySize'])))
             userID = bookings[i]['clientID']
             checkMembership = userServices.checkUserMembership(userID)
             if checkMembership:
-                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("Yes"))
+                self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem("Yes"))
             else:
-                self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem("No"))
+                self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem("No"))
 
-            self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
+            self.reservationTable.setItem(i, 6, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
 
             if bookings[i]['status'] == "pending":            
                 self.confirmBtn = QtWidgets.QPushButton("Confirm")
                 self.confirmBtn.setStyleSheet("background-color: #4CAF50; color: white;")
                 self.confirmBtn.clicked.connect(lambda row=i, status="confirmed": update_row_status(self.confirmBtn, row, status))  # Pass row, status, and sender (self.confirmBtn)
-                self.reservationTable.setCellWidget(i, 6, self.confirmBtn)
+                self.reservationTable.setCellWidget(i, 7, self.confirmBtn)
 
                 # Create cancel button
                 self.cancelBtn = QtWidgets.QPushButton("Cancel")
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
-                self.reservationTable.setCellWidget(i, 7, self.cancelBtn)
+                self.reservationTable.setCellWidget(i, 8, self.cancelBtn)
      
     def createReservation(self):
         self.createReservationWidget = QWidget()

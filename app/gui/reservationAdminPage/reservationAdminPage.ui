@@ -178,6 +178,18 @@ QPushButton:hover{
     </column>
     <column>
      <property name="text">
+      <string>Party</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>KoHo</family>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Membership</string>
      </property>
      <property name="font">
@@ -244,12 +256,12 @@ QPushButton:hover{
       <string>18:00</string>
      </property>
     </item>
-    <item row="0" column="4">
+    <item row="0" column="5">
      <property name="text">
       <string>Yes</string>
      </property>
     </item>
-    <item row="0" column="5">
+    <item row="0" column="6">
      <property name="text">
       <string>Pending</string>
      </property>
@@ -267,6 +279,12 @@ QPushButton:hover{
     <property name="styleSheet">
      <string notr="true">color:rgb(0, 0, 0);
 font: 16pt &quot;Arial&quot;;</string>
+    </property>
+    <property name="currentSection">
+     <enum>QDateTimeEdit::DaySection</enum>
+    </property>
+    <property name="displayFormat">
+     <string>dd/MM/yyyy </string>
     </property>
     <property name="timeSpec">
      <enum>Qt::UTC</enum>

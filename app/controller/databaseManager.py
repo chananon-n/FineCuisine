@@ -126,11 +126,15 @@ class dataManager:
         return appendNotification(clientID,notification)
     
     def markBirthday(clientID):
-        data = getClientDBInfo(clientID)
-        for i in data['notifications']:
+        data = getClientDBInfo(clientID).toJson()
+        print(data)
+        temp = data['notifications']
+        for i in temp:
             if i == "Happy Birthday!!!":
-                return True
-        return False
+                print("Already marked")
+                return False
+        print("Not marked")
+        return True
     
     def getUserNotifications(clientID):
         return getNotifications(clientID)

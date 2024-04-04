@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservationAdminPage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QDateEdit, QHeaderView,
-    QLabel, QMainWindow, QPushButton, QSizePolicy,
-    QTableWidget, QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QDateEdit, QDateTimeEdit,
+    QHeaderView, QLabel, QMainWindow, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -64,8 +64,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(166, 165, 161);\n"
 "}")
         self.reservationTable = QTableWidget(self.centralwidget)
-        if (self.reservationTable.columnCount() < 8):
-            self.reservationTable.setColumnCount(8)
+        if (self.reservationTable.columnCount() < 9):
+            self.reservationTable.setColumnCount(9)
         font1 = QFont()
         font1.setFamilies([u"KoHo"])
         font1.setPointSize(14)
@@ -94,20 +94,23 @@ class Ui_MainWindow(object):
         __qtablewidgetitem7 = QTableWidgetItem()
         __qtablewidgetitem7.setFont(font1);
         self.reservationTable.setHorizontalHeaderItem(7, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        __qtablewidgetitem8.setFont(font1);
+        self.reservationTable.setHorizontalHeaderItem(8, __qtablewidgetitem8)
         if (self.reservationTable.rowCount() < 1):
             self.reservationTable.setRowCount(1)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 0, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 1, __qtablewidgetitem9)
+        self.reservationTable.setItem(0, 0, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 2, __qtablewidgetitem10)
+        self.reservationTable.setItem(0, 1, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 3, __qtablewidgetitem11)
+        self.reservationTable.setItem(0, 2, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 4, __qtablewidgetitem12)
+        self.reservationTable.setItem(0, 3, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
         self.reservationTable.setItem(0, 5, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.reservationTable.setItem(0, 6, __qtablewidgetitem14)
         self.reservationTable.setObjectName(u"reservationTable")
         self.reservationTable.setGeometry(QRect(140, 150, 1001, 461))
         font2 = QFont()
@@ -122,6 +125,7 @@ class Ui_MainWindow(object):
         self.dateEdit.setGeometry(QRect(180, 100, 141, 31))
         self.dateEdit.setStyleSheet(u"color:rgb(0, 0, 0);\n"
 "font: 16pt \"Arial\";")
+        self.dateEdit.setCurrentSection(QDateTimeEdit.DaySection)
         self.dateEdit.setTimeSpec(Qt.UTC)
         self.dateEdit.setDate(QDate(2024, 4, 1))
         self.selectBtn = QPushButton(self.centralwidget)
@@ -167,30 +171,33 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.reservationTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Time", None));
         ___qtablewidgetitem4 = self.reservationTable.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Membership", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Party", None));
         ___qtablewidgetitem5 = self.reservationTable.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Membership", None));
         ___qtablewidgetitem6 = self.reservationTable.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         ___qtablewidgetitem7 = self.reservationTable.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
+        ___qtablewidgetitem8 = self.reservationTable.horizontalHeaderItem(8)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
 
         __sortingEnabled = self.reservationTable.isSortingEnabled()
         self.reservationTable.setSortingEnabled(False)
-        ___qtablewidgetitem8 = self.reservationTable.item(0, 0)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"1", None));
-        ___qtablewidgetitem9 = self.reservationTable.item(0, 1)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"hi", None));
-        ___qtablewidgetitem10 = self.reservationTable.item(0, 2)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"urtyrthrthr", None));
-        ___qtablewidgetitem11 = self.reservationTable.item(0, 3)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"18:00", None));
-        ___qtablewidgetitem12 = self.reservationTable.item(0, 4)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Yes", None));
+        ___qtablewidgetitem9 = self.reservationTable.item(0, 0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"1", None));
+        ___qtablewidgetitem10 = self.reservationTable.item(0, 1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"hi", None));
+        ___qtablewidgetitem11 = self.reservationTable.item(0, 2)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"urtyrthrthr", None));
+        ___qtablewidgetitem12 = self.reservationTable.item(0, 3)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"18:00", None));
         ___qtablewidgetitem13 = self.reservationTable.item(0, 5)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Pending", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Yes", None));
+        ___qtablewidgetitem14 = self.reservationTable.item(0, 6)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Pending", None));
         self.reservationTable.setSortingEnabled(__sortingEnabled)
 
+        self.dateEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy ", None))
         self.selectBtn.setText(QCoreApplication.translate("MainWindow", u"Select", None))
         self.createReservationBtn.setText(QCoreApplication.translate("MainWindow", u"Create Reservation", None))
     # retranslateUi
