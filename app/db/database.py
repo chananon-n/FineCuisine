@@ -330,3 +330,4 @@ def clearFeedbacksDB():
     transaction.commit()
     return True
 
+ 

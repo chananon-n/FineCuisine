@@ -98,12 +98,10 @@ class dataManager:
         print("Meal Type: ", mealType)
 
         booking = getMealBooking(mealType, date, time)
-        print(booking)
         if booking == None:
-            print(booking)
             return True
         return False
-            
+        
     def registerMembership(clientID, fname, lname, dateOfBirth):
         dateExpired = datetime.now() + timedelta(days=365)
         formatedDate = dateExpired.strftime("%d/%m/%Y")
@@ -169,4 +167,4 @@ class dataManager:
   
     
         
-        
+         

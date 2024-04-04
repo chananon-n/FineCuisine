@@ -452,6 +452,7 @@ class ReservationPage(QMainWindow, reservationPage):
             print("Persons is:", persons)
             print("User notes is:", userNotes)
 
+            print(userServices.reservation(userID, course, date, time, partySize, persons, userNotes))
             if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
                 alert = QtWidgets.QMessageBox()
                 alert.setText("Reservation confirmed!")
@@ -463,6 +464,31 @@ class ReservationPage(QMainWindow, reservationPage):
                 alert = QtWidgets.QMessageBox()
                 alert.setText("Reservation failed. Please try again.")
                 alert.exec()
+
+        #     userServices.reservation(userID, "Dinner", "12:00", "12/12/2021", 10, 1, "No notes")
+
+        #     print("User ID is: ", userID)
+        #     print("Course is:", course)
+        #     print("Date is:", date)
+        #     print("Time is:", time)
+        #     print("Party size is:", partySize)
+        #     print("Persons is:", persons)
+        #     print("User notes is:", userNotes)
+
+        #     print(userServices.reservation(userID, course, date, time, partySize, persons, userNotes))
+        #     if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
+        #         alert = QtWidgets.QMessageBox()
+        #         alert.setText("Reservation confirmed!")
+        #         alert.exec()
+        #         self.mainPage.show()
+        #         self.mainPage.openHomePage()
+        #         self.hide()
+        #     else:
+        #         alert = QtWidgets.QMessageBox()
+        #         alert.setText("Reservation failed. Please try again.")
+        #         alert.exec()
+        # else:
+        #     pass
     
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
@@ -764,4 +790,4 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
     def backtoAdminMain(self):
         self.adminMainPage = AdminMainPage()
         self.adminMainPage.show()
-        self.hide()
+        self.hide() 
