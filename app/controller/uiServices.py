@@ -479,21 +479,6 @@ class ReservationPage(QMainWindow, reservationPage):
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         self.updateReservation()
-        
-    def loadTimes(self):
-        self.time.clear()
-        self.size.clear()
-        course = self.course.currentText()
-        if course == "Lunch":
-            available_times = ["08:00-10:00", "10:00-12:00", "13:00-15:00"]
-        else:  # Dinner
-            available_times = ["15:00-17:00", "17:00-19:00", "19:00-21:00"]
-        self.time.addItems(available_times)
-
-    def loadPartySizes(self):
-        self.size.clear()
-        self.size.addItems(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
-        self.size.setEnabled(True)  # Enable party size selection after time is selected
 
     def confirmReservation(self):
         alert = QtWidgets.QMessageBox()
@@ -517,7 +502,6 @@ class ReservationPage(QMainWindow, reservationPage):
             print("Persons is:", persons)
             print("User notes is:", userNotes)
 
-            print(userServices.reservation(userID, course, date, time, partySize, persons, userNotes))
             if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
                 alert = QtWidgets.QMessageBox()
                 alert.setText("Reservation confirmed!")
