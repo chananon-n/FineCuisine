@@ -21,7 +21,7 @@ from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdmin
 from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
 from app.gui.reservationAdminPage.reservationAdminPage import Ui_MainWindow as reservationAdminPage
 from app.gui.adminFeedback.adminFeedbackPage import Ui_MainWindow as adminFeedbackPage
-from app.gui.paymentPage.paymentPage import Ui_MainWindow as paymentPage
+from app.gui.paymentPage.paymentPage import Ui_Dialog as paymentPage
 
 from datetime import datetime
 import webbrowser
@@ -469,8 +469,8 @@ class ReservationPage(QMainWindow, reservationPage):
         self.mainPage.openFeedback()
         self.hide()
     
-    def paymentPage(self):
-        self.paymentPage = PaymentPage()
+    def paymentPage(self, course, date, time, partySize, persons, userNotes):
+        self.paymentPage = PaymentPage(course, date, time, partySize, persons, userNotes)
         self.paymentPage.show()
         
     def logout(self):
@@ -486,6 +486,7 @@ class ReservationPage(QMainWindow, reservationPage):
         
 
     def userMembership(self):
+        print("working")
         if userServices.checkUserMembership(userID) != False:
             if userServices.checkUserBirthday(userID) == True:
                 # pop up discount - 10% and random code for discount
@@ -503,6 +504,7 @@ class ReservationPage(QMainWindow, reservationPage):
                 
 
     def confirmReservation(self):
+        print("not working")
         alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
@@ -516,30 +518,40 @@ class ReservationPage(QMainWindow, reservationPage):
             partySize = int(self.size.currentText())
             persons = self.reservationName.text()
             userNotes = self.additionNote.toPlainText()
+            self.paymentPage(course, date, time, partySize, persons, userNotes)
             
-            if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
-                self.paymentPage()
-            else:
-                alert = QtWidgets.QMessageBox()
-                alert.setText("Reservation failed. Please try again.")
-                alert.exec()
 class PaymentPage(QMainWindow, paymentPage):
-    def __init__(self):
+    def __init__(self,course, date, time, partySize, persons, userNotes):
         super().__init__()
         self.setupUi(self)
         self.mainPage = MainPage()
+        self.course = course
+        self.date = date
+        self.time = time
+        self.partySize = partySize
+        self.persons = persons
+        self.userNotes = userNotes
         
         self.cancelBtn.clicked.connect(self.openReservationPage)
-        self.cancelBtn_2.clicked.connect(self.openHomePage)
+        self.cancelBtn_2.clicked.connect(self.paidPage)
     
     def openReservationPage(self):
-        self.reservationPage = ReservationPage()
-        self.reservationPage.show()
+        self.mainPage = MainPage()
+        self.mainPage.show()
         self.hide()
     
-    def openHomePage(self):
+    def paidPage(self):
+        if userServices.reservation(userID, self.course, self.date, self.time, self.partySize, self.persons, self.userNotes):
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation successful!")
+            alert.exec()
+        else:
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation failed. Please try again.")
+            alert.exec()
+        
+        self.mainPage = MainPage()
         self.mainPage.show()
-        self.mainPage.openHomePage()
         self.hide()
 
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
