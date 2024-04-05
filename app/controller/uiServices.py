@@ -958,7 +958,14 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
                 if sender is self.confirmBtn or sender is self.cancelBtn:
                     bookingID = self.reservationTable.item(row, 0).text()
                     bookingID = int(bookingID)
-                    userServices.confirmBookingStatus(bookingID, status)
+                    if status == "cancelled":
+                        meal = self.reservationTable.item(row, 2).text()
+                        date = self.dateEdit.text().strip()
+                        time = self.reservationTable.item(row, 3).text()
+                        size = int(self.reservationTable.item(row, 4).text())
+                        userServices.cancelBooking(meal, date, time, size)
+                    else:
+                        userServices.confirmBookingStatus(bookingID, status)
                     self.reservationTable.setItem(row, 7, QtWidgets.QTableWidgetItem(status))
                     self.reservationTable.cellWidget(row, 8).hide()
                     self.reservationTable.cellWidget(row, 9).hide()
