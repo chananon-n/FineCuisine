@@ -21,6 +21,7 @@ from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdmin
 from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
 from app.gui.reservationAdminPage.reservationAdminPage import Ui_MainWindow as reservationAdminPage
 from app.gui.adminFeedback.adminFeedbackPage import Ui_MainWindow as adminFeedbackPage
+from app.gui.paymentPage.paymentPage import Ui_MainWindow as paymentPage
 
 from datetime import datetime
 import webbrowser
@@ -467,6 +468,10 @@ class ReservationPage(QMainWindow, reservationPage):
         self.mainPage.show()
         self.mainPage.openFeedback()
         self.hide()
+    
+    def paymentPage(self):
+        self.paymentPage = PaymentPage()
+        self.paymentPage.show()
         
     def logout(self):
         self.loginPage = LoginPage()
@@ -478,6 +483,7 @@ class ReservationPage(QMainWindow, reservationPage):
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         self.updateReservation()
+        
 
     def userMembership(self):
         if userServices.checkUserMembership(userID) != False:
@@ -512,16 +518,29 @@ class ReservationPage(QMainWindow, reservationPage):
             userNotes = self.additionNote.toPlainText()
             
             if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
-                alert = QtWidgets.QMessageBox()
-                alert.setText("Reservation confirmed!")
-                alert.exec()
-                self.mainPage.show()
-                self.mainPage.openHomePage()
-                self.hide()
+                self.paymentPage()
             else:
                 alert = QtWidgets.QMessageBox()
                 alert.setText("Reservation failed. Please try again.")
                 alert.exec()
+class PaymentPage(QMainWindow, paymentPage):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.mainPage = MainPage()
+        
+        self.cancelBtn.clicked.connect(self.openReservationPage)
+        self.cancelBtn_2.clicked.connect(self.openHomePage)
+    
+    def openReservationPage(self):
+        self.reservationPage = ReservationPage()
+        self.reservationPage.show()
+        self.hide()
+    
+    def openHomePage(self):
+        self.mainPage.show()
+        self.mainPage.openHomePage()
+        self.hide()
 
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
