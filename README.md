@@ -1,4 +1,4 @@
-Client Users
+How to use
 
 Registration:
 
@@ -22,8 +22,6 @@ Notifications: Receive important updates and notifications from FineCuisine.
 Feedback: Share your experience by writing comments and rating your recent dining experience.
 View All Feedback: Read reviews and feedback left by other users.
 Average Rating: See the overall average rating for FineCuisine.
-
-Admin Users
 
 Admin Features:
 
