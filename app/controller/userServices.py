@@ -156,8 +156,8 @@ class UserServices:
         return True
     
     def createMealReservation(self,mealType,time,partySize,numBooking):
-        dataManager.createMealBooking(mealType,time,partySize,numBooking)
-        return True
+        res = dataManager.createMealBooking(mealType,time,partySize,numBooking)
+        return res
     
     def userHistory(self,clientID):
         data = dataManager.getUserBookings(clientID)

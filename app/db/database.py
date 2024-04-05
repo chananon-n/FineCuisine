@@ -187,7 +187,20 @@ def generateMealBooking(mealType,num_bookings,booking):
         new_booking.date = booking.date
         getattr(root, f'{mealType}Booking')[booking_id] = new_booking
         transaction.commit()
-        
+      
+def checkDuplicateMealBooking(mealType, date, time):
+    for booking in getattr(root, f'{mealType}Booking').values():
+        if booking.date == date and booking.time == time:
+            return True
+    return False
+
+def editMealBooking(mealType, date, time, partySize):
+    for booking in getattr(root, f'{mealType}Booking').values():
+        if booking.date == date and booking.time == time:
+            root.booking[booking.id].partySize = partySize
+            transaction.commit()
+            return True
+    return False
 
 def getAllMealBookingsDB(meal_type):
     return [booking.toJson() for booking in getattr(root, f'{meal_type}Booking').values()]

@@ -914,14 +914,18 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             alert = QtWidgets.QMessageBox()
             alert.setText("Please select meal, time, and day")
             alert.exec()
-            return
         else:
-            userServices.createMealReservation(meal, time,partySize, day)
-            alert = QtWidgets.QMessageBox()
-            alert.setText("Reservation created!")
-            alert.exec()
-            self.createReservationWidget.hide()
-            self.reservationList()
+            check  = userServices.createMealReservation(meal, time,partySize, day)
+            if check:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation created!")
+                alert.exec()
+                self.createReservationWidget.hide()
+                self.reservationList()
+            else:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation already exists!")
+                alert.exec()
     
     def closedReservation(self):
         # Create a layout for the user input widget
