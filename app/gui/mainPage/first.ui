@@ -923,10 +923,10 @@ color: #7E1615;</string>
              <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="showGrid">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="gridStyle">
-             <enum>Qt::DotLine</enum>
+             <enum>Qt::SolidLine</enum>
             </property>
             <property name="sortingEnabled">
              <bool>false</bool>
@@ -943,6 +943,7 @@ color: #7E1615;</string>
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
             </attribute>
+            <row/>
             <column>
              <property name="text">
               <string>ID</string>
@@ -1009,6 +1010,17 @@ color: #7E1615;</string>
               </font>
              </property>
             </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string>as</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+            </item>
            </widget>
           </widget>
           <widget class="QWidget" name="feedbackPage">

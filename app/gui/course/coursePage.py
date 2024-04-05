@@ -24,7 +24,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1248, 720)
+        MainWindow.resize(1280, 720)
+        MainWindow.setWindowTitle("Course")
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"background-color:#E7E5DF")
         self.centralwidget = QWidget(MainWindow)
