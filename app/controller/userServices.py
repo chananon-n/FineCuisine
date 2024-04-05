@@ -173,3 +173,7 @@ class UserServices:
         size  = mealSize + partySize
         dataManager.editMealBooking(mealType,date,time,size)
         return True
+    
+    def changeAllStatusBooking(self,mealType,date,time,status):
+        dataManager.changeStatusAllUserBookings(mealType,date,time,status)
+        return True

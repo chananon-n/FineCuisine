@@ -1129,6 +1129,7 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             return
         else:
             userServices.closedReservation(meal, date, time)
+            userServices.changeAllStatusBooking(meal, date, time, "cancelled")
             alert = QtWidgets.QMessageBox()
             alert.setText("Reservation closed!")
             alert.exec()

@@ -71,6 +71,10 @@ class dataManager:
     def getAllUserBookings():
         return getAllBookings()
     
+    def changeStatusAllUserBookings(mealType, date, time, status):
+        return editStatusAllBookings(mealType, date, time, status)
+                
+    
     def getAllMealBookings(mealType):
         return getAllMealBookingsDB(mealType)
     

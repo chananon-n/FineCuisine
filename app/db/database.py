@@ -137,6 +137,13 @@ def clearDB():
 def getAllBookings():
     return [booking.toJson() for booking in root.booking.values()]
 
+def editStatusAllBookings(mealType,date,time,status):
+    for booking in root.booking.values():
+        if booking.date == date and booking.time == time and booking.course == mealType:
+            booking.status = status
+            transaction.commit()
+    return True
+
 def getBookingDB(bookingID):
     for booking in root.booking.values():
         if booking.bookingID == bookingID:
