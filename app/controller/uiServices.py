@@ -803,8 +803,9 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        
+        self.reservationTable.setWordWrap(True)
         self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        self.reservationTable.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         #del all rows
         self.reservationTable.setRowCount(0)
         #no edit
@@ -814,24 +815,103 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.backBtn.clicked.connect(self.backtoAdminMain)
         self.closeReservationBtn.clicked.connect(self.closedReservation)
         self.createReservationBtn.clicked.connect(self.createReservation)
-        
+        self.EditReservation.clicked.connect(self.editReservation)
         self.selectBtn.clicked.connect(self.reservationList)
+        
+    def editReservation(self):
+        self.editWidget = QWidget()
+        self.editWidgetLayout = QVBoxLayout(self.editWidget)
+
+        # Create a combobox for selecting close reason
+        self.mealCombo = QComboBox()
+        self.mealCombo.addItem("Select Meal")
+        self.mealCombo.addItem("Lunch")
+        self.mealCombo.addItem("Dinner")
+        self.mealComboLayout = QHBoxLayout()
+        self.mealComboLayout.addWidget(QLabel("Meal Type: "))
+        self.mealComboLayout.addWidget(self.mealCombo)
+        self.editWidgetLayout.addLayout(self.mealComboLayout)
+        
+        self.mealCombo.currentTextChanged.connect(self.updateDateCombo)
+        
+
+        self.dateCombo = QComboBox()
+        userSelectedMeal = self.mealCombo.currentText()
+        if userSelectedMeal == "Select Meal":
+            self.dateCombo.addItem("Select Date")
+        self.dateComboLayout = QHBoxLayout()
+        self.dateComboLayout.addWidget(QLabel("Date: "))
+        self.dateComboLayout.addWidget(self.dateCombo)
+        self.editWidgetLayout.addLayout(self.dateComboLayout)
+        
+        self.dateCombo.currentTextChanged.connect(self.updateTimeCombo)
+    
+
+        self.timeCombo = QComboBox()
+        userSelectedDate = self.dateCombo.currentText()
+        if userSelectedDate == "Select Date":
+            self.timeCombo.addItem("Select Time")
+        self.timeComboLayout = QHBoxLayout()
+        self.timeComboLayout.addWidget(QLabel("Time: "))
+        self.timeComboLayout.addWidget(self.timeCombo)
+        self.editWidgetLayout.addLayout(self.timeComboLayout)
+        
+        self.partySize = QSpinBox()
+        self.partySize.setMinimum(1)
+        self.partySize.setMaximum(10)
+        self.partySizeLayout = QHBoxLayout()
+        self.partySizeLayout.addWidget(QLabel("Party Size: "))
+        self.partySizeLayout.addWidget(self.partySize)
+        self.editWidgetLayout.addLayout(self.partySizeLayout)
+        
+
+        # Create a button to confirm closing the reservation
+        self.confirmEditBtn = QPushButton("Confirm Edit")
+        # self.confirmCloseBtn.clicked.connect(self.confirmCloseReservation)
+        self.editWidgetLayout.addWidget(self.confirmEditBtn)
+        
+        self.confirmEditBtn.clicked.connect(self.confirmEditReservation)
+        
+        self.editWidget.show()
+        
+    def confirmEditReservation(self):
+        meal = self.mealCombo.currentText()
+        date = self.dateCombo.currentText()
+        time = self.timeCombo.currentText()
+        size =int(self.partySize.text())
+        if meal == "Select Meal" or date == "" or time == "":
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Please select meal, date, and time")
+            alert.exec()
+        else:
+            check  = userServices.editMealReservation(meal,date,time,size)
+            if check:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation edited!")
+                alert.exec()
+                self.editWidget.hide()
+                self.reservationList()
+            else:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation Invalid!")
+                alert.exec()
     
     def reservationList(self):
         data = self.dateEdit.text().strip()
         bookings = userServices.getAllBookingsByDate(data)
         #sort by time
         bookings = sorted(bookings, key=lambda x: x['time'])
-        self.reservationTable.setRowCount(len(bookings))
+        self.reservationTable.setRowCount(len(
+            bookings))
 
         def update_row_status(sender, row, status):
                 if sender is self.confirmBtn or sender is self.cancelBtn:
                     bookingID = self.reservationTable.item(row, 0).text()
                     bookingID = int(bookingID)
                     userServices.confirmBookingStatus(bookingID, status)
-                    self.reservationTable.setItem(row, 6, QtWidgets.QTableWidgetItem(status))
-                    self.reservationTable.cellWidget(row, 7).hide()
+                    self.reservationTable.setItem(row, 7, QtWidgets.QTableWidgetItem(status))
                     self.reservationTable.cellWidget(row, 8).hide()
+                    self.reservationTable.cellWidget(row, 9).hide()
 
         # Loop through bookings and populate table
         for i in range(len(bookings)):
@@ -840,26 +920,28 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             self.reservationTable.setItem(i, 1, QtWidgets.QTableWidgetItem(str(bookings[i]['persons'])))
             self.reservationTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(bookings[i]['course'])))
             self.reservationTable.setItem(i, 4, QtWidgets.QTableWidgetItem(str(bookings[i]['partySize'])))
+        
             userID = bookings[i]['clientID']
             checkMembership = userServices.checkUserMembership(userID)
             if checkMembership:
                 self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem("Yes"))
             else:
                 self.reservationTable.setItem(i, 5, QtWidgets.QTableWidgetItem("No"))
-
-            self.reservationTable.setItem(i, 6, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
+            self.reservationTable.setItem(i, 6, QtWidgets.QTableWidgetItem(str(bookings[i]['userNotes'])))
+            self.reservationTable.setItem(i, 7, QtWidgets.QTableWidgetItem(str(bookings[i]['status'])))
+            
 
             if bookings[i]['status'] == "pending":            
                 self.confirmBtn = QtWidgets.QPushButton("Confirm")
                 self.confirmBtn.setStyleSheet("background-color: #4CAF50; color: white;")
                 self.confirmBtn.clicked.connect(lambda row=i, status="confirmed": update_row_status(self.confirmBtn, row, status))  # Pass row, status, and sender (self.confirmBtn)
-                self.reservationTable.setCellWidget(i, 7, self.confirmBtn)
+                self.reservationTable.setCellWidget(i, 8, self.confirmBtn)
 
                 # Create cancel button
                 self.cancelBtn = QtWidgets.QPushButton("Cancel")
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
-                self.reservationTable.setCellWidget(i, 8, self.cancelBtn)
+                self.reservationTable.setCellWidget(i, 9, self.cancelBtn)
      
     def createReservation(self):
         self.createReservationWidget = QWidget()
@@ -914,14 +996,18 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             alert = QtWidgets.QMessageBox()
             alert.setText("Please select meal, time, and day")
             alert.exec()
-            return
         else:
-            userServices.createMealReservation(meal, time,partySize, day)
-            alert = QtWidgets.QMessageBox()
-            alert.setText("Reservation created!")
-            alert.exec()
-            self.createReservationWidget.hide()
-            self.reservationList()
+            check  = userServices.createMealReservation(meal, time,partySize, day)
+            if check:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation created!")
+                alert.exec()
+                self.createReservationWidget.hide()
+                self.reservationList()
+            else:
+                alert = QtWidgets.QMessageBox()
+                alert.setText("Reservation already exists!")
+                alert.exec()
     
     def closedReservation(self):
         # Create a layout for the user input widget
@@ -991,6 +1077,7 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             self.reservationList()
     
     def updateDateCombo(self):
+        temp = ""
         userSelectedMeal = self.mealCombo.currentText()
         self.dateCombo.clear() 
 
@@ -1000,7 +1087,9 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
             # Assuming you have logic to fetch available dates based on meal
             data = userServices.getallMealsBooking(userSelectedMeal)
             for date in data:
-                self.dateCombo.addItem(date['T_Date'])
+                    if date['T_Date'] != temp:
+                        self.dateCombo.addItem(date['T_Date'])
+                        temp = date['T_Date']
     
     def updateTimeCombo(self):
         userSelectedDate = self.dateCombo.currentText()

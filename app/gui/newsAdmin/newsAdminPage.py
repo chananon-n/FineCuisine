@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"News Editor", None))
-        self.backBtn.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.backBtn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.fileLabel.setText(QCoreApplication.translate("MainWindow", u"Add Picture", None))
         self.browseBtn.setText(QCoreApplication.translate("MainWindow", u"Browse", None))
         self.desTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"News Description", None))

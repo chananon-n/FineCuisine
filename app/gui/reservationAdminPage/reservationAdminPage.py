@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservationAdminPage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
 "}")
         self.closeReservationBtn = QPushButton(self.centralwidget)
         self.closeReservationBtn.setObjectName(u"closeReservationBtn")
-        self.closeReservationBtn.setGeometry(QRect(440, 100, 131, 32))
+        self.closeReservationBtn.setGeometry(QRect(430, 100, 131, 32))
         self.closeReservationBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid black;\n"
 "border-radius: 8px;\n"
@@ -64,8 +64,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(166, 165, 161);\n"
 "}")
         self.reservationTable = QTableWidget(self.centralwidget)
-        if (self.reservationTable.columnCount() < 9):
-            self.reservationTable.setColumnCount(9)
+        if (self.reservationTable.columnCount() < 10):
+            self.reservationTable.setColumnCount(10)
         font1 = QFont()
         font1.setFamilies([u"KoHo"])
         font1.setPointSize(14)
@@ -97,22 +97,25 @@ class Ui_MainWindow(object):
         __qtablewidgetitem8 = QTableWidgetItem()
         __qtablewidgetitem8.setFont(font1);
         self.reservationTable.setHorizontalHeaderItem(8, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        __qtablewidgetitem9.setFont(font1);
+        self.reservationTable.setHorizontalHeaderItem(9, __qtablewidgetitem9)
         if (self.reservationTable.rowCount() < 1):
             self.reservationTable.setRowCount(1)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 0, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 1, __qtablewidgetitem10)
+        self.reservationTable.setItem(0, 0, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 2, __qtablewidgetitem11)
+        self.reservationTable.setItem(0, 1, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 3, __qtablewidgetitem12)
+        self.reservationTable.setItem(0, 2, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 5, __qtablewidgetitem13)
+        self.reservationTable.setItem(0, 3, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
-        self.reservationTable.setItem(0, 6, __qtablewidgetitem14)
+        self.reservationTable.setItem(0, 5, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.reservationTable.setItem(0, 7, __qtablewidgetitem15)
         self.reservationTable.setObjectName(u"reservationTable")
-        self.reservationTable.setGeometry(QRect(140, 150, 1001, 461))
+        self.reservationTable.setGeometry(QRect(30, 150, 1221, 461))
         font2 = QFont()
         font2.setFamilies([u"Arial"])
         font2.setPointSize(16)
@@ -141,8 +144,19 @@ class Ui_MainWindow(object):
 "}")
         self.createReservationBtn = QPushButton(self.centralwidget)
         self.createReservationBtn.setObjectName(u"createReservationBtn")
-        self.createReservationBtn.setGeometry(QRect(580, 100, 131, 32))
+        self.createReservationBtn.setGeometry(QRect(570, 100, 131, 32))
         self.createReservationBtn.setStyleSheet(u"QPushButton{\n"
+"border: 3 solid black;\n"
+"border-radius: 8px;\n"
+"color: black;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(166, 165, 161);\n"
+"}")
+        self.EditReservation = QPushButton(self.centralwidget)
+        self.EditReservation.setObjectName(u"EditReservation")
+        self.EditReservation.setGeometry(QRect(710, 100, 131, 32))
+        self.EditReservation.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid black;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
@@ -175,30 +189,33 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem5 = self.reservationTable.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Membership", None));
         ___qtablewidgetitem6 = self.reservationTable.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Status", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Notes", None));
         ___qtablewidgetitem7 = self.reservationTable.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         ___qtablewidgetitem8 = self.reservationTable.horizontalHeaderItem(8)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Confirm", None));
+        ___qtablewidgetitem9 = self.reservationTable.horizontalHeaderItem(9)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
 
         __sortingEnabled = self.reservationTable.isSortingEnabled()
         self.reservationTable.setSortingEnabled(False)
-        ___qtablewidgetitem9 = self.reservationTable.item(0, 0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"1", None));
-        ___qtablewidgetitem10 = self.reservationTable.item(0, 1)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"hi", None));
-        ___qtablewidgetitem11 = self.reservationTable.item(0, 2)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"urtyrthrthr", None));
-        ___qtablewidgetitem12 = self.reservationTable.item(0, 3)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"18:00", None));
-        ___qtablewidgetitem13 = self.reservationTable.item(0, 5)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Yes", None));
-        ___qtablewidgetitem14 = self.reservationTable.item(0, 6)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Pending", None));
+        ___qtablewidgetitem10 = self.reservationTable.item(0, 0)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"1", None));
+        ___qtablewidgetitem11 = self.reservationTable.item(0, 1)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"hi", None));
+        ___qtablewidgetitem12 = self.reservationTable.item(0, 2)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"urtyrthrthr", None));
+        ___qtablewidgetitem13 = self.reservationTable.item(0, 3)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"18:00", None));
+        ___qtablewidgetitem14 = self.reservationTable.item(0, 5)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Yes", None));
+        ___qtablewidgetitem15 = self.reservationTable.item(0, 7)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Pending", None));
         self.reservationTable.setSortingEnabled(__sortingEnabled)
 
         self.dateEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy ", None))
         self.selectBtn.setText(QCoreApplication.translate("MainWindow", u"Select", None))
         self.createReservationBtn.setText(QCoreApplication.translate("MainWindow", u"Create Reservation", None))
+        self.EditReservation.setText(QCoreApplication.translate("MainWindow", u"Edit Reservation", None))
     # retranslateUi
 

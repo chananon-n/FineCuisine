@@ -83,7 +83,7 @@ QPushButton:hover{
    <widget class="QPushButton" name="closeReservationBtn">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>100</y>
       <width>131</width>
       <height>32</height>
@@ -106,9 +106,9 @@ QPushButton:hover{
    <widget class="QTableWidget" name="reservationTable">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>30</x>
       <y>150</y>
-      <width>1001</width>
+      <width>1221</width>
       <height>461</height>
      </rect>
     </property>
@@ -202,6 +202,18 @@ QPushButton:hover{
     </column>
     <column>
      <property name="text">
+      <string>Notes</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>KoHo</family>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Status</string>
      </property>
      <property name="font">
@@ -261,7 +273,7 @@ QPushButton:hover{
       <string>Yes</string>
      </property>
     </item>
-    <item row="0" column="6">
+    <item row="0" column="7">
      <property name="text">
       <string>Pending</string>
      </property>
@@ -323,7 +335,7 @@ QPushButton:hover{
    <widget class="QPushButton" name="createReservationBtn">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>570</x>
       <y>100</y>
       <width>131</width>
       <height>32</height>
@@ -341,6 +353,29 @@ QPushButton:hover{
     </property>
     <property name="text">
      <string>Create Reservation</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="EditReservation">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>100</y>
+      <width>131</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border: 3 solid black;
+border-radius: 8px;
+color: black;
+}
+QPushButton:hover{
+	background-color: rgb(166, 165, 161);
+}</string>
+    </property>
+    <property name="text">
+     <string>Edit Reservation</string>
     </property>
    </widget>
   </widget>

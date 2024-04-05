@@ -50,12 +50,20 @@ class dataManager:
         
     def createMealBooking(mealType, time, partySize, numberBooking):
         date = datetime.now().strftime("%d/%m/%Y")
+        status = checkDuplicateMealBooking(mealType, date, time)
+        if status:
+            return False
         if mealType == "Dinner":
             meal = Dinner(date,time,partySize)
         elif mealType == "Lunch":
             meal = Lunch(date,time,partySize)
         generateMealBooking(mealType, numberBooking, meal)
         return True
+    
+    def editMealBooking(mealType, date, time, partySize):
+        return editMealBookingDB(mealType, date, time, partySize)
+    
+    
     
     def getBookingByID(bookingID):
         return getBookingDB(bookingID)
