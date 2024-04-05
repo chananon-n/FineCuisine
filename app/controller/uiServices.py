@@ -383,10 +383,10 @@ class ReservationPage(QMainWindow, reservationPage):
         self.userinfoBtn.clicked.connect(self.openUserInfo)
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
+        self.timeSelectedLabel.setText(QtCore.QDate.currentDate().toString("dd/MM/yyyy"))
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
         self.calendar.setMinimumDate(QtCore.QDate.currentDate())
-        date = QtCore.QDate.currentDate()
-        self.selectedDate.setText(date.toString("dd/MM/yyyy"))
+        self.date = QtCore.QDate.currentDate()
         self.calendar.selectionChanged.connect(self.getDate)
         
         self.reservationName = self.findChild(QtWidgets.QLineEdit, "reservationoName")
@@ -474,6 +474,7 @@ class ReservationPage(QMainWindow, reservationPage):
         self.hide()
         
     def getDate(self):
+        print( self.calendar.selectedDate())
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         self.updateReservation()
@@ -819,7 +820,6 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.setupUi(self)
         self.reservationTable.setWordWrap(True)
         self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
-        self.reservationTable.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         #del all rows
         self.reservationTable.setRowCount(0)
         #no edit
