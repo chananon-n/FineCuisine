@@ -383,6 +383,9 @@ class ReservationPage(QMainWindow, reservationPage):
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
+        self.calendar.setMinimumDate(QtCore.QDate.currentDate())
+        date = QtCore.QDate.currentDate()
+        self.selectedDate.setText(date.toString("dd/MM/yyyy"))
         self.calendar.selectionChanged.connect(self.getDate)
         
         self.reservationName = self.findChild(QtWidgets.QLineEdit, "reservationoName")
@@ -487,15 +490,7 @@ class ReservationPage(QMainWindow, reservationPage):
             partySize = int(self.size.currentText())
             persons = self.reservationName.text()
             userNotes = self.additionNote.toPlainText()
-
-            print("User ID is: ", userID)
-            print("Course is:", course)
-            print("Date is:", date)
-            print("Time is:", time)
-            print("Party size is:", partySize)
-            print("Persons is:", persons)
-            print("User notes is:", userNotes)
-
+            
             if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
                 alert = QtWidgets.QMessageBox()
                 alert.setText("Reservation confirmed!")
