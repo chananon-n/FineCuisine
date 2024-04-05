@@ -106,9 +106,9 @@ QPushButton:hover{
    <widget class="QTableWidget" name="reservationTable">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>30</x>
       <y>150</y>
-      <width>1001</width>
+      <width>1221</width>
       <height>461</height>
      </rect>
     </property>
@@ -202,6 +202,18 @@ QPushButton:hover{
     </column>
     <column>
      <property name="text">
+      <string>Notes</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>KoHo</family>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Status</string>
      </property>
      <property name="font">
@@ -261,7 +273,7 @@ QPushButton:hover{
       <string>Yes</string>
      </property>
     </item>
-    <item row="0" column="6">
+    <item row="0" column="7">
      <property name="text">
       <string>Pending</string>
      </property>
