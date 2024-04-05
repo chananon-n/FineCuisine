@@ -12,52 +12,53 @@ Once registered, use your username and password to log in to the FineCuisine app
 
 ## Client Features:
 
-- **Reservations:**
+**Reservations:**
   - Make reservations for your desired date and time.
 
-- **Browse Courses:**
+**Browse Courses:**
   - Explore the available course options offered by FineCuisine.
 
-- **News:**
+**News:**
   - Stay updated with the latest news and announcements from FineCuisine.
 
-- **User Information:**
+**User Information:**
   - View your personal information within the app.
 
-- **Membership:**
+**Membership:**
   - Register for a FineCuisine membership program (if available).
 
-- **Reservation History:**
+**Reservation History:**
   - Track your past reservations and cancel them if needed.
 
-- **Notifications:**
+**Notifications:**
   - Receive important updates and notifications from FineCuisine.
 
-- **Feedback:**
+**Feedback:**
   - Share your experience by writing comments and rating your recent dining experience.
 
-- **View All Feedback:**
+**View All Feedback:**
   - Read reviews and feedback left by other users.
 
-- **Average Rating:**
+**Average Rating:**
   - See the overall average rating for FineCuisine.
 
 ## Admin Features:
 
-- **Manage Reservations:**
+**Manage Reservations:**
   - View all client reservations for a selected date.
 
-- **Modify Reservations:**
+**Modify Reservations:**
   - Remove reservation slots for specific dates, meals, and times.
   - Create new reservation slots for a specific date range, time, meal type, and party size.
 
-- **Reservation Status:**
+**Reservation Status:**
   - Confirm or cancel client reservations as needed.
 
-- **Menu Management:**
+**Menu Management:**
   - Adjust the course menu through a provided link (likely a link to a separate menu editing interface).
 
-- **Feedback Management:**
+**Feedback Management:**
   - View all user feedback with the ability to filter by rating.
 
-- **News Management:** Create news posts with titles, pictures, and descriptions. You can also browse existing news posts.
+**News Management:** 
+  - Create news posts with titles, pictures, and descriptions. You can also browse existing news posts.
