@@ -83,7 +83,7 @@ QPushButton:hover{
    <widget class="QPushButton" name="closeReservationBtn">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>100</y>
       <width>131</width>
       <height>32</height>
@@ -323,7 +323,7 @@ QPushButton:hover{
    <widget class="QPushButton" name="createReservationBtn">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>570</x>
       <y>100</y>
       <width>131</width>
       <height>32</height>
@@ -341,6 +341,29 @@ QPushButton:hover{
     </property>
     <property name="text">
      <string>Create Reservation</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="EditReservation">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>100</y>
+      <width>131</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border: 3 solid black;
+border-radius: 8px;
+color: black;
+}
+QPushButton:hover{
+	background-color: rgb(166, 165, 161);
+}</string>
+    </property>
+    <property name="text">
+     <string>Edit Reservation</string>
     </property>
    </widget>
   </widget>

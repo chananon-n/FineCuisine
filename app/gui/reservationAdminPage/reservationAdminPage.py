@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'reservationAdminPage.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.4.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
 "}")
         self.closeReservationBtn = QPushButton(self.centralwidget)
         self.closeReservationBtn.setObjectName(u"closeReservationBtn")
-        self.closeReservationBtn.setGeometry(QRect(440, 100, 131, 32))
+        self.closeReservationBtn.setGeometry(QRect(430, 100, 131, 32))
         self.closeReservationBtn.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid black;\n"
 "border-radius: 8px;\n"
@@ -141,8 +141,19 @@ class Ui_MainWindow(object):
 "}")
         self.createReservationBtn = QPushButton(self.centralwidget)
         self.createReservationBtn.setObjectName(u"createReservationBtn")
-        self.createReservationBtn.setGeometry(QRect(580, 100, 131, 32))
+        self.createReservationBtn.setGeometry(QRect(570, 100, 131, 32))
         self.createReservationBtn.setStyleSheet(u"QPushButton{\n"
+"border: 3 solid black;\n"
+"border-radius: 8px;\n"
+"color: black;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(166, 165, 161);\n"
+"}")
+        self.EditReservation = QPushButton(self.centralwidget)
+        self.EditReservation.setObjectName(u"EditReservation")
+        self.EditReservation.setGeometry(QRect(710, 100, 131, 32))
+        self.EditReservation.setStyleSheet(u"QPushButton{\n"
 "border: 3 solid black;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
@@ -200,5 +211,6 @@ class Ui_MainWindow(object):
         self.dateEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy ", None))
         self.selectBtn.setText(QCoreApplication.translate("MainWindow", u"Select", None))
         self.createReservationBtn.setText(QCoreApplication.translate("MainWindow", u"Create Reservation", None))
+        self.EditReservation.setText(QCoreApplication.translate("MainWindow", u"Edit Reservation", None))
     # retranslateUi
 
