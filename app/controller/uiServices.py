@@ -1,3 +1,4 @@
+import random
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
@@ -477,6 +478,23 @@ class ReservationPage(QMainWindow, reservationPage):
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         self.updateReservation()
 
+    def userMembership(self):
+        if userServices.checkUserMembership(userID) != False:
+            if userServices.checkUserBirthday(userID) == True:
+                # pop up discount - 10% and random code for discount
+                discountCode = random.randint(1000, 9999)
+                alert = QtWidgets.QMessageBox()
+                alert.setText(f"Happy Birthday! You have a 10% discount on your reservation. Your discount code is DIS{discountCode}")
+                alert.exec()
+            else:
+                #pop up discount - 5% and random code for discount
+                discountCode = random.randint(1000, 9999)
+                alert = QtWidgets.QMessageBox()
+                alert.setText(f"You have a 5% discount on your reservation. Your discount code is DIS{discountCode}")
+                alert.exec()
+            
+                
+
     def confirmReservation(self):
         alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
@@ -484,6 +502,7 @@ class ReservationPage(QMainWindow, reservationPage):
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
+            self.userMembership()
             course = self.course.currentText()
             time = self.time.currentText()
             date = self.date.toString("dd/MM/yyyy")

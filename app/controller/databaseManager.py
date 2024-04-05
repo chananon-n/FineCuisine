@@ -117,6 +117,9 @@ class dataManager:
     def checkMembership(clientID):
         return checkMembershipDB(clientID)
     
+    def getMembership(clientID):
+        return getMembershipDB(clientID)
+    
     def checkDuplicateUser(username, email):
         clientInfo = getAllClientsDB()
         adminInfo = getAllAdminsDB()
