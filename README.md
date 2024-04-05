@@ -1,3 +1,6 @@
+# Overview
+FineCuisine is a mobile application built with Python and PySide6 to manage a restaurant. Clients can browse menus, reserve tables, view past visits and feedback, and stay updated on news. Admins have a comprehensive suite to manage reservations, menus, news, and user feedback. Python handles the core functionalities like user management, reservations, and data processing, while PySide6 creates the user-friendly interface for both clients and admins on various platforms.
+
 # How to use FineCuisine
 
 ## Registration:
