@@ -402,12 +402,20 @@ class Ui_MainWindow(object):
         __qtablewidgetitem5 = QTableWidgetItem()
         __qtablewidgetitem5.setFont(font4);
         self.historyTable.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        if (self.historyTable.rowCount() < 1):
+            self.historyTable.setRowCount(1)
+        font5 = QFont()
+        font5.setFamilies([u"KoHo"])
+        font5.setPointSize(16)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        __qtablewidgetitem6.setFont(font5);
+        self.historyTable.setItem(0, 0, __qtablewidgetitem6)
         self.historyTable.setObjectName(u"historyTable")
         self.historyTable.setGeometry(QRect(10, 70, 1131, 581))
         self.historyTable.setStyleSheet(u"color: black;")
         self.historyTable.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.historyTable.setShowGrid(False)
-        self.historyTable.setGridStyle(Qt.DotLine)
+        self.historyTable.setShowGrid(True)
+        self.historyTable.setGridStyle(Qt.SolidLine)
         self.historyTable.setSortingEnabled(False)
         self.historyTable.setCornerButtonEnabled(True)
         self.historyTable.horizontalHeader().setVisible(True)
@@ -444,9 +452,9 @@ class Ui_MainWindow(object):
         self.feedbackTextBox = QTextEdit(self.feedbackPage)
         self.feedbackTextBox.setObjectName(u"feedbackTextBox")
         self.feedbackTextBox.setGeometry(QRect(650, 310, 351, 191))
-        font5 = QFont()
-        font5.setPointSize(16)
-        self.feedbackTextBox.setFont(font5)
+        font6 = QFont()
+        font6.setPointSize(16)
+        self.feedbackTextBox.setFont(font6)
         self.feedbackTextBox.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "padding: 8px;\n"
@@ -510,13 +518,13 @@ class Ui_MainWindow(object):
         self.label_7 = QLabel(self.feedbackPage)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(640, 150, 151, 41))
-        font6 = QFont()
-        font6.setFamilies([u"Arial"])
-        font6.setPointSize(14)
-        font6.setBold(False)
-        font6.setItalic(False)
-        font6.setUnderline(True)
-        self.label_7.setFont(font6)
+        font7 = QFont()
+        font7.setFamilies([u"Arial"])
+        font7.setPointSize(14)
+        font7.setBold(False)
+        font7.setItalic(False)
+        font7.setUnderline(True)
+        self.label_7.setFont(font7)
         self.label_7.setStyleSheet(u"color: black;\n"
 "font: 14pt \"Arial\";")
         self.feedbackListWidget = QListWidget(self.feedbackPage)
@@ -629,6 +637,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Status", None));
         ___qtablewidgetitem5 = self.historyTable.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Cancel", None));
+
+        __sortingEnabled1 = self.historyTable.isSortingEnabled()
+        self.historyTable.setSortingEnabled(False)
+        ___qtablewidgetitem6 = self.historyTable.item(0, 0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"as", None));
+        self.historyTable.setSortingEnabled(__sortingEnabled1)
+
         self.historyTitleLabel_2.setText(QCoreApplication.translate("MainWindow", u"Feedback", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Share your thoughts on our restaurant experience! Your ratings and comments matter to us.", None))
         self.feedbackSubmitBtn.setText(QCoreApplication.translate("MainWindow", u"Submit", None))
@@ -641,11 +656,11 @@ class Ui_MainWindow(object):
         self.star5Radio.setText(QCoreApplication.translate("MainWindow", u"5", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Review Us here", None))
 
-        __sortingEnabled1 = self.feedbackListWidget.isSortingEnabled()
+        __sortingEnabled2 = self.feedbackListWidget.isSortingEnabled()
         self.feedbackListWidget.setSortingEnabled(False)
         ___qlistwidgetitem2 = self.feedbackListWidget.item(0)
         ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Feedback 1", None));
-        self.feedbackListWidget.setSortingEnabled(__sortingEnabled1)
+        self.feedbackListWidget.setSortingEnabled(__sortingEnabled2)
 
         self.feedbackTitle.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Title", None))
     # retranslateUi

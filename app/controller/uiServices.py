@@ -261,12 +261,14 @@ class MainPage(QMainWindow, mainPage):
             alert = QtWidgets.QMessageBox()
             alert.setText("Please rate the service")
             alert.exec()
-            return 
+            return
+        
         title = self.feedbackTitle.text()
         detail = self.feedbackTextBox.toPlainText()
         userServices.createNewFeedback(title,detail, rating, userID) 
         self.resetFeedback()
         self.addFeedback()
+        
     
     def resetFeedback(self):
         for i in range(6):
