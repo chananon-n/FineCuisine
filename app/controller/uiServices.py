@@ -199,11 +199,16 @@ class MainPage(QMainWindow, mainPage):
         self.historyTable.setRowCount(len(data))
         #no edit
         self.historyTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.sizeList = [] 
         
         def update_row_status(sender, row, status):
                 if  sender is self.cancelBtn:
-                    bookingID = self.historyTable.item(row, 0).text()
-                    bookingID = int(bookingID)
+                    bookingID = int(self.historyTable.item(row, 0).text())
+                    meal = self.historyTable.item(row, 1).text()
+                    date = self.historyTable.item(row, 2).text()
+                    time = self.historyTable.item(row, 3).text()
+                    size = self.sizeList[row]
+                    userServices.cancelBooking(meal, date, time, size)
                     userServices.confirmBookingStatus(bookingID, status)
                     self.historyTable.setItem(row, 4, QtWidgets.QTableWidgetItem(status))
                     self.historyTable.cellWidget(row, 5).hide()
@@ -214,14 +219,14 @@ class MainPage(QMainWindow, mainPage):
             self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(data[i]['date'])))
             self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(data[i]['time'])))
             self.historyTable.setItem(i, 4, QtWidgets.QTableWidgetItem(str(data[i]['status'])))
-
+            self.sizeList.append(int(data[i]['partySize']))
             if data[i]['status'] == "pending":
                 # Create cancel button
                 self.cancelBtn = QtWidgets.QPushButton("Cancel")
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
                 self.historyTable.setCellWidget(i, 5, self.cancelBtn)
-                
+         
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
         self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)

@@ -166,3 +166,10 @@ class UserServices:
     def userHistory(self,clientID):
         data = dataManager.getUserBookings(clientID)
         return data
+    
+    def cancelBooking(self,mealType,date,time,partySize):
+        data = dataManager.getBooking(mealType,date,time)
+        mealSize = data['T_Size']
+        size  = mealSize + partySize
+        dataManager.editMealBooking(mealType,date,time,size)
+        return True
