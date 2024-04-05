@@ -482,13 +482,13 @@ class ReservationPage(QMainWindow, reservationPage):
         if userServices.checkUserMembership(userID) != False:
             if userServices.checkUserBirthday(userID) == True:
                 # pop up discount - 10% and random code for discount
-                discountCode = random.randint(1000, 9999)
+                discountCode = random.randint(0000, 9999)
                 alert = QtWidgets.QMessageBox()
                 alert.setText(f"Happy Birthday! You have a 10% discount on your reservation. Your discount code is DIS{discountCode}")
                 alert.exec()
             else:
                 #pop up discount - 5% and random code for discount
-                discountCode = random.randint(1000, 9999)
+                discountCode = random.randint(0000, 9999)
                 alert = QtWidgets.QMessageBox()
                 alert.setText(f"You have a 5% discount on your reservation. Your discount code is DIS{discountCode}")
                 alert.exec()
