@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1248</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#E7E5DF</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="content">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="sidebar">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color: rgb(198, 52, 40);
+}
+
+.QPushButton{
+	color:black;
+	border: 0;
+	padding: 4px;
+}
+.QPushButton:hover{
+	background-color: #7E1615;
+}
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="homeBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/restaurant.png</normaloff>:/icon/restaurant.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="userinfoBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/user-black.png</normaloff>:/icon/user-black.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="notiBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/bell.png</normaloff>:/icon/bell.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="historyBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/time-past.png</normaloff>:/icon/time-past.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="feedbackBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/feedback.png</normaloff>:/icon/feedback.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>343</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="logoutBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/exit.png</normaloff>:/icon/exit.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_page">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>430</x>
+            <y>50</y>
+            <width>301</width>
+            <height>111</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 80px &quot;Menlo&quot;;
+color: rgb(126, 22, 21);</string>
+          </property>
+          <property name="text">
+           <string>Course</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lunchPic">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>240</y>
+            <width>360</width>
+            <height>360</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 25px;
+border-image: url(:/icon/lunchBtn.jpg);
+border: 2 solid black;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="dinnerPic">
+          <property name="geometry">
+           <rect>
+            <x>690</x>
+            <y>240</y>
+            <width>360</width>
+            <height>360</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 25px;
+border-image: url(:/icon/dinnerBtn.jpg);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>790</x>
+            <y>690</y>
+            <width>341</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:black;
+</string>
+          </property>
+          <property name="text">
+           <string>*Application will automatically open PDF in Drive for you</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="lunchMenuBtn">
+          <property name="geometry">
+           <rect>
+            <x>210</x>
+            <y>540</y>
+            <width>180</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>24</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+color:white;
+border-radius: 8px;
+	background-color: rgba(37, 14, 18, 188);
+}</string>
+          </property>
+          <property name="text">
+           <string>Lunch</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="dinnerMenuBtn">
+          <property name="geometry">
+           <rect>
+            <x>780</x>
+            <y>530</y>
+            <width>180</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>24</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+color:white;
+border-radius: 8px;
+	background-color: rgba(37, 14, 18, 188);
+}</string>
+          </property>
+          <property name="text">
+           <string>Dinner</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../picture/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

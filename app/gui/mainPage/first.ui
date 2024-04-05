@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#E7E5DF</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="content">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="sidebar">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color: rgb(198, 52, 40);
+}
+
+.QPushButton{
+	color:black;
+	border: 0;
+	padding: 4px;
+}
+.QPushButton:hover{
+	background-color: #7E1615;
+}
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QPushButton" name="homeBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/restaurant.png</normaloff>:/icon/restaurant.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="userinfoBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/user-black.png</normaloff>:/icon/user-black.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="notiBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/bell.png</normaloff>:/icon/bell.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="historyBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/time-past.png</normaloff>:/icon/time-past.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="feedbackBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/feedback.png</normaloff>:/icon/feedback.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>343</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="logoutBtn">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../picture/resource.qrc">
+              <normaloff>:/icon/exit.png</normaloff>:/icon/exit.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_page">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QStackedWidget" name="pageWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>1180</width>
+            <height>700</height>
+           </rect>
+          </property>
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <widget class="QWidget" name="homePage">
+           <widget class="QLabel" name="titleLabel">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>521</width>
+              <height>100</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>80</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #7E1615;
+font: 700 80pt &quot;Arial&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Fine Cuisine</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="detailLabel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>100</y>
+              <width>1060</width>
+              <height>200</height>
+             </rect>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>1060</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="picCourse">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>310</y>
+              <width>320</width>
+              <height>350</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/picBtn_1.jpeg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="courseBtn">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>600</y>
+              <width>100</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+border-radius: 12px;</string>
+            </property>
+            <property name="text">
+             <string>Course</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="reservationBtn">
+            <property name="geometry">
+             <rect>
+              <x>540</x>
+              <y>600</y>
+              <width>100</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+border-radius: 12px;</string>
+            </property>
+            <property name="text">
+             <string>Reservation</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="picReservation">
+            <property name="geometry">
+             <rect>
+              <x>430</x>
+              <y>310</y>
+              <width>320</width>
+              <height>350</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/picBtn_1.jpeg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="newsBtn">
+            <property name="geometry">
+             <rect>
+              <x>940</x>
+              <y>600</y>
+              <width>100</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+border-radius: 12px;</string>
+            </property>
+            <property name="text">
+             <string>News</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="picNews">
+            <property name="geometry">
+             <rect>
+              <x>830</x>
+              <y>310</y>
+              <width>320</width>
+              <height>350</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/picBtn_1.jpeg</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="starPic">
+            <property name="geometry">
+             <rect>
+              <x>930</x>
+              <y>20</y>
+              <width>32</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/star.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+            <property name="geometry">
+             <rect>
+              <x>980</x>
+              <y>20</y>
+              <width>101</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Rating</string>
+            </property>
+           </widget>
+           <zorder>titleLabel</zorder>
+           <zorder>detailLabel</zorder>
+           <zorder>picCourse</zorder>
+           <zorder>picReservation</zorder>
+           <zorder>picNews</zorder>
+           <zorder>courseBtn</zorder>
+           <zorder>reservationBtn</zorder>
+           <zorder>newsBtn</zorder>
+           <zorder>starPic</zorder>
+           <zorder>label_2</zorder>
+          </widget>
+          <widget class="QWidget" name="userinfoPage">
+           <widget class="QLabel" name="picUser">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>111</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../picture/resource.qrc">:/icon/User icon 100.png</pixmap>
+            </property>
+           </widget>
+           <widget class="QLabel" name="uidLabel">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>30</y>
+              <width>51</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>UID:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userID">
+            <property name="geometry">
+             <rect>
+              <x>200</x>
+              <y>30</y>
+              <width>91</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>1234</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="nameLabel">
+            <property name="geometry">
+             <rect>
+              <x>24</x>
+              <y>140</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+font: 700 24pt &quot;KoHo&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Username:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userName">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>140</y>
+              <width>241</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Test1</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userEmailLabel">
+            <property name="geometry">
+             <rect>
+              <x>24</x>
+              <y>220</y>
+              <width>71</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Email:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userEmail">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>220</y>
+              <width>351</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Test2</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="telLabel">
+            <property name="geometry">
+             <rect>
+              <x>24</x>
+              <y>300</y>
+              <width>41</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Tel:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userTel">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>300</y>
+              <width>211</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>(+66) 12-345-6789</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="membershipLabel">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>140</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>KoHo</family>
+              <pointsize>24</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;
+</string>
+            </property>
+            <property name="text">
+             <string>Membership</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="birthDateLabel">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>380</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black</string>
+            </property>
+            <property name="text">
+             <string>Birth date:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="dateExpireLabel">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>460</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Date expire:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userBirth">
+            <property name="geometry">
+             <rect>
+              <x>740</x>
+              <y>380</y>
+              <width>171</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>01-01-2024</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userExpire">
+            <property name="geometry">
+             <rect>
+              <x>740</x>
+              <y>460</y>
+              <width>191</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>01-2025</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="registerMembershipBtn">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>220</y>
+              <width>331</width>
+              <height>40</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+border-radius: 12px;
+background-color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>Register</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userFirstLabel">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>220</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black</string>
+            </property>
+            <property name="text">
+             <string>First Name:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userSur">
+            <property name="geometry">
+             <rect>
+              <x>740</x>
+              <y>300</y>
+              <width>311</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Doe</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userFirst">
+            <property name="geometry">
+             <rect>
+              <x>740</x>
+              <y>220</y>
+              <width>331</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>John</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userSurLabel">
+            <property name="geometry">
+             <rect>
+              <x>600</x>
+              <y>300</y>
+              <width>131</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 24pt &quot;KoHo&quot;;
+color: black;</string>
+            </property>
+            <property name="text">
+             <string>Surname:</string>
+            </property>
+           </widget>
+           <zorder>picUser</zorder>
+           <zorder>uidLabel</zorder>
+           <zorder>userID</zorder>
+           <zorder>nameLabel</zorder>
+           <zorder>userName</zorder>
+           <zorder>userEmailLabel</zorder>
+           <zorder>userEmail</zorder>
+           <zorder>telLabel</zorder>
+           <zorder>userTel</zorder>
+           <zorder>membershipLabel</zorder>
+           <zorder>birthDateLabel</zorder>
+           <zorder>dateExpireLabel</zorder>
+           <zorder>userBirth</zorder>
+           <zorder>userExpire</zorder>
+           <zorder>userFirstLabel</zorder>
+           <zorder>userSur</zorder>
+           <zorder>userFirst</zorder>
+           <zorder>userSurLabel</zorder>
+           <zorder>registerMembershipBtn</zorder>
+          </widget>
+          <widget class="QWidget" name="notiPage">
+           <widget class="QLabel" name="notiTitleLabel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>261</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615</string>
+            </property>
+            <property name="text">
+             <string>Notification</string>
+            </property>
+           </widget>
+           <widget class="QListWidget" name="notiWidget">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>120</y>
+              <width>1011</width>
+              <height>541</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+    padding: 12px 12px; /* Corrected padding format */
+    font: 24pt &quot;Arial&quot;;
+    color: rgb(0, 0, 0);
+}
+
+QListWidget::item {
+    border: 1px solid; /* Corrected border format */
+    border-radius: 8px;
+    margin: 4px;
+}
+
+QListWidget::item {
+    qproperty-alignment: AlignCenter;
+}
+</string>
+            </property>
+            <property name="autoScroll">
+             <bool>true</bool>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Feedback 1</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="flags">
+              <set>NoItemFlags</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>tetwt</string>
+             </property>
+            </item>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="historyPage">
+           <widget class="QLabel" name="historyTitleLabel">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>161</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>History</string>
+            </property>
+           </widget>
+           <widget class="QTableWidget" name="historyTable">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>1131</width>
+              <height>581</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;</string>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="showGrid">
+             <bool>true</bool>
+            </property>
+            <property name="gridStyle">
+             <enum>Qt::SolidLine</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <row/>
+            <column>
+             <property name="text">
+              <string>ID</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Course</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Date</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Time</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Status</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Cancel</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+            </column>
+            <item row="0" column="0">
+             <property name="text">
+              <string>as</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+            </item>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="feedbackPage">
+           <widget class="QLabel" name="historyTitleLabel_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>0</y>
+              <width>211</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 700 48pt &quot;KoHo&quot;;
+color: #7E1615;</string>
+            </property>
+            <property name="text">
+             <string>Feedback</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>90</y>
+              <width>940</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>20</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;</string>
+            </property>
+            <property name="text">
+             <string>Share your thoughts on our restaurant experience! Your ratings and comments matter to us.</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="feedbackSubmitBtn">
+            <property name="geometry">
+             <rect>
+              <x>890</x>
+              <y>530</y>
+              <width>100</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+border-radius: 8px;
+background-color: #C63428;
+}
+QPushButton:hover{
+background-color:#A82A20;
+}</string>
+            </property>
+            <property name="text">
+             <string>Submit</string>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="feedbackTextBox">
+            <property name="geometry">
+             <rect>
+              <x>650</x>
+              <y>310</y>
+              <width>351</width>
+              <height>191</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+padding: 8px;
+border: 0;
+border-radius: 8px;</string>
+            </property>
+            <property name="lineWrapMode">
+             <enum>QTextEdit::WidgetWidth</enum>
+            </property>
+            <property name="placeholderText">
+             <string>Add a comment..</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="radioWidget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>170</y>
+              <width>391</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <widget class="QWidget" name="layoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>30</y>
+               <width>375</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QRadioButton" name="star0Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star1Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>1</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star2Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>2</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star3Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>3</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star4Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>4</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="star5Radio">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string>5</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../../picture/resource.qrc">
+                  <normaloff>:/icon/star.png</normaloff>:/icon/star.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+           <widget class="QLabel" name="label_7">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>150</y>
+              <width>151</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>14</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: black;
+font: 14pt &quot;Arial&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Review Us here</string>
+            </property>
+           </widget>
+           <widget class="QListWidget" name="feedbackListWidget">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>130</y>
+              <width>501</width>
+              <height>541</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QListWidget {
+    padding: 12px 12px; /* Corrected padding format */
+    font: 24pt &quot;Arial&quot;;
+    color: rgb(0, 0, 0);
+}
+
+QListWidget::item {
+    border: 1px solid; /* Corrected border format */
+    border-radius: 8px;
+    margin: 4px;
+}
+
+QListWidget::item {
+    qproperty-alignment: AlignCenter;
+}
+</string>
+            </property>
+            <property name="autoScroll">
+             <bool>true</bool>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <item>
+             <property name="text">
+              <string>Feedback 1</string>
+             </property>
+             <property name="font">
+              <font>
+               <family>KoHo</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="flags">
+              <set>NoItemFlags</set>
+             </property>
+            </item>
+           </widget>
+           <widget class="QLineEdit" name="feedbackTitle">
+            <property name="geometry">
+             <rect>
+              <x>650</x>
+              <y>260</y>
+              <width>351</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(0, 0, 0);
+font: 700 18pt &quot;KoHo&quot;;
+background-color: rgb(255, 255, 255);
+padding: 8px;
+border: 0;
+border-radius: 8px;</string>
+            </property>
+            <property name="placeholderText">
+             <string>Title</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../picture/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

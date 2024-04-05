@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>IMG_1673.jpg</file>
+    <file>Down Arrow.png</file>
+    <file>dinnerBtn.jpg</file>
+    <file>star.png</file>
+    <file>User icon 100.png</file>
+    <file>feedback.png</file>
+    <file>picBtn_1.jpeg</file>
+    <file>lunchBtn.jpg</file>
+    <file>restaurant.png</file>
+    <file>icons8-phone-24.png</file>
+    <file>user-black.png</file>
+    <file>Mail icon 24.png</file>
+    <file>bell.png</file>
+    <file>crown.png</file>
+    <file>exit.png</file>
+    <file>lock.png</file>
+    <file>menu-burger.png</file>
+    <file>time-past.png</file>
+    <file>MH_SM_40BW.jpg</file>
+    <file>user.png</file>
+  </qresource>
+</RCC>
