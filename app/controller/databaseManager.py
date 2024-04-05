@@ -60,6 +60,9 @@ class dataManager:
         generateMealBooking(mealType, numberBooking, meal)
         return True
     
+    def editMealBooking(mealType, date, time, partySize):
+        return editMealBookingDB(mealType, date, time, partySize)
+    
     
     
     def getBookingByID(bookingID):

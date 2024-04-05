@@ -194,10 +194,10 @@ def checkDuplicateMealBooking(mealType, date, time):
             return True
     return False
 
-def editMealBooking(mealType, date, time, partySize):
+def editMealBookingDB(mealType, date, time, size):
     for booking in getattr(root, f'{mealType}Booking').values():
         if booking.date == date and booking.time == time:
-            root.booking[booking.id].partySize = partySize
+            booking.totalSize = size
             transaction.commit()
             return True
     return False
