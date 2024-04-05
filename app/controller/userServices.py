@@ -126,10 +126,10 @@ class UserServices:
         return check
 
     def checkUserBirthday(self, clientID):
-        check = UserServices.checkUserMembership(clientID)
+        data = dataManager.getMembership(clientID)
         currentDate = datetime.now()
         currentMonth = currentDate.strftime("%d/%m/%Y").split('/')[1]
-        userMonth = check['memberBirth'].split('/')[1]
+        userMonth = data['memberBirth'].split('/')[1]
         if currentMonth == userMonth:
             return True
         return False
@@ -166,3 +166,10 @@ class UserServices:
     def userHistory(self,clientID):
         data = dataManager.getUserBookings(clientID)
         return data
+    
+    def cancelBooking(self,mealType,date,time,partySize):
+        data = dataManager.getBooking(mealType,date,time)
+        mealSize = data['T_Size']
+        size  = mealSize + partySize
+        dataManager.editMealBooking(mealType,date,time,size)
+        return True

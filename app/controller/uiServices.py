@@ -1,3 +1,4 @@
+import random
 import sys
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import QSize, Qt
@@ -20,6 +21,7 @@ from app.gui.courseAdminPage.courseAdminPage import Ui_MainWindow as courseAdmin
 from app.gui.newsAdmin.newsAdminPage import Ui_MainWindow as newsAdminPage
 from app.gui.reservationAdminPage.reservationAdminPage import Ui_MainWindow as reservationAdminPage
 from app.gui.adminFeedback.adminFeedbackPage import Ui_MainWindow as adminFeedbackPage
+from app.gui.paymentPage.paymentPage import Ui_Dialog as paymentPage
 
 from datetime import datetime
 import webbrowser
@@ -197,11 +199,16 @@ class MainPage(QMainWindow, mainPage):
         self.historyTable.setRowCount(len(data))
         #no edit
         self.historyTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.sizeList = [] 
         
         def update_row_status(sender, row, status):
                 if  sender is self.cancelBtn:
-                    bookingID = self.historyTable.item(row, 0).text()
-                    bookingID = int(bookingID)
+                    bookingID = int(self.historyTable.item(row, 0).text())
+                    meal = self.historyTable.item(row, 1).text()
+                    date = self.historyTable.item(row, 2).text()
+                    time = self.historyTable.item(row, 3).text()
+                    size = self.sizeList[row]
+                    userServices.cancelBooking(meal, date, time, size)
                     userServices.confirmBookingStatus(bookingID, status)
                     self.historyTable.setItem(row, 4, QtWidgets.QTableWidgetItem(status))
                     self.historyTable.cellWidget(row, 5).hide()
@@ -212,14 +219,14 @@ class MainPage(QMainWindow, mainPage):
             self.historyTable.setItem(i, 2, QtWidgets.QTableWidgetItem(str(data[i]['date'])))
             self.historyTable.setItem(i, 3, QtWidgets.QTableWidgetItem(str(data[i]['time'])))
             self.historyTable.setItem(i, 4, QtWidgets.QTableWidgetItem(str(data[i]['status'])))
-
+            self.sizeList.append(int(data[i]['partySize']))
             if data[i]['status'] == "pending":
                 # Create cancel button
                 self.cancelBtn = QtWidgets.QPushButton("Cancel")
                 self.cancelBtn.setStyleSheet("background-color: #f44336; color: white;")
                 self.cancelBtn.clicked.connect(lambda row=i, status="cancelled": update_row_status(self.cancelBtn, row, status))  # Pass row, status, and sender (self.cancelBtn)
                 self.historyTable.setCellWidget(i, 5, self.cancelBtn)
-                
+         
     def openFeedback(self):
         self.pageWidget.setCurrentIndex(4)
         self.feedbackSubmitBtn.clicked.connect(self.submitFeedback)
@@ -382,7 +389,10 @@ class ReservationPage(QMainWindow, reservationPage):
         self.userinfoBtn.clicked.connect(self.openUserInfo)
         #reservation page buttons
         self.calendar = self.findChild(QtWidgets.QCalendarWidget, "calendarWidget")
+        self.timeSelectedLabel.setText(QtCore.QDate.currentDate().toString("dd/MM/yyyy"))
         self.selectedDate = self.findChild(QtWidgets.QLabel, "timeSelectedLabel")
+        self.calendar.setMinimumDate(QtCore.QDate.currentDate())
+        self.date = QtCore.QDate.currentDate()
         self.calendar.selectionChanged.connect(self.getDate)
         
         self.reservationName = self.findChild(QtWidgets.QLineEdit, "reservationoName")
@@ -463,6 +473,10 @@ class ReservationPage(QMainWindow, reservationPage):
         self.mainPage.show()
         self.mainPage.openFeedback()
         self.hide()
+    
+    def paymentPage(self, course, date, time, partySize, persons, userNotes):
+        self.paymentPage = PaymentPage(course, date, time, partySize, persons, userNotes)
+        self.paymentPage.show()
         
     def logout(self):
         self.loginPage = LoginPage()
@@ -470,43 +484,80 @@ class ReservationPage(QMainWindow, reservationPage):
         self.hide()
         
     def getDate(self):
+        print( self.calendar.selectedDate())
         self.date = self.calendar.selectedDate()
         self.selectedDate.setText(self.date.toString("dd/MM/yyyy"))
         self.updateReservation()
+        
+
+    def userMembership(self):
+        print("working")
+        if userServices.checkUserMembership(userID) != False:
+            if userServices.checkUserBirthday(userID) == True:
+                # pop up discount - 10% and random code for discount
+                discountCode = random.randint(0000, 9999)
+                alert = QtWidgets.QMessageBox()
+                alert.setText(f"Happy Birthday! You have a 10% discount on your reservation. Your discount code is DIS{discountCode}")
+                alert.exec()
+            else:
+                #pop up discount - 5% and random code for discount
+                discountCode = random.randint(0000, 9999)
+                alert = QtWidgets.QMessageBox()
+                alert.setText(f"You have a 5% discount on your reservation. Your discount code is DIS{discountCode}")
+                alert.exec()
+            
+                
 
     def confirmReservation(self):
+        print("not working")
         alert = QtWidgets.QMessageBox()
         alert.setText("Confirm reservation?")
         alert.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         alert.setDefaultButton(QtWidgets.QMessageBox.Yes)
         ret = alert.exec()
         if ret == QtWidgets.QMessageBox.Yes:
+            self.userMembership()
             course = self.course.currentText()
             time = self.time.currentText()
             date = self.date.toString("dd/MM/yyyy")
             partySize = int(self.size.currentText())
             persons = self.reservationName.text()
             userNotes = self.additionNote.toPlainText()
-
-            print("User ID is: ", userID)
-            print("Course is:", course)
-            print("Date is:", date)
-            print("Time is:", time)
-            print("Party size is:", partySize)
-            print("Persons is:", persons)
-            print("User notes is:", userNotes)
-
-            if userServices.reservation(userID, course, date, time, partySize, persons, userNotes):
-                alert = QtWidgets.QMessageBox()
-                alert.setText("Reservation confirmed!")
-                alert.exec()
-                self.mainPage.show()
-                self.mainPage.openHomePage()
-                self.hide()
-            else:
-                alert = QtWidgets.QMessageBox()
-                alert.setText("Reservation failed. Please try again.")
-                alert.exec()
+            self.paymentPage(course, date, time, partySize, persons, userNotes)
+            
+class PaymentPage(QMainWindow, paymentPage):
+    def __init__(self,course, date, time, partySize, persons, userNotes):
+        super().__init__()
+        self.setupUi(self)
+        self.mainPage = MainPage()
+        self.course = course
+        self.date = date
+        self.time = time
+        self.partySize = partySize
+        self.persons = persons
+        self.userNotes = userNotes
+        
+        self.cancelBtn.clicked.connect(self.openReservationPage)
+        self.cancelBtn_2.clicked.connect(self.paidPage)
+    
+    def openReservationPage(self):
+        self.mainPage = MainPage()
+        self.mainPage.show()
+        self.hide()
+    
+    def paidPage(self):
+        if userServices.reservation(userID, self.course, self.date, self.time, self.partySize, self.persons, self.userNotes):
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation successful!")
+            alert.exec()
+        else:
+            alert = QtWidgets.QMessageBox()
+            alert.setText("Reservation failed. Please try again.")
+            alert.exec()
+        
+        self.mainPage = MainPage()
+        self.mainPage.show()
+        self.hide()
 
 class RegisterMembershipPage(QMainWindow, registerMembershipPage):
     def __init__(self):
@@ -805,7 +856,6 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         self.setupUi(self)
         self.reservationTable.setWordWrap(True)
         self.reservationTable.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
-        self.reservationTable.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         #del all rows
         self.reservationTable.setRowCount(0)
         #no edit
@@ -908,7 +958,14 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
                 if sender is self.confirmBtn or sender is self.cancelBtn:
                     bookingID = self.reservationTable.item(row, 0).text()
                     bookingID = int(bookingID)
-                    userServices.confirmBookingStatus(bookingID, status)
+                    if status == "cancelled":
+                        meal = self.reservationTable.item(row, 2).text()
+                        date = self.dateEdit.text().strip()
+                        time = self.reservationTable.item(row, 3).text()
+                        size = int(self.reservationTable.item(row, 4).text())
+                        userServices.cancelBooking(meal, date, time, size)
+                    else:
+                        userServices.confirmBookingStatus(bookingID, status)
                     self.reservationTable.setItem(row, 7, QtWidgets.QTableWidgetItem(status))
                     self.reservationTable.cellWidget(row, 8).hide()
                     self.reservationTable.cellWidget(row, 9).hide()

@@ -112,7 +112,7 @@ def membershipMain():
         print("3. Logout")
         choice = int(input("Enter your choice: "))
         if choice == 1:
-            print(getMembership(userID))
+            print(getMembershipDB(userID))
         elif choice == 2:
             memberName = input("Enter member name: ")
             memberSurname = input("Enter member surname: ")

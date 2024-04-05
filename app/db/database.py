@@ -143,7 +143,7 @@ def getBookingDB(bookingID):
             return booking
     return "Booking not found"
 
-def getMembership(clientID):
+def getMembershipDB(clientID):
     for client in root.clients.values():
         if client.id == clientID:
             return client.membership

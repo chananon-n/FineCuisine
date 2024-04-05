@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>IMG_1673.jpg</file>
     <file>Down Arrow.png</file>
     <file>dinnerBtn.jpg</file>
     <file>star.png</file>
