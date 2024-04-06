@@ -479,6 +479,7 @@ class ReservationPage(QMainWindow, reservationPage):
     def paymentPage(self, course, date, time, partySize, persons, userNotes):
         self.paymentPage = PaymentPage(course, date, time, partySize, persons, userNotes)
         self.paymentPage.show()
+        self.hide()
         
     def logout(self):
         self.loginPage = LoginPage()
