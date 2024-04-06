@@ -1157,13 +1157,14 @@ class ReservationAdminPage(QMainWindow, reservationAdminPage):
         userSelectedMeal = self.mealCombo.currentText()
         self.timeCombo.clear()
 
+        date = QtCore.QDate.currentDate().toString("dd/MM/yyyy")
         if userSelectedDate == "Select Date":
             self.timeCombo.addItem("Select Time")
         else:
             # Assuming you have logic to fetch available times based on meal and date
             data = userServices.getallMealsBooking(userSelectedMeal)
             for time in data:
-                if time['T_Date'] == userSelectedDate:
+                if time['T_Date'] == userSelectedDate and time['T_Date'] >= date:
                     self.timeCombo.addItem(time['T_Time'])
                 
         
